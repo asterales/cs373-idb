@@ -1,53 +1,71 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://sweography.me
 
 # Internet Country Database API
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Internet Country Database gives you information about countries and their relating regions, currencies, and languages.
 
-## Questions Collection [/questions]
+## Countries Collection -- /country [/country{?id,region_id,currency_id,language_id}]
 
-### List All Questions [GET]
+### List Countries [GET]
+
++ Parameters
+    + id (optional, integer)
+        Response contains the country with the specified id
+    + region_id (optional, integer)
+        Response contains only countries in the specified region
+    + currency_id (optional, integer)
+        Response contains only countries that use the specified currency
+    + language_id (optional, integer)
+        Response contains only countries who speak the specified language
 
 + Response 200 (application/json)
 
         [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
+                "id": 1,
+                "name": "United States of America",
+                "lat": 38,
+                "lng": -97,
+                "region": "Americas",
+                "population": 321645000,
+                "languages": [
+                    "en"
+                ],
+                "currencies": [
+                    "USD",
+                    "USN",
+                    "USS"
+                ],
+                "borders": [
+                    "CAN",
+                    "MEX"
                 ]
             }
         ]
 
-### Create a New Question [POST]
+### Create a New Country [POST]
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
 
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
+            "name": "United States of America",
+            "lat": 38,
+            "lng": -97,
+            "region": "Americas",
+            "population": 321645000,
+            "languages": [
+                "en"
+            ],
+            "currencies": [
+                "USD",
+                "USN",
+                "USS"
+            ],
+            "borders": [
+                "CAN",
+                "MEX"
             ]
         }
 
@@ -55,26 +73,351 @@ form of choices.
 
     + Headers
 
-            Location: /questions/2
+            Location: /countries/2
 
     + Body
 
+               {
+                    "id": 2,
+                    "name": "United States of America",
+                    "lat": 38,
+                    "lng": -97,
+                    "population": 321645000,
+                    "region": "Americas",
+                    "languages": [
+                        "en"
+                    ],
+                    "currencies": [
+                        "USD",
+                        "USN",
+                        "USS"
+                    ],
+                    "borders": [
+                        "CAN",
+                        "MEX"
+                    ]
+                }
+                
+## Single Country -- /country/{id} [/country/{id}]
+
+### Get a Country [GET]
+
++ Response 200 (application/json)
+
+        
+        {
+            "id": 1,
+            "name": "United States of America",
+            "lat": 38,
+            "lng": -97,
+            "region": "Americas",
+            "population": 321645000,
+            "languages": [
+                "en"
+            ],
+            "currencies": [
+                "USD",
+                "USN",
+                "USS"
+            ],
+            "borders": [
+                "CAN",
+                "MEX"
+            ]
+        }
+        
+                
+### Update a Country [PUT]
+
++ Request (application/json)
+
+        {
+            "name": "United States of America",
+            "lat": 38,
+            "lng": -97,
+            "region": "Americas",
+            "population": 321645000,
+            "languages": [
+                "en"
+            ],
+            "currencies": [
+                "USD",
+                "USN",
+                "USS"
+            ],
+            "borders": [
+                "CAN",
+                "MEX"
+            ]
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /countries/{id}
+
+    + Body
+
+               {
+                    "id": 2,
+                    "name": "United States of America",
+                    "lat": 38,
+                    "lng": -97,
+                    "population": 321645000,
+                    "region": "Americas",
+                    "languages": [
+                        "en"
+                    ],
+                    "currencies": [
+                        "USD",
+                        "USN",
+                        "USS"
+                    ],
+                    "borders": [
+                        "CAN",
+                        "MEX"
+                    ]
+                }                
+                
+### Remove a Country [DELETE]
+
++ Request (application/json)
+
++ Response 204
+
+                
+## Regions Collection -- /region [/region]
+
+### List Regions [GET]
+
++ Response 200 (application/json)
+
+        [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
+                "id": 1,
+                "name": "Americas"
+            },
+            {
+                "id": 2,
+                "name": "Asia"
             }
+        ]
+
+### Create a New Region [POST]
+
++ Request (application/json)
+
+        {
+            "name": "Americas"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /regions/2
+
+    + Body
+
+               {
+                    "id": 1,
+                    "name": "Americas"
+                }
+                
+## Single Region -- /region/{id} [/region/{id}]
+
+### Get a Region [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "id": 1,
+            "name": "Americas"
+        }
+        
+        
+
+### Update a Region [PUT]
+
++ Request (application/json)
+
+        {
+            "name": "Americas",
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /regions/{id}
+
+    + Body
+
+               {
+                    "id": 1,
+                    "name": "Americas",
+                }            
+
+### Remove a Region [DELETE]
+
++ Request (application/json)
+
++ Response 204
+
+       
+## Languages Collection -- /language [/language]
+
+### List Languages [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "name": "en"
+            },
+            {
+                "id": 2,
+                "name": "sq"
+            }
+        ]
+        
+### Create a New Language [POST]
+
++ Request (application/json)
+
+        {
+            "name": "sp"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /languages/2
+
+    + Body
+
+               {
+                    "id": 2,
+                    "name": "sp"
+                } 
+                
+## Single Language -- /langauge/{id} [/language/{id}]
+            
+### Get a Language [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "id": 1,
+            "name": "en"
+        }
+
+
+### Update a Language [PUT]
+
++ Request (application/json)
+
+        {
+            "name": "en",
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /languages/{id}
+
+    + Body
+
+               {
+                    "id": 1,
+                    "name": "en",
+                }                 
+
+### Remove a Language [DELETE]
+
++ Request (application/json)
+
++ Response 204
+
+    
+## Currency Collection -- /currency [/currency]
+
+### List Currencies [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "name": "USD"
+            },
+            {
+                "id": 2,
+                "name": "USN"
+            }
+        ]
+        
+### Create a New Currency [POST]
+
++ Request (application/json)
+
+        {
+            "name": "BC"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /currencies/2
+
+    + Body
+
+               {
+                    "id": 2,
+                    "name": "BC"
+                }      
+                
+## Single Currency -- /currency/{id} [/currency/{id}]
+                
+### Get a Currency [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "id": 1,
+            "name": "USD"
+        }                
+           
+           
+
+### Update a Currency [PUT]
+
++ Request (application/json)
+
+        {
+            "name": "USD",
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /regions/{id}
+
+    + Body
+
+               {
+                    "id": 1,
+                    "name": "USD",
+                }                 
+
+### Remove a Currency [DELETE]
+
++ Request (application/json)
+
++ Response 204
