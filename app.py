@@ -10,7 +10,8 @@ def index():
 
 @app.route("/countries")
 def countries_table():
-	attributes = ["Name", "Latitude", "Longitude", "Region", "Population", "Languages", "Currencies", "Bordering Countries"]
+	attributes = ["Name", "Latitude", "Longitude", "Region", "Population", \
+				  "Languages", "Currencies", "Bordering Countries"]
 	usa = {"Name" : "United States of America", "Latitude" : 38, "Longitude" : -97, \
 			"Region" : "Americas", "Population" : 321645000, \
 			"Languages" : 1, "Currencies" : 3, "Bordering Countries" : 2} 
@@ -26,16 +27,22 @@ def countries_table():
 @app.route("/regions")
 def regions_table():
 	attributes = ["Name", "Area", "Population", "Subregions", "Countries", "Languages", "Currencies"]
-	regions = []
+	asia = {"Name": "Asia", "Area": 32064971, "Population": 4339964684, \
+			"Subregions": 5, "Countries": 50, "Languages": 37, "Currencies": 49}
+	americas = {"Name": "Americas", "Area": 42247698, "Population": 983832674, \
+				"Subregions": 4, "Countries": 56, "Languages": 11, "Currencies": 43}
+	europe = {"Name": "Europe", "Area": 23138282, "Population": 745355450, \
+			  "Subregions": 4, "Countries": 52, "Languages": 41, "Currencies": 24}
+	regions = [americas, asia, europe]
 	return render_template('models.html', title = "Regions", attributes = attributes, models = regions)
 
 @app.route("/languages")
 def languages_table():
 	attributes = ["Name", "ISO 639-1 Code", "Countries", "Regions", "Subregions"]
 	norwegian = {"Name" : "Norwegian", "ISO 639-1 Code" : "no", "Countries" : 2, "Regions" : 1, "Subregions": 1}
-	afrikaans = {"Name" : "Afrikaans", "ISO 639-1 Code" : "af", "Countries" : 2, "Regions" : 1, "Subregions": 1}
+	english = {"Name" : "English", "ISO 639-1 Code" : "en", "Countries" : 89, "Regions" : 15, "Subregions": 18}
 	chinese = {"Name" : "Chinese", "ISO 639-1 Code" : "zh", "Countries" : 5, "Regions" : 1, "Subregions": 2}
-	languages = [afrikaans, chinese, norwegian]
+	languages = [chinese, english, norwegian]
 	return render_template('models.html', title = "Languages", attributes = attributes, models = languages)
 
 @app.route("/currencies")
