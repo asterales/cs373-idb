@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import sys
 from sqlalchemy import Table, Column, ForeignKey, Integer, String
@@ -31,8 +33,8 @@ class Countries(Base): #name, capital, region, population, latlng, Borders, curr
 	__tablename__ = 'Countries'
 
 	id = Column(Integer, primary_key=True)
-	name = Column(String(255), nullable=False)
-	capital = Column(String(255), nullable=False)
+	name = Column(String(255)) #nullable=False
+	capital = Column(String(255)) #nullable=False
 	population = Column(Integer)
 	lat = Column(Integer)
 	lng = Column(Integer)
@@ -50,7 +52,7 @@ class Languages(Base):
 	__tablename__ = 'Languages'
 
 	id = Column(Integer, primary_key=True)
-	name = Column(String(255), nullable=False)
+	name = Column(String(255)) #nullable=False
 
 	#many-to-many relationships
 	Countries = relationship('Countries', secondary=country_language, backref='Languages')
@@ -59,7 +61,7 @@ class Currencies(Base):
 	__tablename__ = 'Currencies'
 
 	id = Column(Integer, primary_key=True)
-	name = Column(String(255), nullable=False)
+	name = Column(String(255)) #nullable=False
 
 	#many-to-many relationships
 	Countries = relationship('Countries', secondary=country_currency, backref='Currencies')
@@ -68,7 +70,7 @@ class Borders(Base):
 	__tablename__ = 'Borders'
 
 	id = Column(Integer, primary_key=True)
-	name = Column(String(255), nullable=False)
+	name = Column(String(255)) #nullable=False
 
 	#many-to-many relationships
 	Countries = relationship('Countries', secondary=country_border, backref='Borders')
@@ -77,13 +79,13 @@ class Regions(Base):
 	__tablename__ = 'Regions'
 
 	id = Column(Integer, primary_key=True)
-	name = Column(String(255), nullable=False)
+	name = Column(String(255)) #nullable=False
 
 
-#connects to a database that has already been created
+###connects to a database that has already been created
 
-#                               user:pass@server/database_name
-engine = create_engine('mysql://root:root@localhost/SWEography')
+###                             user:pass@server/database_name
+#engine = create_engine('mysql://root:root@localhost/SWEography')
 
-#creates all tables in database 
-Base.metadata.create_all(engine)
+###creates all tables in database 
+#Base.metadata.create_all(engine)
