@@ -4,8 +4,8 @@
 }
 
 body {
-	background-color: lightblue;
-    background-image: url("../img/water-world.jpg");
+	background-color: #ddf3ff;
+    background-image: url("../img/water-world2.jpg");
     background-size:cover;
     background-repeat: no-repeat;
 }

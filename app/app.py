@@ -54,5 +54,9 @@ def currencies_table():
 	currencies = [cny, nok, usd]
 	return render_template('models.html', title = "Currencies", attributes = attributes, models = currencies)
 
+@app.route("/about")
+def about():
+	return render_template('about.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
