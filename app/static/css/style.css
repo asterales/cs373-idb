@@ -18,9 +18,25 @@ body {
 
 }
 
-.profilebg {
+.profilecard {
 
-	text-align: center;
-
+	display: inline-block;
+    max-width: 300px;
+    padding: 10px 10px 10px 10px;
+    margin-top: 15px;
+    margin-right: 10px;
+    text-align: left;
+    vertical-align: top;
+/*	background-color: rgba(0,0,0,.3);
+*/
 }
 
+.about_card {
+    display: inline-block;
+    max-width: 300px;
+    padding: 10px 10px 10px 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    text-align: left;
+    vertical-align: top;
+}
