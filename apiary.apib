@@ -28,7 +28,9 @@ Internet Country Database gives you information about countries and their relati
                 "lat": 38,
                 "lng": -97,
                 "region": "Americas",
+                "subregion": "North America",
                 "population": 321645000,
+                "area": 1000,
                 "capital": "Washington, DC",
                 "languages": [
                     "en"
@@ -55,7 +57,9 @@ Internet Country Database gives you information about countries and their relati
             "lat": 38,
             "lng": -97,
             "region": "Americas",
+            "subregion": "North America",
             "population": 321645000,
+            "area": 1000,
             "capital": "Washington, DC",
             "languages": [
                 "en"
@@ -85,7 +89,9 @@ Internet Country Database gives you information about countries and their relati
                     "lat": 38,
                     "lng": -97,
                     "population": 321645000,
+                    "area": 1000,
                     "capital": "Washington, DC",
+                    "subregion": "North America",
                     "region": "Americas",
                     "languages": [
                         "en"
@@ -114,7 +120,9 @@ Internet Country Database gives you information about countries and their relati
             "lat": 38,
             "lng": -97,
             "region": "Americas",
+            "subregion": "North America",
             "population": 321645000,
+            "area": 1000,
             "capital": "Washington, DC",
             "languages": [
                 "en"
@@ -140,7 +148,9 @@ Internet Country Database gives you information about countries and their relati
             "lat": 38,
             "lng": -97,
             "region": "Americas",
+            "subregion": "North America",
             "population": 321645000,
+            "area": 1000,
             "capital": "Washington, DC",
             "languages": [
                 "en"
@@ -160,7 +170,7 @@ Internet Country Database gives you information about countries and their relati
 
     + Headers
 
-            Location: /countries/{id}
+            Location: /country/{id}
 
     + Body
 
@@ -170,7 +180,9 @@ Internet Country Database gives you information about countries and their relati
                     "lat": 38,
                     "lng": -97,
                     "population": 321645000,
+                    "area": 1000,
                     "region": "Americas",
+                    "subregion": "North America",
                     "capital": "Washington, DC",
                     "languages": [
                         "en"
@@ -202,11 +214,23 @@ Internet Country Database gives you information about countries and their relati
         [
             {
                 "id": 1,
-                "name": "Americas"
+                "name": "Americas",
+                "area": 999999,
+                "population": 99999,
+                "subregions": 4,
+                "countries": 5,
+                "languages": 10,
+                "currencies": 10
             },
             {
                 "id": 2,
-                "name": "Asia"
+                "name": "Asia",
+                "area": 999999,
+                "population": 99999,
+                "subregions": 4,
+                "countries": 5,
+                "languages": 10,
+                "currencies": 10
             }
         ]
 
@@ -222,7 +246,7 @@ Internet Country Database gives you information about countries and their relati
 
     + Headers
 
-            Location: /regions/2
+            Location: /region/2
 
     + Body
 
@@ -239,7 +263,13 @@ Internet Country Database gives you information about countries and their relati
         
         {
             "id": 1,
-            "name": "Americas"
+            "name": "Americas",
+            "area": 999999,
+            "population": 99999,
+            "subregions": 4,
+            "countries": 5,
+            "languages": 10,
+            "currencies": 10
         }
         
         
@@ -256,13 +286,19 @@ Internet Country Database gives you information about countries and their relati
 
     + Headers
 
-            Location: /regions/{id}
+            Location: /region/{id}
 
     + Body
 
                {
                     "id": 1,
                     "name": "Americas",
+                    "area": 999999,
+                    "population": 99999,
+                    "subregions": 4,
+                    "countries": 5,
+                    "languages": 10,
+                    "currencies": 10        
                 }            
 
 ### Remove a Region [DELETE]
@@ -281,11 +317,19 @@ Internet Country Database gives you information about countries and their relati
         [
             {
                 "id": 1,
-                "name": "en"
+                "iso": "en",
+                "name": "English",
+                "countries": 2,
+                "regions": 1,
+                "subregion": 1
             },
             {
                 "id": 2,
-                "name": "sq"
+                "iso": "no",
+                "name": "Norwegian",
+                "countries": 2,
+                "regions": 1,
+                "subregion": 1
             }
         ]
         
@@ -294,7 +338,8 @@ Internet Country Database gives you information about countries and their relati
 + Request (application/json)
 
         {
-            "name": "sp"
+            "iso": "sp",
+            "name": "Spanish"
         }
 
 + Response 201 (application/json)
@@ -307,7 +352,11 @@ Internet Country Database gives you information about countries and their relati
 
                {
                     "id": 2,
-                    "name": "sp"
+                    "iso": "sp",
+                    "name": "Spanish",
+                    "countries": 1,
+                    "regions": 1,
+                    "subregion": 1
                 } 
                 
 ## Single Language -- /langauge/{id} [/language/{id}]
@@ -318,7 +367,11 @@ Internet Country Database gives you information about countries and their relati
         
         {
             "id": 1,
-            "name": "en"
+            "iso": "en",
+            "name": "English",
+            "countries": 2,
+            "regions": 1,
+            "subregion": 1
         }
 
 
@@ -327,20 +380,25 @@ Internet Country Database gives you information about countries and their relati
 + Request (application/json)
 
         {
-            "name": "en",
+            "iso": "en",
+            "name": "English"
         }
 
 + Response 200 (application/json)
 
     + Headers
 
-            Location: /languages/{id}
+            Location: /language/{id}
 
     + Body
 
                {
                     "id": 1,
-                    "name": "en",
+                    "iso": "en",
+                    "name": "English",
+                    "countries": 2,
+                    "regions": 1,
+                    "subregion": 1
                 }                 
 
 ### Remove a Language [DELETE]
@@ -359,11 +417,19 @@ Internet Country Database gives you information about countries and their relati
         [
             {
                 "id": 1,
-                "name": "USD"
+                "code": "USD",
+                "name": "US Dollar",
+                "countries": 1,
+                "regions": 1,
+                "subregions": 1
             },
             {
                 "id": 2,
-                "name": "USN"
+                "code": "NOR",
+                "name": "Norway Kroner",
+                "countries": 1,
+                "regions": 1,
+                "subregions": 1
             }
         ]
         
@@ -372,20 +438,25 @@ Internet Country Database gives you information about countries and their relati
 + Request (application/json)
 
         {
-            "name": "BC"
+            "code": "USD",
+            "name": "US Dollar"      
         }
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: /currencies/2
+            Location: /currency/2
 
     + Body
 
                {
                     "id": 2,
-                    "name": "BC"
+                    "code": "USD",
+                    "name": "US Dollar",
+                    "countries": 1,
+                    "regions": 1,
+                    "subregions": 1                    
                 }      
                 
 ## Single Currency -- /currency/{id} [/currency/{id}]
@@ -396,7 +467,11 @@ Internet Country Database gives you information about countries and their relati
         
         {
             "id": 1,
-            "name": "USD"
+            "code": "USD",
+            "name": "US Dollar",
+            "countries": 1,
+            "regions": 1,
+            "subregions": 1            
         }                
            
            
@@ -406,23 +481,127 @@ Internet Country Database gives you information about countries and their relati
 + Request (application/json)
 
         {
-            "name": "USD",
+            "code": "USD",
+            "name": "US Dollar"
         }
 
 + Response 200 (application/json)
 
     + Headers
 
-            Location: /regions/{id}
+            Location: /currency/{id}
 
     + Body
 
                {
                     "id": 1,
-                    "name": "USD",
+                    "name": "US Dollar",
+                    "code": "USD"
+                    "countries": 1,
+                    "regions": 1,
+                    "subregions": 1                    
                 }                 
 
 ### Remove a Currency [DELETE]
+
++ Request (application/json)
+
++ Response 204
+
+
+## Subregion Collection -- /subregion [/subregion]
+
+### List Subregions [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 1,
+                "name": "North America",
+                "languages": 1,
+                "region": "Americas",
+                "countries": 1,
+                "currencies": 1
+            },
+            {
+                "id": 2,
+                "name": "South America",
+                "languages": 1,
+                "region": "Americas",
+                "countries": 1,
+                "currencies": 1
+            }
+        ]
+        
+### Create a New Subregion [POST]
+
++ Request (application/json)
+
+        {
+            "name": "North America"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /subregion/2
+
+    + Body
+
+               {
+                    "id": 2,
+                    "name": "North America",
+                    "languages": 1,
+                    "region": "Americas",
+                    "countries": 1,
+                    "currencies": 1                   
+                }      
+                
+## Single Subregion -- /subregion/{id} [/subregion/{id}]
+                
+### Get a Subregion [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "id": 1,
+            "name": "North America",
+            "languages": 1,
+            "region": "Americas",
+            "countries": 1,
+            "currencies": 1        
+        }                
+           
+           
+
+### Update a Subregion [PUT]
+
++ Request (application/json)
+
+        {
+            "name": "North America"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /region/{id}
+
+    + Body
+
+               {
+                    "id": 1,
+                    "name": "North America",
+                    "languages": 1,
+                    "region": "Americas",
+                    "countries": 1,
+                    "currencies": 1                  
+                }                 
+
+### Remove a Subregion [DELETE]
 
 + Request (application/json)
 
