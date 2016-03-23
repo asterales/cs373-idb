@@ -9,3 +9,18 @@ body {
     background-size:cover;
     background-repeat: no-repeat;
 }
+
+.profilepic {
+	text-align: center;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.profilebg {
+
+	text-align: center;
+
+}
+
