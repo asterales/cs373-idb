@@ -5,7 +5,7 @@
 
 body {
 	background-color: lightblue;
-    background-image: url("img/water-world.jpg");
+    background-image: url("../img/water-world.jpg");
     background-size:cover;
     background-repeat: no-repeat;
 }
