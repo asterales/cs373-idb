@@ -93,23 +93,26 @@ def region_page(region):
 		countries = get_links_list(americas["countries_list"])
 		languages = get_links_list(americas["languages_list"])
 		currencies = get_links_list(americas["currencies_list"])
+		mapData = {"latitude":13,"longitude":-84,"zoom":2}
 		return render_template('region.html', region = americas, countries = countries, subregions = subregions, \
-								languages = languages, currencies = currencies, panel_styles = panel_styles)
+								languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
 
 	if region == "asia":
 		subregions = get_links_list(asia["subregions_list"])
 		countries = get_links_list(asia["countries_list"])
 		languages = get_links_list(asia["languages_list"])
 		currencies = get_links_list(asia["currencies_list"])
+		mapData = {"latitude":39,"longitude":84,"zoom":3}
 		return render_template('region.html', region = asia, countries = countries, subregions = subregions, \
-								languages = languages, currencies = currencies, panel_styles = panel_styles)
+								languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
 	if region == "europe":
 		subregions = get_links_list(europe["subregions_list"])
 		countries = get_links_list(europe["countries_list"])
 		languages = get_links_list(europe["languages_list"])
 		currencies = get_links_list(europe["currencies_list"])
+		mapData = {"latitude":48,"longitude":20,"zoom":4}
 		return render_template('region.html', region = europe, countries = countries, subregions = subregions, \
-								languages = languages, currencies = currencies, panel_styles = panel_styles)
+								languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
 
 	return render_template('nopage.html', model_title = "Region", model = "region", redirect = "regions")
 

@@ -65,9 +65,7 @@
 			<h3 class="panel-title">Map</h3>
 		</div>
 		<div class='panel-body'>
-
 			{{googlemap("country_map", lat=country["latitude"], lng=country["longitude"], zoom=3, style="height:400px;width:100%;margin:0", markers=[(country["latitude"], country["longitude"])])}}
-
 		</div>
 	</div>
 {% endblock %}
