@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}
+	{{ country["Name"] }}
+{% endblock %}
+
+{% block content %}
+	<h2>{{ country["Name"] }}</h2>
+	<br>
+		{% for attr in attributes %}
+			<p>{{ attr }}: {{ country[attr] }}</p>
+		{% endfor %}
+	</br>
+	<div>
+		<br>
+			<h4>Languages</h4>
+			{% for lang in languages %} 
+				<p><a href = "{{ url_for('language_page', language=lang.link)}}">{{ lang.name }}</a></br>
+			{% endfor %}
+		</br>
+		<br>
+			<h4>Currencies</h4> 
+			{% for curr in currencies %} 
+				<p><a href = "{{ url_for('currency_page', currency=curr.link)}}">{{ curr.name }}</a></br>
+			{% endfor %}
+		</br>
+		<br>
+			<h4>Bordering Countries</h4> 
+			{% for border in borders %} 
+				<p><a href = "{{ url_for('country_page', country=border.link)}}">{{ border.name }}</a></br>
+			{% endfor %}
+		</br>
+	</div>
+{% endblock %}
