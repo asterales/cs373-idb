@@ -29,19 +29,22 @@ country_border = Table('country_border', Base.metadata,
 )
 
 #database tables
-class Countries(Base): #name, capital, region, population, latlng, Borders, currency, Languages
+class Countries(Base):
 	__tablename__ = 'Countries'
 
 	id = Column(Integer, primary_key=True)
 	name = Column(String(255)) #nullable=False
 	capital = Column(String(255)) #nullable=False
-	population = Column(Integer)
 	lat = Column(Integer)
 	lng = Column(Integer)
 	region_id = Column(Integer, ForeignKey('Regions.id'))
+	subregion_id = Column(Integer, ForeignKey('SubRegions.id'))
+	area = Column(Integer)
+	population = Column(Integer)
 
 	#one-to-many relationship 
 	region = relationship('Regions')
+	subregion = relationship('SubRegions')
 
 	#many-to-many relationships
 	Languages = relationship("Languages", secondary=country_language, backref='Countries')
@@ -53,6 +56,7 @@ class Languages(Base):
 
 	id = Column(Integer, primary_key=True)
 	name = Column(String(255)) #nullable=False
+	iso_code = Column(String(255))
 
 	#many-to-many relationships
 	Countries = relationship('Countries', secondary=country_language, backref='Languages')
@@ -62,6 +66,7 @@ class Currencies(Base):
 
 	id = Column(Integer, primary_key=True)
 	name = Column(String(255)) #nullable=False
+	code = Column(String(255))
 
 	#many-to-many relationships
 	Countries = relationship('Countries', secondary=country_currency, backref='Currencies')
@@ -80,7 +85,14 @@ class Regions(Base):
 
 	id = Column(Integer, primary_key=True)
 	name = Column(String(255)) #nullable=False
+	#num_subregions = Column(Integer) 
 
+class SubRegions(Base):
+	__tablename__ = 'SubRegions'
+
+	id = Column(Integer, primary_key=True)
+	name = Column(String(255))
+	#parent_region = Column(String(255)) 
 
 ###connects to a database that has already been created
 
