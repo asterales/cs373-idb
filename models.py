@@ -9,7 +9,13 @@ from sqlalchemy import create_engine
 
 Base = declarative_base()
 
-#junction tables
+"""
+Junction tables to show the relationship between countries and their 
+respective languages, currencies, and borders
+Attributes:
+	Foreign keys to the country id and the language, currency, or border id
+"""
+
 country_language = Table('country_language', Base.metadata,
 	Column('id', Integer, primary_key=True), 
 	Column('country_id', Integer, ForeignKey('Countries.id')), 
@@ -30,6 +36,19 @@ country_border = Table('country_border', Base.metadata,
 
 #database tables
 class Countries(Base):
+	"""
+	Countries Model: contains information about different countries
+	Attributes:
+		id - Unique id of a country
+		name - Name of the country
+		capital - Capital of the country
+		lat, lng - Latitude and Longitude of the country
+		region_id - Id of the region the country is in
+		subregion_id - Id of the subregion the country is in
+		area - Area of the country in squared kilometers
+		population - Population of country
+	"""
+
 	__tablename__ = 'Countries'
 
 	id = Column(Integer, primary_key=True)
@@ -52,6 +71,14 @@ class Countries(Base):
 	Borders = relationship("Borders", secondary=country_border, backref='Countries')
 
 class Languages(Base):
+	"""
+	Languages Model: contains all languages used in the countries in the Countires Model
+	Attributes:
+		id - Unique id of the language
+		name - Name of the language
+		iso_code - The ISO 639-1 code for the language
+	"""
+
 	__tablename__ = 'Languages'
 
 	id = Column(Integer, primary_key=True)
@@ -62,6 +89,14 @@ class Languages(Base):
 	Countries = relationship('Countries', secondary=country_language, backref='Languages')
 
 class Currencies(Base):
+	"""
+	Currencies Model: contains the different currencies used in the countries in the Countries Model
+	Attributes:
+		id - Unique id of the currency
+		name - Name of the currency
+		code - The currency code  
+	"""
+
 	__tablename__ = 'Currencies'
 
 	id = Column(Integer, primary_key=True)
@@ -72,6 +107,13 @@ class Currencies(Base):
 	Countries = relationship('Countries', secondary=country_currency, backref='Currencies')
 
 class Borders(Base):
+	"""
+	Borders Model: Contains all country borders that border the countries in the Countries Model
+	Attributes:
+		id - Unique id of the border
+		name - Name of the border
+	"""
+	
 	__tablename__ = 'Borders'
 
 	id = Column(Integer, primary_key=True)
@@ -81,6 +123,13 @@ class Borders(Base):
 	Countries = relationship('Countries', secondary=country_border, backref='Borders')
 
 class Regions(Base): 
+	"""
+	Regions Model: contains all regions that the countries in the Countries Model are apart of
+	Attributes:
+		id - Unique id of the region
+		name - Name of the region
+	"""
+
 	__tablename__ = 'Regions'
 
 	id = Column(Integer, primary_key=True)
@@ -88,6 +137,13 @@ class Regions(Base):
 	#num_subregions = Column(Integer) 
 
 class SubRegions(Base):
+	"""
+	SubRegions Model: contains all of the subregions of regions that the countries in the Countries Model are apart of
+	Attributes:
+		id - Unique id of the subregion
+		name - Name of the subregion
+	"""
+
 	__tablename__ = 'SubRegions'
 
 	id = Column(Integer, primary_key=True)
