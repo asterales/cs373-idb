@@ -3,6 +3,12 @@
 	margin-bottom: 0px;
 }
 
+.banner{
+	max-width: 100%
+
+}
+
+
 body {
 	background-color: #ddf3ff;
     background-image: url("../img/water-world2.jpg");
@@ -12,8 +18,24 @@ body {
 
 }
 
-.profilepic {
+.profilecard img{
 	border:2px solid rgba(0,0,0,.1);
+}
+.profilecard p{
+	padding: 1px 10px 1px 10px;
+	background-color: lightgray;
+	border:2px solid rgba(0,0,0,.1);
+}
+.profilecard h3{
+	padding: 0px 0px 0px 0px;
+
+}
+
+.profilecard h5{
+	color: rgb(100,100,100);
+	font-style: italic;
+	padding: 0px 0px 0px 0px;
+    margin: 0px 0px 5px 0px;
 }
 
 
@@ -21,12 +43,10 @@ body {
 
 	display: inline-block;
     max-width: 24%;
-    min-width: 200px;
+    min-width: 220px;
     padding: 10px 10px 10px 10px;
     margin-top: 15px;
     margin-right: 10px;
     text-align: left;
     vertical-align: top;
-/*	background-color: rgba(0,0,0,.3);
-*/
 }
