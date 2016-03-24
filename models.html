@@ -35,6 +35,7 @@
 </font></dt><dt><font face="helvetica, arial"><a href="models.html#Currencies">Currencies</a>
 </font></dt><dt><font face="helvetica, arial"><a href="models.html#Languages">Languages</a>
 </font></dt><dt><font face="helvetica, arial"><a href="models.html#Regions">Regions</a>
+</font></dt><dt><font face="helvetica, arial"><a href="models.html#SubRegions">SubRegions</a>
 </font></dt></dl>
 </dd>
 </dl>
@@ -44,7 +45,12 @@
 <td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#000000" face="helvetica, arial"><a name="Borders">class <strong>Borders</strong></a>(sqlalchemy.ext.declarative.api.Base)</font></td></tr>
     
-<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Borders">Borders</a>&nbsp;Model:&nbsp;Contains&nbsp;all&nbsp;country&nbsp;borders&nbsp;that&nbsp;border&nbsp;the&nbsp;countries&nbsp;in&nbsp;the&nbsp;<a href="#Countries">Countries</a>&nbsp;Model<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;-&nbsp;Unique&nbsp;id&nbsp;of&nbsp;the&nbsp;border<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;-&nbsp;Name&nbsp;of&nbsp;the&nbsp;border<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
 <dd><a href="models.html#Borders">Borders</a></dd>
 <dd>sqlalchemy.ext.declarative.api.Base</dd>
@@ -71,7 +77,7 @@ Data descriptors defined here:<br>
 </dl>
 <hr>
 Data and other attributes defined here:<br>
-<dl><dt><strong>__mapper__</strong> = &lt;Mapper at 0x7fbc806dce80; Borders&gt;</dl>
+<dl><dt><strong>__mapper__</strong> = &lt;Mapper at 0x7fca376d6320; Borders&gt;</dl>
 
 <dl><dt><strong>__table__</strong> = Table('Borders', MetaData(bind=None), Column('id...tring(length=255), table=&lt;Borders&gt;), schema=None)</dl>
 
@@ -96,7 +102,16 @@ Data and other attributes inherited from sqlalchemy.ext.declarative.api.Base:<br
 <font color="#000000" face="helvetica, arial"><a name="Countries">class <strong>Countries</strong></a>(sqlalchemy.ext.declarative.api.Base)</font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt>#database&nbsp;tables<br>&nbsp;</tt></td></tr>
+<td colspan=2><tt><a href="#Countries">Countries</a>&nbsp;Model:&nbsp;contains&nbsp;information&nbsp;about&nbsp;different&nbsp;countries<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;-&nbsp;Unique&nbsp;id&nbsp;of&nbsp;a&nbsp;country<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;-&nbsp;Name&nbsp;of&nbsp;the&nbsp;country<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;capital&nbsp;-&nbsp;Capital&nbsp;of&nbsp;the&nbsp;country<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lat,&nbsp;lng&nbsp;-&nbsp;Latitude&nbsp;and&nbsp;Longitude&nbsp;of&nbsp;the&nbsp;country<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;region_id&nbsp;-&nbsp;Id&nbsp;of&nbsp;the&nbsp;region&nbsp;the&nbsp;country&nbsp;is&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subregion_id&nbsp;-&nbsp;Id&nbsp;of&nbsp;the&nbsp;subregion&nbsp;the&nbsp;country&nbsp;is&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;area&nbsp;-&nbsp;Area&nbsp;of&nbsp;the&nbsp;country&nbsp;in&nbsp;squared&nbsp;kilometers<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;population&nbsp;-&nbsp;Population&nbsp;of&nbsp;country<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
 <dd><a href="models.html#Countries">Countries</a></dd>
@@ -122,6 +137,8 @@ Data descriptors defined here:<br>
 </dl>
 <dl><dt><strong>Languages</strong></dt>
 </dl>
+<dl><dt><strong>area</strong></dt>
+</dl>
 <dl><dt><strong>capital</strong></dt>
 </dl>
 <dl><dt><strong>id</strong></dt>
@@ -138,11 +155,15 @@ Data descriptors defined here:<br>
 </dl>
 <dl><dt><strong>region_id</strong></dt>
 </dl>
+<dl><dt><strong>subregion</strong></dt>
+</dl>
+<dl><dt><strong>subregion_id</strong></dt>
+</dl>
 <hr>
 Data and other attributes defined here:<br>
-<dl><dt><strong>__mapper__</strong> = &lt;Mapper at 0x7fbc806dc400; Countries&gt;</dl>
+<dl><dt><strong>__mapper__</strong> = &lt;Mapper at 0x7fca376b16d8; Countries&gt;</dl>
 
-<dl><dt><strong>__table__</strong> = Table('Countries', MetaData(bind=None), Column('...y('Regions.id'), table=&lt;Countries&gt;), schema=None)</dl>
+<dl><dt><strong>__table__</strong> = Table('Countries', MetaData(bind=None), Column('...ion', Integer(), table=&lt;Countries&gt;), schema=None)</dl>
 
 <dl><dt><strong>__tablename__</strong> = 'Countries'</dl>
 
@@ -164,7 +185,13 @@ Data and other attributes inherited from sqlalchemy.ext.declarative.api.Base:<br
 <td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#000000" face="helvetica, arial"><a name="Currencies">class <strong>Currencies</strong></a>(sqlalchemy.ext.declarative.api.Base)</font></td></tr>
     
-<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Currencies">Currencies</a>&nbsp;Model:&nbsp;contains&nbsp;the&nbsp;different&nbsp;currencies&nbsp;used&nbsp;in&nbsp;the&nbsp;countries&nbsp;in&nbsp;the&nbsp;<a href="#Countries">Countries</a>&nbsp;Model<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;-&nbsp;Unique&nbsp;id&nbsp;of&nbsp;the&nbsp;currency<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;-&nbsp;Name&nbsp;of&nbsp;the&nbsp;currency<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code&nbsp;-&nbsp;The&nbsp;currency&nbsp;code<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
 <dd><a href="models.html#Currencies">Currencies</a></dd>
 <dd>sqlalchemy.ext.declarative.api.Base</dd>
@@ -185,13 +212,15 @@ for&nbsp;example,&nbsp;any&nbsp;mapped&nbsp;columns&nbsp;or&nbsp;relationships.<
 Data descriptors defined here:<br>
 <dl><dt><strong>Countries</strong></dt>
 </dl>
+<dl><dt><strong>code</strong></dt>
+</dl>
 <dl><dt><strong>id</strong></dt>
 </dl>
 <dl><dt><strong>name</strong></dt>
 </dl>
 <hr>
 Data and other attributes defined here:<br>
-<dl><dt><strong>__mapper__</strong> = &lt;Mapper at 0x7fbc806dcb00; Currencies&gt;</dl>
+<dl><dt><strong>__mapper__</strong> = &lt;Mapper at 0x7fca376b1f60; Currencies&gt;</dl>
 
 <dl><dt><strong>__table__</strong> = Table('Currencies', MetaData(bind=None), Column(...ng(length=255), table=&lt;Currencies&gt;), schema=None)</dl>
 
@@ -215,7 +244,13 @@ Data and other attributes inherited from sqlalchemy.ext.declarative.api.Base:<br
 <td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#000000" face="helvetica, arial"><a name="Languages">class <strong>Languages</strong></a>(sqlalchemy.ext.declarative.api.Base)</font></td></tr>
     
-<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Languages">Languages</a>&nbsp;Model:&nbsp;contains&nbsp;all&nbsp;languages&nbsp;used&nbsp;in&nbsp;the&nbsp;countries&nbsp;in&nbsp;the&nbsp;Countires&nbsp;Model<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;-&nbsp;Unique&nbsp;id&nbsp;of&nbsp;the&nbsp;language<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;-&nbsp;Name&nbsp;of&nbsp;the&nbsp;language<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iso_code&nbsp;-&nbsp;The&nbsp;ISO&nbsp;639-1&nbsp;code&nbsp;for&nbsp;the&nbsp;language<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
 <dd><a href="models.html#Languages">Languages</a></dd>
 <dd>sqlalchemy.ext.declarative.api.Base</dd>
@@ -238,11 +273,13 @@ Data descriptors defined here:<br>
 </dl>
 <dl><dt><strong>id</strong></dt>
 </dl>
+<dl><dt><strong>iso_code</strong></dt>
+</dl>
 <dl><dt><strong>name</strong></dt>
 </dl>
 <hr>
 Data and other attributes defined here:<br>
-<dl><dt><strong>__mapper__</strong> = &lt;Mapper at 0x7fbc806dc7f0; Languages&gt;</dl>
+<dl><dt><strong>__mapper__</strong> = &lt;Mapper at 0x7fca376b1be0; Languages&gt;</dl>
 
 <dl><dt><strong>__table__</strong> = Table('Languages', MetaData(bind=None), Column('...ing(length=255), table=&lt;Languages&gt;), schema=None)</dl>
 
@@ -266,7 +303,12 @@ Data and other attributes inherited from sqlalchemy.ext.declarative.api.Base:<br
 <td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#000000" face="helvetica, arial"><a name="Regions">class <strong>Regions</strong></a>(sqlalchemy.ext.declarative.api.Base)</font></td></tr>
     
-<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Regions">Regions</a>&nbsp;Model:&nbsp;contains&nbsp;all&nbsp;regions&nbsp;that&nbsp;the&nbsp;countries&nbsp;in&nbsp;the&nbsp;<a href="#Countries">Countries</a>&nbsp;Model&nbsp;are&nbsp;apart&nbsp;of<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;-&nbsp;Unique&nbsp;id&nbsp;of&nbsp;the&nbsp;region<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;-&nbsp;Name&nbsp;of&nbsp;the&nbsp;region<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
 <td width="100%"><dl><dt>Method resolution order:</dt>
 <dd><a href="models.html#Regions">Regions</a></dd>
 <dd>sqlalchemy.ext.declarative.api.Base</dd>
@@ -291,11 +333,65 @@ Data descriptors defined here:<br>
 </dl>
 <hr>
 Data and other attributes defined here:<br>
-<dl><dt><strong>__mapper__</strong> = &lt;Mapper at 0x7fbc806ff1d0; Regions&gt;</dl>
+<dl><dt><strong>__mapper__</strong> = &lt;Mapper at 0x7fca376d6630; Regions&gt;</dl>
 
 <dl><dt><strong>__table__</strong> = Table('Regions', MetaData(bind=None), Column('id...tring(length=255), table=&lt;Regions&gt;), schema=None)</dl>
 
 <dl><dt><strong>__tablename__</strong> = 'Regions'</dl>
+
+<hr>
+Data descriptors inherited from sqlalchemy.ext.declarative.api.Base:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from sqlalchemy.ext.declarative.api.Base:<br>
+<dl><dt><strong>metadata</strong> = MetaData(bind=None)</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="SubRegions">class <strong>SubRegions</strong></a>(sqlalchemy.ext.declarative.api.Base)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#SubRegions">SubRegions</a>&nbsp;Model:&nbsp;contains&nbsp;all&nbsp;of&nbsp;the&nbsp;subregions&nbsp;of&nbsp;regions&nbsp;that&nbsp;the&nbsp;countries&nbsp;in&nbsp;the&nbsp;<a href="#Countries">Countries</a>&nbsp;Model&nbsp;are&nbsp;apart&nbsp;of<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;-&nbsp;Unique&nbsp;id&nbsp;of&nbsp;the&nbsp;subregion<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;-&nbsp;Name&nbsp;of&nbsp;the&nbsp;subregion<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="models.html#SubRegions">SubRegions</a></dd>
+<dd>sqlalchemy.ext.declarative.api.Base</dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="SubRegions-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt><dd><tt>A&nbsp;simple&nbsp;constructor&nbsp;that&nbsp;allows&nbsp;initialization&nbsp;from&nbsp;kwargs.<br>
+&nbsp;<br>
+Sets&nbsp;attributes&nbsp;on&nbsp;the&nbsp;constructed&nbsp;instance&nbsp;using&nbsp;the&nbsp;names&nbsp;and<br>
+values&nbsp;in&nbsp;``kwargs``.<br>
+&nbsp;<br>
+Only&nbsp;keys&nbsp;that&nbsp;are&nbsp;present&nbsp;as<br>
+attributes&nbsp;of&nbsp;the&nbsp;instance's&nbsp;class&nbsp;are&nbsp;allowed.&nbsp;These&nbsp;could&nbsp;be,<br>
+for&nbsp;example,&nbsp;any&nbsp;mapped&nbsp;columns&nbsp;or&nbsp;relationships.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>id</strong></dt>
+</dl>
+<dl><dt><strong>name</strong></dt>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__mapper__</strong> = &lt;Mapper at 0x7fca376d6940; SubRegions&gt;</dl>
+
+<dl><dt><strong>__table__</strong> = Table('SubRegions', MetaData(bind=None), Column(...ng(length=255), table=&lt;SubRegions&gt;), schema=None)</dl>
+
+<dl><dt><strong>__tablename__</strong> = 'SubRegions'</dl>
 
 <hr>
 Data descriptors inherited from sqlalchemy.ext.declarative.api.Base:<br>
