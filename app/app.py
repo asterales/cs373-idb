@@ -122,17 +122,20 @@ def subregion_page(subregion):
 		countries = get_links_list(east_asia["countries_list"])
 		languages = get_links_list(east_asia["languages_list"])
 		currencies = get_links_list(east_asia["currencies_list"])
-		return render_template('subregion.html', subregion = east_asia, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles)
+		mapData = {"latitude":34,"longitude":126,"zoom":4}
+		return render_template('subregion.html', subregion = east_asia, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
 	if subregion == "northern-america":
 		countries = get_links_list(north_amer["countries_list"])
 		languages = get_links_list(north_amer["languages_list"])
 		currencies = get_links_list(north_amer["currencies_list"])
-		return render_template('subregion.html', subregion = north_amer, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles)
+		mapData = {"latitude":52,"longitude":-90,"zoom":3}
+		return render_template('subregion.html', subregion = north_amer, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
 	if subregion == "northern-europe":
 		countries = get_links_list(north_euro["countries_list"])
 		languages = get_links_list(north_euro["languages_list"])
 		currencies = get_links_list(north_euro["currencies_list"])
-		return render_template('subregion.html', subregion = north_euro, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles)
+		mapData = {"latitude":63,"longitude":3,"zoom":4}
+		return render_template('subregion.html', subregion = north_euro, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
 
 	return render_template('nopage.html', model_title = "Subregion", model = "subregion", redirect = "subregions")
 
