@@ -17,7 +17,7 @@ services:
     extends:
       file: docker-compose-common.yml
       service: app
-    image: etoews/pythonwebapp_app
+    image: nathanbain314/pythonwebapp_app
     expose:
       # Expose port 8000 so it's only visibile on the container, not the host
       - "8000"
@@ -29,7 +29,7 @@ services:
     extends:
       file: docker-compose-common.yml
       service: db
-    image: etoews/pythonwebapp_db
+    image: nathanbain314/pythonwebapp_db
     expose:
       # Expose port 3306 so it's only visibile on the container, not the host
       - "3306"

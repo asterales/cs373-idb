@@ -5,33 +5,33 @@ app = Flask(__name__)
 
 #Examples data
 #Countries
-usa = {"Name" : "United States of America", "Capital" : "Washington D.C.", "Latitude" : 38, "Longitude" : -97, \
-		"Region" : "Americas", "Subregion" : "Northern America", "Area" : 9629091, "Population" : 321645000, \
-		"Languages" : 1, "Currencies" : 3, "Bordering Countries" : 2} 
-china = {"Name" : "China", "Capital" : "Beijing", "Latitude" : 35, "Longitude" : 105, \
-		"Region" : "Asia", "Subregion" : "Eastern Asia", "Area" : 9640011, "Population" : 1371590000, \
-		"Languages" : 1, "Currencies" : 1, "Bordering Countries" : 15}
-norway = {"Name" : "Norway", "Capital" : "Oslo", "Latitude" : 62, "Longitude" : 10, \
-		"Region" : "Europe", "Subregion" : "Northern Europe", "Area" : 323802, "Population" : 5176998, \
-		"Languages" : 3, "Currencies" : 1, "Bordering Countries" : 3} 
+usa = {"name" : "United States of America", "capital" : "Washington D.C.", "latitude" : 38, "longitude" : -97, \
+		"region" : "Americas", "subregion" : "Northern America", "area" : 9629091, "population" : 321645000, \
+		"languages" : 1, "currencies" : 3, "borders" : 2} 
+china = {"name" : "China", "capital" : "Beijing", "latitude" : 35, "longitude" : 105, \
+		"region" : "Asia", "subregion" : "Eastern Asia", "area" : 9640011, "population" : 1371590000, \
+		"languages" : 1, "currencies" : 1, "borders" : 15}
+norway = {"name" : "Norway", "capital" : "Oslo", "latitude" : 62, "longitude" : 10, \
+		"region" : "Europe", "subregion" : "Northern Europe", "area" : 323802, "population" : 5176998, \
+		"languages" : 3, "currencies" : 1, "borders" : 3} 
 
 #Regions
-asia = {"Name": "Asia", "Area": 32064971, "Population": 4339964684, "Subregions": 5, \
-		"Countries": 50, "Languages": 37, "Currencies": 49}
-americas = {"Name": "Americas", "Area": 42247698, "Population": 983832674, "Subregions": 4, \
-			"Countries": 56, "Languages": 11, "Currencies": 43}
-europe = {"Name": "Europe", "Area": 23138282, "Population": 745355450, "Subregions": 4, \
-		  "Countries": 52, "Languages": 41, "Currencies": 24}
+asia = {"name": "Asia", "area": 32064971, "population": 4339964684, \
+		"subregions": 5, "countries": 50, "languages": 37, "currencies": 49}
+americas = {"name": "Americas", "area": 42247698, "population": 983832674, \
+			"subregions": 4, "countries": 56, "languages": 11, "currencies": 43}
+europe = {"name": "Europe", "area": 23138282, "population": 745355450, \
+		  "subregions": 4, "countries": 52, "languages": 41, "currencies": 24}
 
 #Languages
-norwegian = {"Name" : "Norwegian", "ISO 639-1 Code" : "no", "Countries" : 2, "Regions" : 1, "Subregions": 1}
-english = {"Name" : "English", "ISO 639-1 Code" : "en", "Countries" : 89, "Regions" : 15, "Subregions": 18}
-chinese = {"Name" : "Chinese", "ISO 639-1 Code" : "zh", "Countries" : 5, "Regions" : 1, "Subregions": 2}
+norwegian = {"name" : "Norwegian", "iso" : "no", "countries" : 2, "regions" : 1, "subregions": 1}
+english = {"name" : "English", "iso" : "en", "countries" : 89, "regions" : 15, "subregions": 18}
+chinese = {"name" : "Chinese", "iso" : "zh", "countries" : 5, "regions" : 1, "subregions": 2}
 
 #Currencies
-usd = {"Currency Code" : "USD", "Name" : "US Dollar", "Countries" : 19, "Regions": 4, "Subregions": 8}
-nok = {"Currency Code" : "NOK", "Name" : "Norway Kroner", "Countries" : 3, "Regions": 1, "Subregions": 1}
-cny = {"Currency Code" : "CNY", "Name" : "Yuan Renminbi", "Countries" : 1, "Regions": 1, "Subregions": 1}
+usd = {"code" : "USD", "name" : "US Dollar", "countries" : 19, "regions" : 4, "subregions" : 8}
+nok = {"code" : "NOK", "name" : "Norway Kroner", "countries" : 3, "regions": 1, "subregions": 1}
+cny = {"code" : "CNY", "name" : "Yuan Renminbi", "countries" : 1, "regions": 1, "subregions": 1}
 
 @app.route("/")
 @app.route("/index")
@@ -41,31 +41,35 @@ def index():
 @app.route("/countries")
 @app.route("/countries/")
 def countries_table():
-	attributes = ["Name", "Capital", "Latitude", "Longitude", "Region", "Subregion", "Area", "Population", \
-				  "Languages", "Currencies", "Bordering Countries"]
+	attributes = {"name" : "Name", "capital" : "Capital", "latitude" :  "Latitude", "longitude" : "Longitude", "region" : "Region", "population" : "Population", \
+				  "languages" : "Languages", "currencies" : "Currencies", "borders" : "Bordering Countries"}
+	short_attributes = ["name", "capital", "latitude", "longitude", "region", "population", "languages", "currencies", "borders"]
 	countries = [china, norway, usa]
-	return render_template('models.html', title = "Countries", attributes = attributes, models = countries)
+	return render_template('models.html', title = "Countries", attributes = attributes, models = countries, short_name = short_attributes)
 
 @app.route("/regions")
 @app.route("/regions/")
 def regions_table():
-	attributes = ["Name", "Area", "Population", "Subregions", "Countries", "Languages", "Currencies"]
+	attributes = {"name":"Name", "area":"Area", "population":"Population", "subregions":"Subregions", "countries":"Countries", "languages":"Languages", "currencies":"Currencies"}
+	short_attributes = ["name", "area", "population", "subregions", "countries", "languages", "currencies"]
 	regions = [americas, asia, europe]
-	return render_template('models.html', title = "Regions", attributes = attributes, models = regions)
+	return render_template('models.html', title = "Regions", attributes = attributes, models = regions, short_name = short_attributes)
 
 @app.route("/languages")
 @app.route("/languages/")
 def languages_table():
-	attributes = ["Name", "ISO 639-1 Code", "Countries", "Regions", "Subregions"]
+	attributes = {"name":"Name", "iso":"ISO 639-1 Code", "countries":"Countries", "regions":"Regions", "subregions":"Subregions"}
+	short_attributes = ["name", "iso", "countries", "regions", "subregions"]
 	languages = [chinese, english, norwegian]
-	return render_template('models.html', title = "Languages", attributes = attributes, models = languages)
+	return render_template('models.html', title = "Languages", attributes = attributes, models = languages, short_name = short_attributes)
 
 @app.route("/currencies")
 @app.route("/currencies/")
 def currencies_table():
-	attributes = ["Currency Code", "Name", "Countries", "Regions", "Subregions"]
+	attributes = {"code":"Currency Code", "name":"Name", "countries":"Countries", "regions":"Regions", "subregions":"Subregions"}
+	short_attributes = ["code", "name", "countries", "regions", "subregions"]
 	currencies = [cny, nok, usd]
-	return render_template('models.html', title = "Currencies", attributes = attributes, models = currencies)
+	return render_template('models.html', title = "Currencies", attributes = attributes, models = currencies, short_name = short_attributes)
 
 @app.route("/about")
 def about():
