@@ -12,7 +12,7 @@
     		<h3 class="panel-title"><a href="{{ url_for('countries_table') }}">Country</a> Info</h3>
   		</div>
   		<div class="panel-body">
-    		<p><strong>Capital: </strong>{{ country["name"] }}</t></p> 
+    		<p><strong>Capital: </strong>{{ country["name"] }}</t></p>
 			<p><strong>Latitude: </strong>{{ country["latitude"] }}</p>
 			<p><strong>Longitude: </strong>{{ country["longitude"] }}</p>
 			<p><strong>Region: </strong><a href="{{ url_for('region_page', region=get_link(country["region"])) }}">{{ country["region"] }}</a></p>
@@ -30,7 +30,7 @@
   		</div>
   		<div class="panel-body">
    			<ul class = list-inline>
-				{% for lang in languages %} 
+				{% for lang in languages %}
 					<li><a href = "{{ url_for('language_page', language=lang.link)}}">{{ lang.name }}</a></li>
 				{% endfor %}
 			</ul>
@@ -42,7 +42,7 @@
   		</div>
   		<div class="panel-body">
   			<ul class = "list-inline">
-				{% for curr in currencies %} 
+				{% for curr in currencies %}
 					<li><a href = "{{ url_for('currency_page', currency=curr.link)}}">{{ curr.name }}</a></li>
 				{% endfor %}
 			</ul>
@@ -54,10 +54,20 @@
   		</div>
   		<div class="panel-body">
   			<ul class="list-inline">
-				{% for border in borders %} 
+				{% for border in borders %}
 					<li><a href = "{{ url_for('country_page', country=border.link)}}">{{ border.name }}</a></li>
 				{% endfor %}
 			</ul>
+		</div>
+	</div>
+	<div class="panel {{ panel_styles["map"] }}">
+		<div class="panel-heading">
+			<h3 class="panel-title">Map</h3>
+		</div>
+		<div class='panel-body'>
+
+			{{googlemap("country_map", lat=country["latitude"], lng=country["longitude"], zoom=3, style="height:400px;width:100%;margin:0", markers=[(country["latitude"], country["longitude"])])}}
+
 		</div>
 	</div>
 {% endblock %}

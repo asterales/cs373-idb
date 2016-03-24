@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, url_for
+from flask_googlemaps import GoogleMaps
 from collections import namedtuple
 
 # Get examples data from outside file
@@ -9,9 +10,10 @@ from examples import usa, china, norway, \
 					 east_asia, north_amer, north_euro
 
 app = Flask(__name__)
+GoogleMaps(app)
 
 panel_styles = {"countries" : "panel-primary", "regions" : "panel-danger", "subregions" : "panel-info", \
-				"languages" : "panel-success", "currencies" : "panel-warning"}
+				"languages" : "panel-success", "currencies" : "panel-warning", "map" : "panel-default"}
 
 @app.route("/")
 @app.route("/index")
@@ -138,13 +140,13 @@ def language_page(language):
 		regions = get_links_list(chinese["regions_list"])
 		subregions = get_links_list(chinese["subregions_list"])
 		return render_template('language.html', language = chinese, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles)
-	
+
 	if language == "english":
 		countries = get_links_list(english["countries_list"])
 		regions = get_links_list(english["regions_list"])
 		subregions = get_links_list(english["subregions_list"])
 		return render_template('language.html', language = english, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles)
-	
+
 	if language == "norwegian":
 		countries = get_links_list(norwegian["countries_list"])
 		regions = get_links_list(norwegian["regions_list"])
@@ -160,13 +162,13 @@ def currency_page(currency):
 		regions = get_links_list(cny["regions_list"])
 		subregions = get_links_list(cny["subregions_list"])
 		return render_template('currency.html', currency = cny, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles)
-	
+
 	if currency == "nok":
 		countries = get_links_list(nok["countries_list"])
 		regions = get_links_list(nok["regions_list"])
 		subregions = get_links_list(nok["subregions_list"])
 		return render_template('currency.html', currency = nok, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles)
-	
+
 	if currency == "usd":
 		countries = get_links_list(usd["countries_list"])
 		regions = get_links_list(usd["regions_list"])
