@@ -2,15 +2,22 @@
 {% extends "base.html" %}
 
 {% block title %}
-	{{ country["Name"] }}
+	{{ country["name"] }}
 {% endblock %}
 
 {% block content %}
-	<h2>{{ country["Name"] }}</h2>
+	<h2>{{ country["name"] }}</h2>
 	<br>
-		{% for attr in attributes %}
-			<p>{{ attr }}: {{ country[attr] }}</p>
-		{% endfor %}
+		<p>Capital: {{ country["name"] }}</p> 
+		<p>Latitude: {{ country["latitude"] }}</p>
+		<p>Longitude: {{ country["longitude"] }}</p>
+		<p>Region: <a href="{{ url_for('region_page', region=get_link(country["region"])) }}">{{ country["region"] }}</a></p>
+		<p>Subregion: <a href="{{ url_for('subregion_page', subregion=get_link(country["subregion"])) }}">{{ country["subregion"] }}</a></p>
+		<p>Area: {{ country["area"] }}</p>
+		<p>Population: {{ country["population"] }}<p>
+		<p>Languages: {{ country["languages"] }}</p>
+		<p>Currencies: {{ country["currencies"] }}</p>
+		<p>Bordering Countries: {{ country["borders"] }}</p>
 	</br>
 	<div>
 		<br>

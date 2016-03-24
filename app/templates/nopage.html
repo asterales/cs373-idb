@@ -1,14 +1,22 @@
 {% extends "base.html" %}
 
 {% block title %}
-	Page Not Found
+	{% if model_title %}
+		{{ model_title }} Not Found
+	{% else %}
+		Page Not Found
+	{% endif %}
 {% endblock %}
 
 {% block content %}
 	<h2>Nothing Here!</h2>
 
 	<div>
-		<h3>Sorry, this page does not exist :(</h3>
+		{% if model %}
+			<h3>Sorry, we currently don't have a {{ model }} page for '{{ page }}' :(</h3>
+		{% else %}
+			<h3>Sorry, we currently don't have a page for '{{ page }}' :(</h3>
+		{% endif %}
 	</div>
 	
 {% endblock %}

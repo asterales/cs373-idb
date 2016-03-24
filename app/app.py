@@ -1,37 +1,14 @@
 from flask import Flask, render_template, request, url_for
 from collections import namedtuple
+
+# Get examples data from outside file
+from examples import usa, china, norway, \
+					 americas, asia, europe, \
+					 chinese, english, norwegian, \
+					 cny, nok, usd, \
+					 east_asia, north_amer, north_euro
+
 app = Flask(__name__)
-
-
-#Examples data
-#Countries
-usa = {"name" : "United States of America", "capital" : "Washington D.C.", "latitude" : 38, "longitude" : -97, \
-		"region" : "Americas", "subregion" : "Northern America", "area" : 9629091, "population" : 321645000, \
-		"languages" : 1, "currencies" : 3, "borders" : 2} 
-china = {"name" : "China", "capital" : "Beijing", "latitude" : 35, "longitude" : 105, \
-		"region" : "Asia", "subregion" : "Eastern Asia", "area" : 9640011, "population" : 1371590000, \
-		"languages" : 1, "currencies" : 1, "borders" : 15}
-norway = {"name" : "Norway", "capital" : "Oslo", "latitude" : 62, "longitude" : 10, \
-		"region" : "Europe", "subregion" : "Northern Europe", "area" : 323802, "population" : 5176998, \
-		"languages" : 3, "currencies" : 1, "borders" : 3} 
-
-#Regions
-asia = {"name": "Asia", "area": 32064971, "population": 4339964684, \
-		"subregions": 5, "countries": 50, "languages": 37, "currencies": 49}
-americas = {"name": "Americas", "area": 42247698, "population": 983832674, \
-			"subregions": 4, "countries": 56, "languages": 11, "currencies": 43}
-europe = {"name": "Europe", "area": 23138282, "population": 745355450, \
-		  "subregions": 4, "countries": 52, "languages": 41, "currencies": 24}
-
-#Languages
-norwegian = {"name" : "Norwegian", "iso" : "no", "countries" : 2, "regions" : 1, "subregions": 1}
-english = {"name" : "English", "iso" : "en", "countries" : 89, "regions" : 15, "subregions": 18}
-chinese = {"name" : "Chinese", "iso" : "zh", "countries" : 5, "regions" : 1, "subregions": 2}
-
-#Currencies
-usd = {"code" : "USD", "name" : "US Dollar", "countries" : 19, "regions" : 4, "subregions" : 8}
-nok = {"code" : "NOK", "name" : "Norway Kroner", "countries" : 3, "regions": 1, "subregions": 1}
-cny = {"code" : "CNY", "name" : "Yuan Renminbi", "countries" : 1, "regions": 1, "subregions": 1}
 
 @app.route("/")
 @app.route("/index")
@@ -41,9 +18,9 @@ def index():
 @app.route("/countries")
 @app.route("/countries/")
 def countries_table():
-	attributes = {"name" : "Name", "capital" : "Capital", "latitude" :  "Latitude", "longitude" : "Longitude", "region" : "Region", "population" : "Population", \
-				  "languages" : "Languages", "currencies" : "Currencies", "borders" : "Bordering Countries"}
-	short_attributes = ["name", "capital", "latitude", "longitude", "region", "population", "languages", "currencies", "borders"]
+	attributes = {"name" : "Name", "capital" : "Capital", "latitude" :  "Latitude", "longitude" : "Longitude", "region" : "Region", "subregion" : "Subregion",\
+				  "area":"Area", "population" : "Population", "languages" : "Languages", "currencies" : "Currencies", "borders" : "Bordering Countries"}
+	short_attributes = ["name", "capital", "latitude", "longitude", "region", "subregion", "area", "population", "languages", "currencies", "borders"]
 	countries = [china, norway, usa]
 	return render_template('models.html', title = "Countries", attributes = attributes, models = countries, short_name = short_attributes)
 
@@ -54,6 +31,14 @@ def regions_table():
 	short_attributes = ["name", "area", "population", "subregions", "countries", "languages", "currencies"]
 	regions = [americas, asia, europe]
 	return render_template('models.html', title = "Regions", attributes = attributes, models = regions, short_name = short_attributes)
+
+@app.route("/subregions")
+@app.route("/subregions/")
+def subregions_table():
+	attributes = {"name" : "Name", "region" : "Region", "countries" : "Countries", "languages" : "Languages", "currencies" : "Currencies"}
+	short_attributes = ["name", "region", "countries", "languages", "currencies"]
+	subregions = [east_asia, north_amer, north_euro]
+	return render_template('models.html', title = "Subregions", attributes = attributes, models = subregions, short_name = short_attributes)
 
 @app.route("/languages")
 @app.route("/languages/")
@@ -75,60 +60,125 @@ def currencies_table():
 def about():
 	return render_template('about.html')
 
+# Individual Pages
 @app.route("/countries/<country>")
 def country_page(country):
-	attributes = ["Capital", "Latitude", "Longitude", "Region", "Subregion", "Area", "Population", \
-				  "Languages", "Currencies", "Bordering Countries"]
 	if country == "united-states-of-america":
-		languages = get_links_list(["English"])
-		currencies = get_links_list(["USD", "USN", "USS"])
-		borders = get_links_list(["Canada", "Mexico"])
-		return render_template('country.html', country = usa, attributes = attributes, \
-								languages = languages, currencies = currencies, borders = borders)
+		languages = get_links_list(usa["languages_list"])
+		currencies = get_links_list(usa["currencies_list"])
+		borders = get_links_list(usa["borders_list"])
+		return render_template('country.html', country = usa, languages = languages, currencies = currencies, borders = borders)
 	if country == "china":
-		languages = get_links_list(["Chinese"])
-		currencies = get_links_list(["CNY"])
-		borders = get_links_list(["Afghanistan", "Bhutan", "Hong Kong", "India", "Kazakhstan", \
-								  "Kyrgyzstan", "Laos", "Macau", "Mongolia", "Myanmar", "Nepal", \
-								  "North Korea", "Pakistan", "Russia", "Tajikistan", "Vietnam"])
-		return render_template('country.html', country = china, attributes = attributes, \
-								languages = languages, currencies = currencies, borders = borders)
+		languages = get_links_list(china["languages_list"])
+		currencies = get_links_list(china["currencies_list"])
+		borders = get_links_list(china["borders_list"])
+		return render_template('country.html', country = china, languages = languages, currencies = currencies, borders = borders)
 	if country == "norway":
-		languages = get_links_list(["Norwegian", "Norwegian Bokmål", "Norwegian Nynorsk"])
-		currencies = get_links_list(["NOK"])
-		borders = get_links_list(["Finland", "Sweden", "Russia"])
-		return render_template('country.html', country = norway, attributes = attributes, \
-								languages = languages, currencies = currencies, borders = borders)
-	return render_template('nopage.html')
+		languages = get_links_list(norway["languages_list"])
+		currencies = get_links_list(norway["currencies_list"])
+		borders = get_links_list(norway["borders_list"])
+		return render_template('country.html', country = norway, languages = languages, currencies = currencies, borders = borders)
+	return render_template('nopage.html', model_title = "Country", model = "country", page = country)
 
 @app.route("/regions/<region>")
 def region_page(region):
-	attributes = ["Area", "Population", "Subregions", "Countries", "Languages", "Currencies"]
-	subregions = []
-	countries = []
-	languages = []
-	currencies = []
-	return render_template('nopage.html')
+	if region == "americas":
+		subregions = get_links_list(americas["subregions_list"])
+		countries = get_links_list(americas["countries_list"])
+		languages = get_links_list(americas["languages_list"])
+		currencies = get_links_list(americas["currencies_list"])
+		return render_template('region.html', region = americas, countries = countries, subregions = subregions, \
+								languages = languages, currencies = currencies)
+
+	if region == "asia":
+		subregions = get_links_list(asia["subregions_list"])
+		countries = get_links_list(asia["countries_list"])
+		languages = get_links_list(asia["languages_list"])
+		currencies = get_links_list(asia["currencies_list"])
+		return render_template('region.html', region = asia, countries = countries, subregions = subregions, \
+								languages = languages, currencies = currencies)
+	if region == "europe":
+		subregions = get_links_list(europe["subregions_list"])
+		countries = get_links_list(europe["countries_list"])
+		languages = get_links_list(europe["languages_list"])
+		currencies = get_links_list(europe["currencies_list"])
+		return render_template('region.html', region = europe, countries = countries, subregions = subregions, \
+								languages = languages, currencies = currencies)
+
+	return render_template('nopage.html', model_title = "Region", region = "region", page = region)
+
+@app.route("/subregions/<subregion>")
+def subregion_page(subregion):
+	if subregion == "eastern-asia":
+		countries = get_links_list(east_asia["countries_list"])
+		languages = get_links_list(east_asia["languages_list"])
+		currencies = get_links_list(east_asia["currencies_list"])
+		return render_template('subregion.html', subregion = east_asia, countries = countries, languages = languages, currencies = currencies)
+	if subregion == "northern-america":
+		countries = get_links_list(north_amer["countries_list"])
+		languages = get_links_list(north_amer["languages_list"])
+		currencies = get_links_list(north_amer["currencies_list"])
+		return render_template('subregion.html', subregion = north_amer, countries = countries, languages = languages, currencies = currencies)
+	if subregion == "northern-europe":
+		countries = get_links_list(north_euro["countries_list"])
+		languages = get_links_list(north_euro["languages_list"])
+		currencies = get_links_list(north_euro["currencies_list"])
+		return render_template('subregion.html', subregion = north_euro, countries = countries, languages = languages, currencies = currencies)
+
+	return render_template('nopage.html', model_title = "Subregion", region = "subregion", page = subregion)
 
 @app.route("/languages/<language>")
 def language_page(language):
-	attributes = ["ISO 639-1 Code", "Countries", "Regions", "Subregions"]
-	countries = []
-	regions = []
-	subregions = []
-	return render_template('nopage.html')
+	if language == "chinese":
+		countries = get_links_list(chinese["countries_list"])
+		regions = get_links_list(chinese["regions_list"])
+		subregions = get_links_list(chinese["subregions_list"])
+		return render_template('language.html', language = chinese, countries = countries, regions = regions, subregions = subregions)
+	
+	if language == "english":
+		countries = get_links_list(english["countries_list"])
+		regions = get_links_list(english["regions_list"])
+		subregions = get_links_list(english["subregions_list"])
+		return render_template('language.html', language = english, countries = countries, regions = regions, subregions = subregions)
+	
+	if language == "norwegian":
+		countries = get_links_list(norwegian["countries_list"])
+		regions = get_links_list(norwegian["regions_list"])
+		subregions = get_links_list(norwegian["subregions_list"])
+		return render_template('language.html', language = norwegian, countries = countries, regions = regions, subregions = subregions)
+
+	return render_template('nopage.html', model_title = "Language", region = "language", page = language)
 
 @app.route("/currencies/<currency>")
 def currency_page(currency):
-	attributes = ["Name", "Countries", "Regions", "Subregions"]
-	countries = []
-	regions = []
-	subregions = []
-	return render_template('nopage.html')
+	if currency == "cny":
+		countries = get_links_list(cny["countries_list"])
+		regions = get_links_list(cny["regions_list"])
+		subregions = get_links_list(cny["subregions_list"])
+		return render_template('currency.html', currency = cny, countries = countries, regions = regions, subregions = subregions)
+	
+	if currency == "nok":
+		countries = get_links_list(nok["countries_list"])
+		regions = get_links_list(nok["regions_list"])
+		subregions = get_links_list(nok["subregions_list"])
+		return render_template('currency.html', currency = nok, countries = countries, regions = regions, subregions = subregions)
+	
+	if currency == "usd":
+		countries = get_links_list(usd["countries_list"])
+		regions = get_links_list(usd["regions_list"])
+		subregions = get_links_list(usd["subregions_list"])
+		return render_template('currency.html', currency = usd, countries = countries, regions = regions, subregions = subregions)
+
+	return render_template('nopage.html', model_title = "Currency", region = "currency", page = currency)
 
 Link =namedtuple('Link', ['name', 'link'])
 def get_links_list(list):
-	return map(lambda x: Link(x, x.replace(" ", "-").lower()), list)
+	return map(lambda s: Link(s, get_link(s)), list)
+
+def get_link(s):
+	return s.replace(" ", "-").lower()
+app.jinja_env.globals.update(get_link=get_link)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

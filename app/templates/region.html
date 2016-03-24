@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}
+	{{ region["name"] }}
+{% endblock %}
+
+{% block content %}
+	<h2>{{ region["name"] }}</h2>
+	<br>
+		<p>Area: {{ region["area"] }}</p>
+		<p>Population: {{ region["population"] }}<p>
+		<p>Subregions: {{ region["subregions"] }}</p>
+		<p>Countries: {{ region["countries"] }}</p>
+		<p>Languages: {{ region["languages"] }}</p>
+		<p>Currencies: {{ region["currencies"] }}</p>
+	</br>
+	<div>
+		<br>
+			<h4>Subregions</h4> 
+			{% for subregion in subregions %} 
+				<p><a href = "{{ url_for('subregion_page', subregion=subregion.link)}}">{{ subregion.name }}</a></br>
+			{% endfor %}
+		</br>
+		<br>
+			<h4>Countries</h4> 
+			{% for country in countries %} 
+				<p><a href = "{{ url_for('country_page', country=country.link)}}">{{ country.name }}</a></br>
+			{% endfor %}
+		</br>
+		<br>
+			<h4>Languages</h4>
+			{% for lang in languages %} 
+				<p><a href = "{{ url_for('language_page', language=lang.link)}}">{{ lang.name }}</a></br>
+			{% endfor %}
+		</br>
+		<br>
+			<h4>Currencies</h4> 
+			{% for curr in currencies %} 
+				<p><a href = "{{ url_for('currency_page', currency=curr.link)}}">{{ curr.name }}</a></br>
+			{% endfor %}
+		</br>
+
+	</div>
+{% endblock %}
