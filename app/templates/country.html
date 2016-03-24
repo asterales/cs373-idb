@@ -6,37 +6,58 @@
 {% endblock %}
 
 {% block content %}
-	<h2>{{ country["name"] }}</h2>
-	<br>
-		<p>Capital: {{ country["name"] }}</p> 
-		<p>Latitude: {{ country["latitude"] }}</p>
-		<p>Longitude: {{ country["longitude"] }}</p>
-		<p>Region: <a href="{{ url_for('region_page', region=get_link(country["region"])) }}">{{ country["region"] }}</a></p>
-		<p>Subregion: <a href="{{ url_for('subregion_page', subregion=get_link(country["subregion"])) }}">{{ country["subregion"] }}</a></p>
-		<p>Area: {{ country["area"] }}</p>
-		<p>Population: {{ country["population"] }}<p>
-		<p>Languages: {{ country["languages"] }}</p>
-		<p>Currencies: {{ country["currencies"] }}</p>
-		<p>Bordering Countries: {{ country["borders"] }}</p>
-	</br>
-	<div>
-		<br>
-			<h4>Languages</h4>
-			{% for lang in languages %} 
-				<p><a href = "{{ url_for('language_page', language=lang.link)}}">{{ lang.name }}</a></br>
-			{% endfor %}
-		</br>
-		<br>
-			<h4>Currencies</h4> 
-			{% for curr in currencies %} 
-				<p><a href = "{{ url_for('currency_page', currency=curr.link)}}">{{ curr.name }}</a></br>
-			{% endfor %}
-		</br>
-		<br>
-			<h4>Bordering Countries</h4> 
-			{% for border in borders %} 
-				<p><a href = "{{ url_for('country_page', country=border.link)}}">{{ border.name }}</a></br>
-			{% endfor %}
-		</br>
+	<h1 class="page-header"><strong>{{ country["name"] }}</strong></h1>
+	<div class="panel {{ panel_styles["countries"] }}">
+  		<div class="panel-heading">
+    		<h3 class="panel-title"><a href="{{ url_for('countries_table') }}">Country</a> Info</h3>
+  		</div>
+  		<div class="panel-body">
+    		<p><strong>Capital: </strong>{{ country["name"] }}</t></p> 
+			<p><strong>Latitude: </strong>{{ country["latitude"] }}</p>
+			<p><strong>Longitude: </strong>{{ country["longitude"] }}</p>
+			<p><strong>Region: </strong><a href="{{ url_for('region_page', region=get_link(country["region"])) }}">{{ country["region"] }}</a></p>
+			<p><strong>Subregion: </strong><a href="{{ url_for('subregion_page', subregion=get_link(country["subregion"])) }}">{{ country["subregion"] }}</a></p>
+			<p><strong>Area: </strong>{{ country["area"] }}</p>
+			<p><strong>Population: </strong>{{ country["population"] }}<p>
+			<p><strong>Languages: </strong>{{ country["languages"] }}</p>
+			<p><strong>Currencies: </strong>{{ country["currencies"] }}</p>
+			<p><strong>Bordering Countries: </strong>{{ country["borders"] }}</p>
+  		</div>
+	</div>
+	<div class="panel {{ panel_styles["languages"] }}">
+		<div class="panel-heading">
+    		<h3 class="panel-title"><a href="{{ url_for('languages_table') }}">Languages</a></h3>
+  		</div>
+  		<div class="panel-body">
+   			<ul class = list-inline>
+				{% for lang in languages %} 
+					<li><a href = "{{ url_for('language_page', language=lang.link)}}">{{ lang.name }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class = "panel {{ panel_styles["currencies"] }}">
+		<div class="panel-heading">
+    		<h3 class="panel-title"><a href="{{ url_for('currencies_table') }}">Currencies</a></h3>
+  		</div>
+  		<div class="panel-body">
+  			<ul class = "list-inline">
+				{% for curr in currencies %} 
+					<li><a href = "{{ url_for('currency_page', currency=curr.link)}}">{{ curr.name }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class = "panel {{ panel_styles["countries"] }}">
+		<div class="panel-heading">
+    		<h3 class="panel-title">Bordering <a href="{{ url_for('countries_table') }}">Countries</a></h3>
+  		</div>
+  		<div class="panel-body">
+  			<ul class="list-inline">
+				{% for border in borders %} 
+					<li><a href = "{{ url_for('country_page', country=border.link)}}">{{ border.name }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
 	</div>
 {% endblock %}

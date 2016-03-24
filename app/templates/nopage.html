@@ -1,21 +1,17 @@
 {% extends "base.html" %}
 
 {% block title %}
-	{% if model_title %}
-		{{ model_title }} Not Found
-	{% else %}
-		Page Not Found
-	{% endif %}
+	Page Not Found
 {% endblock %}
 
 {% block content %}
+	<br></br>
 	<h2>Nothing Here!</h2>
-
 	<div>
 		{% if model %}
-			<h3>Sorry, we currently don't have a {{ model }} page for '{{ page }}' :(</h3>
+			<h3>Sorry, we don't have a <a href="/{{ redirect }}">{{ model }}</a> page for that :( .</h3>
 		{% else %}
-			<h3>Sorry, we currently don't have a page for '{{ page }}' :(</h3>
+			<h3>Sorry, we don't have a page for that :( .</h3>
 		{% endif %}
 	</div>
 	

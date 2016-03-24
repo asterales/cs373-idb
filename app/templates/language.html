@@ -6,31 +6,52 @@
 {% endblock %}
 
 {% block content %}
-	<h2>{{ language["name"] }}</h2>
-	<br>
-		<p>ISO 639-1 Code: {{ language["iso"] }}</p> 
-		<p>Countries: {{ language["countries"] }}</p>
-		<p>Regions: {{ language["regions"] }}</p>
-		<p>Subregions: {{ language["subregions"] }}</p>
-	</br>
-	<div>
-		<br>
-			<h4>Regions</h4> 
-			{% for region in regions %} 
-				<p><a href = "{{ url_for('region_page', region=region.link)}}">{{ region.name }}</a></br>
-			{% endfor %}
-		</br>
-		<br>
-			<h4>Subregions</h4> 
-			{% for subregion in subregions %} 
-				<p><a href = "{{ url_for('subregion_page', subregion=subregion.link)}}">{{ subregion.name }}</a></br>
-			{% endfor %}
-		</br>
-		<br>
-			<h4>Countries</h4>
-			{% for country in countries %} 
-				<p><a href = "{{ url_for('country_page', country=country.link)}}">{{ country.name }}</a></br>
-			{% endfor %}
-		</br>
+	<h1 class="page-header"><strong>{{ language["name"] }}</strong></h1>
+	<div class="panel {{ panel_styles["languages"] }}">
+  		<div class="panel-heading">
+    		<h3 class="panel-title"><a href="{{ url_for('languages_table') }}">Languages</a> Info</h3>
+  		</div>
+  		<div class="panel-body">
+			<p><strong>ISO 639-1 Code: </strong>{{ language["iso"] }}</p> 
+			<p><strong>Countries: </strong>{{ language["countries"] }}</p>
+			<p><strong>Regions: </strong>{{ language["regions"] }}</p>
+			<p><strong>Subregions: </strong>{{ language["subregions"] }}</p>
+	  	</div>
+	</div>
+	<div class="panel {{ panel_styles["regions"] }}">
+  		<div class="panel-heading">
+    		<h3 class="panel-title"><a href="{{ url_for('regions_table') }}">Regions</a></h3>
+  		</div>
+  		<div class="panel-body">
+  			<ul class="list-inline">
+				{% for region in regions %} 
+					<li><a href = "{{ url_for('region_page', region=region.link)}}">{{ region.name }}</a></li>
+				{% endfor %}
+			</ul>
+	  	</div>
+	</div>
+	<div class="panel {{ panel_styles["subregions"] }}">
+  		<div class="panel-heading">
+    		<h3 class="panel-title"><a href="{{ url_for('subregions_table') }}">Subregions</a></h3>
+  		</div>
+  		<div class="panel-body">
+  			<ul class="list-inline">
+				{% for subregion in subregions %} 
+					<li><a href = "{{ url_for('subregion_page', subregion=subregion.link)}}">{{ subregion.name }}</a></li>
+				{% endfor %}
+			</ul>
+	  	</div>
+	</div>
+	<div class="panel {{ panel_styles["countries"] }}">
+  		<div class="panel-heading">
+    		<h3 class="panel-title"><a href="{{ url_for('countries_table') }}">Countries</a></h3>
+  		</div>
+  		<div class="panel-body">
+  			<ul class = list-inline>
+				{% for country in countries %} 
+					<li><a href = "{{ url_for('country_page', country=country.link)}}">{{ country.name }}</a></li>
+				{% endfor %}
+			<ul>
+	  	</div>
 	</div>
 {% endblock %}
