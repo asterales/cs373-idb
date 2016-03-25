@@ -7,16 +7,30 @@
 
 {% block content %}
 	<h1 class="page-header"><strong>{{ currency["code"] }}</strong></h1>
-	<div class="panel {{ panel_styles["currencies"] }}">
-  		<div class="panel-heading">
-    		<h3 class="panel-title"><a href="{{ url_for('currencies_table') }}">Currency</a> Info</h3>
-  		</div>
-  		<div class="panel-body">
-			<p><strong>Name: </strong>{{ currency["name"] }}</p> 
-			<p><strong>Countries: </strong>{{ currency["countries"] }}</p>
-			<p><strong>Regions: </strong>{{ currency["regions"] }}</p>
-			<p><strong>Subregions: </strong>{{ currency["subregions"] }}</p>
-	  	</div>
+	<div class="row">
+		<div class="col-md-6 col-lg-6">
+			<div class="panel {{ panel_styles["currencies"] }} panel-match">
+		  		<div class="panel-heading">
+		    		<h3 class="panel-title"><a href="{{ url_for('currencies_table') }}">Currency</a> Info</h3>
+		  		</div>
+		  		<div class="panel-body">
+					<p><strong>Name: </strong>{{ currency["name"] }}</p> 
+					<p><strong>Countries: </strong>{{ currency["countries"] }}</p>
+					<p><strong>Regions: </strong>{{ currency["regions"] }}</p>
+					<p><strong>Subregions: </strong>{{ currency["subregions"] }}</p>
+			  	</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-lg-6">
+			<div class="panel {{ panel_styles["media"] }} panel-match">
+				<div class="panel-heading">
+					<h3 class="panel-title">Banknotes and Coins</h3>
+				</div>
+				<div class='panel-body'>
+					<img src="{{ img_src }}" style = "height:600px;width:100%">
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="panel {{ panel_styles["regions"] }}">
   		<div class="panel-heading">
