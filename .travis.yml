@@ -23,4 +23,6 @@ before_script:
 script:
     - date
     - ls -al
+    - make IDB1.log
+    - ls -al
     - make check
