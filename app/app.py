@@ -13,7 +13,7 @@ app = Flask(__name__)
 GoogleMaps(app)
 
 panel_styles = {"countries" : "panel-primary", "regions" : "panel-danger", "subregions" : "panel-info", \
-				"languages" : "panel-success", "currencies" : "panel-warning", "map" : "panel-default"}
+				"languages" : "panel-success", "currencies" : "panel-warning", "media" : "panel-default"}
 
 @app.route("/")
 @app.route("/index")
@@ -167,19 +167,22 @@ def currency_page(currency):
 		countries = get_links_list(cny["countries_list"])
 		regions = get_links_list(cny["regions_list"])
 		subregions = get_links_list(cny["subregions_list"])
-		return render_template('currency.html', currency = cny, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles)
+		return render_template('currency.html', currency = cny, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles, \
+								img_src = "https://upload.wikimedia.org/wikipedia/en/8/88/Yuan_collection.jpg" )
 
 	if currency == "nok":
 		countries = get_links_list(nok["countries_list"])
 		regions = get_links_list(nok["regions_list"])
 		subregions = get_links_list(nok["subregions_list"])
-		return render_template('currency.html', currency = nok, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles)
+		return render_template('currency.html', currency = nok, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles, \
+								img_src = "https://upload.wikimedia.org/wikipedia/commons/e/e5/Norwegian_coins_as_of_2015.png")
 
 	if currency == "usd":
 		countries = get_links_list(usd["countries_list"])
 		regions = get_links_list(usd["regions_list"])
 		subregions = get_links_list(usd["subregions_list"])
-		return render_template('currency.html', currency = usd, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles)
+		return render_template('currency.html', currency = usd, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles, \
+								img_src = "https://upload.wikimedia.org/wikipedia/commons/6/64/USDnotes.png")
 
 	return render_template('nopage.html', model_title = "Currency", model = "currency", redirect = "currencies")
 
