@@ -9,7 +9,7 @@
 	<h1 class="page-header"><strong>{{ language["name"] }}</strong></h1>
 	<div class="row">
 		<div class="col-md-4 col-lg-4">
-			<div class="panel {{ panel_styles["languages"] }}">
+			<div class="panel {{ panel_styles["languages"] }} panel-match">
 		  		<div class="panel-heading">
 		    		<h3 class="panel-title"><a href="{{ url_for('languages_table') }}">Languages</a> Info</h3>
 		  		</div>
@@ -19,6 +19,16 @@
 					<p><strong>Regions: </strong>{{ language["regions"] }}</p>
 					<p><strong>Subregions: </strong>{{ language["subregions"] }}</p>
 			  	</div>
+			</div>
+		</div>
+		<div class="col-md-8 col-lg-8">
+			<div class="panel {{ panel_styles["media"] }} panel-match">
+				<div class="panel-heading">
+					<h3 class="panel-title">Alphabet or Characters</h3>
+				</div>
+				<div class='panel-body'>
+					<img src="{{ img_src }}" style = "height:600px;width:100%">
+				</div>
 			</div>
 		</div>
 	</div>

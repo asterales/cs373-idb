@@ -145,19 +145,22 @@ def language_page(language):
 		countries = get_links_list(chinese["countries_list"])
 		regions = get_links_list(chinese["regions_list"])
 		subregions = get_links_list(chinese["subregions_list"])
-		return render_template('language.html', language = chinese, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles)
+		return render_template('language.html', language = chinese, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles,\
+								img_src = "http://media.moddb.com/images/downloads/1/74/73375/chinese_Character.png")
 
 	if language == "english":
 		countries = get_links_list(english["countries_list"])
 		regions = get_links_list(english["regions_list"])
 		subregions = get_links_list(english["subregions_list"])
-		return render_template('language.html', language = english, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles)
+		return render_template('language.html', language = english, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles, \
+								img_src = "http://www.paulnoll.com/Books/alphabet-1.jpg")
 
 	if language == "norwegian":
 		countries = get_links_list(norwegian["countries_list"])
 		regions = get_links_list(norwegian["regions_list"])
 		subregions = get_links_list(norwegian["subregions_list"])
-		return render_template('language.html', language = norwegian, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles)
+		return render_template('language.html', language = norwegian, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles, \
+								img_src = "http://www.omniglot.com/images/writing/norwegian.gif")
 
 	return render_template('nopage.html', model_title = "Language", model = "language", redirect = "languages")
 
