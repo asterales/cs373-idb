@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, url_for
+from flask_googlemaps import GoogleMaps
 from collections import namedtuple
 
 # Get examples data from outside file
@@ -9,9 +10,10 @@ from examples import usa, china, norway, \
 					 east_asia, north_amer, north_euro
 
 app = Flask(__name__)
+GoogleMaps(app)
 
 panel_styles = {"countries" : "panel-primary", "regions" : "panel-danger", "subregions" : "panel-info", \
-				"languages" : "panel-success", "currencies" : "panel-warning"}
+				"languages" : "panel-success", "currencies" : "panel-warning", "map" : "panel-default"}
 
 @app.route("/")
 @app.route("/index")
@@ -91,23 +93,26 @@ def region_page(region):
 		countries = get_links_list(americas["countries_list"])
 		languages = get_links_list(americas["languages_list"])
 		currencies = get_links_list(americas["currencies_list"])
+		mapData = {"latitude":13,"longitude":-84,"zoom":2}
 		return render_template('region.html', region = americas, countries = countries, subregions = subregions, \
-								languages = languages, currencies = currencies, panel_styles = panel_styles)
+								languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
 
 	if region == "asia":
 		subregions = get_links_list(asia["subregions_list"])
 		countries = get_links_list(asia["countries_list"])
 		languages = get_links_list(asia["languages_list"])
 		currencies = get_links_list(asia["currencies_list"])
+		mapData = {"latitude":39,"longitude":84,"zoom":3}
 		return render_template('region.html', region = asia, countries = countries, subregions = subregions, \
-								languages = languages, currencies = currencies, panel_styles = panel_styles)
+								languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
 	if region == "europe":
 		subregions = get_links_list(europe["subregions_list"])
 		countries = get_links_list(europe["countries_list"])
 		languages = get_links_list(europe["languages_list"])
 		currencies = get_links_list(europe["currencies_list"])
+		mapData = {"latitude":48,"longitude":20,"zoom":4}
 		return render_template('region.html', region = europe, countries = countries, subregions = subregions, \
-								languages = languages, currencies = currencies, panel_styles = panel_styles)
+								languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
 
 	return render_template('nopage.html', model_title = "Region", model = "region", redirect = "regions")
 
@@ -117,17 +122,20 @@ def subregion_page(subregion):
 		countries = get_links_list(east_asia["countries_list"])
 		languages = get_links_list(east_asia["languages_list"])
 		currencies = get_links_list(east_asia["currencies_list"])
-		return render_template('subregion.html', subregion = east_asia, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles)
+		mapData = {"latitude":34,"longitude":126,"zoom":4}
+		return render_template('subregion.html', subregion = east_asia, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
 	if subregion == "northern-america":
 		countries = get_links_list(north_amer["countries_list"])
 		languages = get_links_list(north_amer["languages_list"])
 		currencies = get_links_list(north_amer["currencies_list"])
-		return render_template('subregion.html', subregion = north_amer, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles)
+		mapData = {"latitude":52,"longitude":-90,"zoom":3}
+		return render_template('subregion.html', subregion = north_amer, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
 	if subregion == "northern-europe":
 		countries = get_links_list(north_euro["countries_list"])
 		languages = get_links_list(north_euro["languages_list"])
 		currencies = get_links_list(north_euro["currencies_list"])
-		return render_template('subregion.html', subregion = north_euro, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles)
+		mapData = {"latitude":63,"longitude":3,"zoom":4}
+		return render_template('subregion.html', subregion = north_euro, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
 
 	return render_template('nopage.html', model_title = "Subregion", model = "subregion", redirect = "subregions")
 
@@ -138,13 +146,13 @@ def language_page(language):
 		regions = get_links_list(chinese["regions_list"])
 		subregions = get_links_list(chinese["subregions_list"])
 		return render_template('language.html', language = chinese, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles)
-	
+
 	if language == "english":
 		countries = get_links_list(english["countries_list"])
 		regions = get_links_list(english["regions_list"])
 		subregions = get_links_list(english["subregions_list"])
 		return render_template('language.html', language = english, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles)
-	
+
 	if language == "norwegian":
 		countries = get_links_list(norwegian["countries_list"])
 		regions = get_links_list(norwegian["regions_list"])
@@ -160,13 +168,13 @@ def currency_page(currency):
 		regions = get_links_list(cny["regions_list"])
 		subregions = get_links_list(cny["subregions_list"])
 		return render_template('currency.html', currency = cny, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles)
-	
+
 	if currency == "nok":
 		countries = get_links_list(nok["countries_list"])
 		regions = get_links_list(nok["regions_list"])
 		subregions = get_links_list(nok["subregions_list"])
 		return render_template('currency.html', currency = nok, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles)
-	
+
 	if currency == "usd":
 		countries = get_links_list(usd["countries_list"])
 		regions = get_links_list(usd["regions_list"])
