@@ -23,6 +23,8 @@ check:
     then                                          \
         echo "$$not_found failures";              \
         exit 1;                                   \
+    fi;                                           \
+	echo "success";
 
 
 models.html:
