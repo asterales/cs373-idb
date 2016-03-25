@@ -15,8 +15,13 @@
 	app.controller('mainController', function($scope) {
 	  $scope.sortType     = ''; // set the default sort type
 	  $scope.sortReverse  = false;  // set the default sort order
-	  
+
 	  $scope.model = {{ models|safe }};
+	});
+	app.filter('url', function () { // custom filter that does the same thing as our get_link python function
+		return function (input) {
+			return input.toLowerCase().replace(/ /g,'-').replace(/[^\w-]+/g,'');
+		}
 	});
 	</script>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
@@ -42,13 +47,29 @@
 				<tbody>
 					<tr ng-repeat="member in model | orderBy:sortType:sortReverse">
 						{% for short_attr in short_name %}
-							<td>{a member.{{short_attr}} a}</td>
+							{% if loop.first %}
+								<td>
+									<a href="{a member.{{short_attr}} | url a}">
+										{a member.{{short_attr}} a}
+									</a>
+								</td>
+							{% elif short_attr in ["region","subregion"] %}
+								<td>
+									<a href="../{{ short_attr }}s/{a member.{{short_attr}} | url a}">
+										{a member.{{short_attr}} a}
+									</a>
+								</td>
+							{% else %}
+								<td>
+									{a member.{{short_attr}} a}
+								</td>
+							{% endif %}
 						{% endfor %}
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-		
+
 	</table>
 {% endblock %}
