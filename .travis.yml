@@ -10,9 +10,10 @@ sudo: false
 install:
     - pip install --upgrade pip
     - pip --version
-    - pip install coverage
-    - pip install numpy
-    - pip3 install requests
+    - pip install Flask
+    - pip install Flask-Script
+    - pip install Flask-SQLAlchemy
+    - pip3 install flask-googlemaps
 
 before_script:
     - uname -a
@@ -21,13 +22,5 @@ before_script:
 
 script:
     - date
-    - ls -al
-    - make netflix-tests
-    - ls -al
-    - make Netflix.html
-    - ls -al
-    - make Netflix.log
-    - ls -al
-    - make test
     - ls -al
     - make check
