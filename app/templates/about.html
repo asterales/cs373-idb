@@ -8,18 +8,16 @@ Internet Country Database
 
 
 {% block content %}
-	<link rel="stylesheet" href="../static/css/w3.css">
-
   
   <center><h1>Sweographers:</h1></center>
   
 
   <center>
-  	<div class="w3-card-8 panel panel-default profilecard">
+  	<div class="panel panel-default profilecard">
 
       <img src="../static/img/nathanbain.png" class="img-circle" alt="ProfilePic" style="width:100%" >
 
-  	  <div class="w3-container">
+  	  <div>
   	    <center><h3>Nathan Bain</h3></center>
         <center><h5>Front-end, Server Admin</h5></center>
         <p>
@@ -33,9 +31,9 @@ Internet Country Database
   	  </div>
     </div>
 
-    <div class="w3-card-8 panel panel-default profilecard panel-default">
+    <div class="panel panel-default profilecard panel-default">
       <img src="../static/img/michaelchin.png" class="img-circle" alt="ProfilePic" style="width:100%">
-      <div class="w3-container">
+      <div>
         <center><h3>Michael Chin</h3></center>
         <center><h5>Front-end, GUI, Web Development</h5></center>
         <p>
@@ -49,9 +47,9 @@ Internet Country Database
       </div>
     </div>
 
-    <div class="w3-card-8 panel panel-default profilecard">
+    <div class="panel panel-default profilecard">
       <img src="../static/img/stormyemery.png" class="img-circle" alt="ProfilePic" style="width:100%">
-      <div class="w3-container">
+      <div>
         <center><h3>Stormy Emery</h3></center>
         <center><h5>Back-end, SQL, Test-Writer</h5></center>
         <p>
@@ -65,9 +63,9 @@ Internet Country Database
       </div>
     </div>
 
-    <div class="w3-card-8 panel panel-default profilecard">
+    <div class="panel panel-default profilecard">
       <img src="../static/img/alissahall.png" class="img-circle" alt="ProfilePic" style="width:100%">
-      <div class="w3-container">
+      <div>
         <center><h3>Alissa Hall</h3></center>
         <center><h5>Front-end, GUI, Project Lead</h5></center>
         <p>
@@ -80,9 +78,9 @@ Internet Country Database
       </div>
     </div>
 
-    <div class="w3-card-8 panel panel-default profilecard">
+    <div class="panel panel-default profilecard">
       <img src="../static/img/brenthays.png" class="img-circle" alt="ProfilePic" style="width:100%">
-      <div class="w3-container">
+      <div>
         <center><h3>Brent Hays</h3></center>
         <center><h5>Front-end, Back-end</h5></center>
         <p>
@@ -101,7 +99,7 @@ Internet Country Database
 
 
 
-  <div class = "w3-card-8 panel text-center infocard">
+  <div class = "panel text-center infocard">
 
       <h3 class="text-center">
       Total Commits <br>
@@ -117,6 +115,30 @@ Internet Country Database
       <a href="https://github.com/asterales/cs373-idb/issues" class="btn btn-info infobutton" role="button">GitHub Issue Tracker</a>
       <a href="https://github.com/asterales/cs373-idb" class="btn btn-info infobutton" role="button">GitHub Repo</a>
       <a href="https://github.com/asterales/cs373-idb/wiki" class="btn btn-info infobutton" role="button">GitHub Wiki</a>
+      <!-- Trigger the modal with a button -->
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Run Tests</button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Test</h4>
+            </div>
+            <div class="modal-body">
+              <p><embed src="/about/tests" width="550" height="400"> </embed> </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
       </center>
 
       <h2 class="text-center">Data</h2>
@@ -148,20 +170,11 @@ Internet Country Database
   </div>
   </center>
 
-<!-- <div class = "w3-card-8 panel text-center">
+
+  
   
 
 
-</div>
-
-<div class = "w3-card-8 panel text-center">
-  
-</div> -->
-
-<!-- <div class = "w3-card-8 panel text-center">
-  <h2>tools:</h2>
-  tools used
-</div> -->
 
 
 {% endblock %}
