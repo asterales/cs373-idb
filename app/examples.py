@@ -3,7 +3,7 @@
 usa = {	"name" : "United States of America", "capital" : "Washington D.C.", "latitude" : 38, "longitude" : -97, \
 		"region" : "Americas", "subregion" : "Northern America", "area" : 9629091, "population" : 321645000, \
 		"languages" : 1, "currencies" : 3, "borders" : 2, \
-		"languages_list" : ["English"], "currencies_list" : ["USD", "USN", "USS"], "borders_list" : ["Canada", "Mexico"]} 
+		"languages_list" : ["English"], "currencies_list" : ["USD", "USN", "USS"], "borders_list" : ["Canada", "Mexico"]}
 
 china = {"name" : "China", "capital" : "Beijing", "latitude" : 35, "longitude" : 105, \
 		"region" : "Asia", "subregion" : "Eastern Asia", "area" : 9640011, "population" : 1371590000, \
@@ -15,8 +15,8 @@ china = {"name" : "China", "capital" : "Beijing", "latitude" : 35, "longitude" :
 norway = {"name" : "Norway", "capital" : "Oslo", "latitude" : 62, "longitude" : 10, \
 		"region" : "Europe", "subregion" : "Northern Europe", "area" : 323802, "population" : 5176998, \
 		"languages" : 3, "currencies" : 1, "borders" : 3, \
-		"languages_list" : ["Norwegian", "Norwegian Bokmål", "Norwegian Nynorsk"], "currencies_list" : ["NOK"], \
-		"borders_list" : ["Finland", "Sweden", "Russia"]} 
+		"languages_list" : ["Norwegian", "Norwegian Bokmal", "Norwegian Nynorsk"], "currencies_list" : ["NOK"], \
+		"borders_list" : ["Finland", "Sweden", "Russia"]}
 
 
 #regions
@@ -25,10 +25,10 @@ americas = {"name": "Americas", "area": 42247698, "population": 983832674, "subr
 			"subregions_list" : ['Caribbean', 'Central America', 'Northern America', 'South America'], \
 			"countries_list" : ['Anguilla', 'Antigua and Barbuda', 'Argentina', 'Aruba', 'Barbados', 'Belize', \
 				'Bermuda', 'Bolivia', 'Bonaire', 'Brazil', 'British Virgin Islands', 'Canada', 'Cayman Islands', \
-				'Chile', 'Colombia', 'Costa Rica', 'Cuba', 'Curaçao', 'Dominica', 'Dominican Republic', 'Ecuador', \
+				'Chile', 'Colombia', 'Costa Rica', 'Cuba', 'Curacao', 'Dominica', 'Dominican Republic', 'Ecuador', \
 				'El Salvador', 'Falkland Islands', 'French Guiana', 'Greenland', 'Grenada', 'Guadeloupe', 'Guatemala', \
 				'Guyana', 'Haiti', 'Honduras', 'Jamaica', 'Martinique', 'Mexico', 'Montserrat', 'Nicaragua', 'Panama', \
-				'Paraguay', 'Peru', 'Puerto Rico', 'Saint Barthélemy', 'Saint Kitts and Nevis', 'Saint Lucia', \
+				'Paraguay', 'Peru', 'Puerto Rico', 'Saint Barthelemy', 'Saint Kitts and Nevis', 'Saint Lucia', \
 				'Saint Martin', 'Saint Pierre and Miquelon', 'Saint Vincent and the Grenadines', 'Sint Maarten', \
 				'South Georgia', 'Suriname', 'The Bahamas', 'Trinidad and Tobago', 'Turks and Caicos Islands', \
 				'United States', 'United States Minor Outlying Islands', 'Uruguay', 'Venezuela'], \
@@ -64,8 +64,8 @@ europe = {"name": "Europe", "area": 23138282, "population": 745355450, "subregio
 		  	'Luxembourg', 'Malta', 'Moldova', 'Monaco', 'Montenegro', 'Netherlands', 'Norway', 'Poland', 'Portugal', \
 		  	'Republic of Ireland', 'Republic of Kosovo', 'Republic of Macedonia', 'Romania', 'Russia', 'San Marino', 'Serbia', \
 		  	'Slovakia', 'Slovenia', 'Spain', 'Svalbard and Jan Mayen', 'Sweden', 'Switzerland', 'Ukraine', 'United Kingdom', \
-		  	'Åland Islands'], \
-		  "languages_list" : ['Albanian', 'Armenian', 'Belarusian', 'Bokmål, Norwegian', 'Bosnian', 'Bulgarian', 'Catalan', 'Croatian', \
+		  	'Aland Islands'], \
+		  "languages_list" : ['Albanian', 'Armenian', 'Belarusian', 'Bokmal, Norwegian', 'Bosnian', 'Bulgarian', 'Catalan', 'Croatian', \
 		  	'Czech', 'Danish', 'Dutch', 'English', 'Estonian', 'Faroese', 'Finnish', 'French', 'German', 'Greek, Modern (1453-)', \
 		  	'Hungarian', 'Icelandic', 'Irish', 'Italian', 'Latvian', 'Lithuanian', 'Luxembourgish', 'Macedonian', 'Maltese', 'Manx', \
 		  	'Norwegian', 'Norwegian Nynorsk', 'Polish', 'Portuguese', 'Romanian', 'Russian', 'Serbian', 'Slovak', 'Slovenian', 'Spanish', \
@@ -86,8 +86,8 @@ north_amer = {"name" : "Northern America", "region" : "Americas", "countries" : 
 
 north_euro = {"name" : "Northern Europe", "region" : "Europe", "countries" : 16, "languages" : 15, "currencies" : 6, \
 			  "countries_list" : ['Denmark', 'Estonia', 'Faroe Islands', 'Finland', 'Guernsey', 'Iceland', 'Isle of Man', 'Jersey', 'Latvia', \
-			  		'Lithuania', 'Norway', 'Republic of Ireland', 'Svalbard and Jan Mayen', 'Sweden', 'United Kingdom', 'Åland Islands'], \
-			  "languages_list" : ['Bokmål, Norwegian', 'Danish', 'English', 'Estonian', 'Faroese', 'Finnish', 'French', 'Icelandic', 'Irish', \
+			  		'Lithuania', 'Norway', 'Republic of Ireland', 'Svalbard and Jan Mayen', 'Sweden', 'United Kingdom', 'Aland Islands'], \
+			  "languages_list" : ['Bokmal, Norwegian', 'Danish', 'English', 'Estonian', 'Faroese', 'Finnish', 'French', 'Icelandic', 'Irish', \
 			  		'Latvian', 'Lithuanian', 'Manx', 'Norwegian', 'Norwegian Nynorsk', 'Swedish'], \
 			  "currencies_list" : ['DKK', 'EUR', 'GBP', 'ISK', 'NOK', 'SEK']}
 
@@ -104,7 +104,7 @@ english = {"name" : "English", "iso" : "en", "countries" : 89, "regions" : 15, "
 		   		'Southern Europe', 'Western Africa'], \
 		   	"countries_list" : ['American Samoa', 'Anguilla', 'Antigua and Barbuda', 'Australia', 'Barbados', 'Belize', 'Bermuda', \
 		   		'Botswana', 'British Indian Ocean Territory', 'British Virgin Islands', 'Cameroon', 'Canada', 'Cayman Islands', \
-		   		'Christmas Island', 'Cocos (Keeling) Islands', 'Cook Islands', 'Curaçao', 'Dominica', 'Eritrea', 'Falkland Islands', \
+		   		'Christmas Island', 'Cocos (Keeling) Islands', 'Cook Islands', 'Curacao', 'Dominica', 'Eritrea', 'Falkland Islands', \
 		   		'Federated States of Micronesia', 'Fiji', 'Ghana', 'Gibraltar', 'Grenada', 'Guam', 'Guernsey', 'Guyana', \
 		   		'Heard Island and McDonald Islands', 'Hong Kong', 'India', 'Isle of Man', 'Jamaica', 'Jersey', 'Kenya', 'Kiribati', \
 		   		'Lesotho', 'Liberia', 'Malawi', 'Malta', 'Marshall Islands', 'Mauritius', 'Montserrat', 'Namibia', 'Nauru', \

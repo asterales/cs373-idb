@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, url_for
 from flask_googlemaps import GoogleMaps
 from collections import namedtuple
+from api import sweography_api
 import subprocess
 
 # Get examples data from outside file
@@ -12,6 +13,7 @@ from examples import usa, china, norway, \
 
 app = Flask(__name__)
 GoogleMaps(app)
+app.register_blueprint(sweography_api)
 
 panel_styles = {"countries" : "panel-primary", "regions" : "panel-danger", "subregions" : "panel-info", \
 				"languages" : "panel-success", "currencies" : "panel-warning", "media" : "panel-default"}
@@ -70,7 +72,7 @@ def about():
 @app.route("/about/tests")
 def run_tests():
 	subprocess.check_output(["python3","../tests.py"], universal_newlines=True)
-	return 
+	return
 
 # Individual Pages
 @app.route("/countries/<country>")
