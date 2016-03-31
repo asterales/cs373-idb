@@ -47,5 +47,13 @@ build:
 	docker push nathanbain314/sweography_app
 	docker build -t nathanbain314/sweography_lb lb
 	docker push nathanbain314/sweography_lb
+	docker build -t nathanbain314/sweography_db db
+	docker push nathanbain314/sweography_db
 	docker-compose --file docker-compose-prod.yml up -d
 	docker port sweography_lb 80
+
+build_dev_db:
+	source docker_source/dev/docker.env && make build_db
+
+build_db:
+	docker-compose --file docker-compose-prod.yml run -d --rm --no-deps app python app.py create_db
