@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, url_for
 from flask_googlemaps import GoogleMaps
 from collections import namedtuple
 from api import sweography_api
+import subprocess
 
 # Get examples data from outside file
 from examples import usa, china, norway, \
@@ -67,6 +68,11 @@ def currencies_table():
 @app.route("/about")
 def about():
 	return render_template('about.html')
+
+@app.route("/about/tests")
+def run_tests():
+	subprocess.check_output(["python3","../tests.py"], universal_newlines=True)
+	return
 
 # Individual Pages
 @app.route("/countries/<country>")
