@@ -214,7 +214,7 @@ class ModelsTest(TestCase) :
 
     	currency = Currencies(
     		id=1,
-    		name='Yuan Renminbi'
+    		name='Yuan Renminbi',
     		code='CNY'
     	)
 
@@ -310,7 +310,7 @@ class ModelsTest(TestCase) :
     	assert r.id == 1
     	assert r.name == 'Americas'
 
-	def test_regions_2(self):
+    def test_regions_2(self):
 
     	region = Regions(
     		id=1,
