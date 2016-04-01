@@ -9,11 +9,21 @@ from sqlalchemy import create_engine
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-Base = declarative_base()
-
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://countries-admin:countries-password@localhost/SWEography'
 db = SQLAlchemy(app)
+
+## our models will extend base model
+class Base(object):
+    def toJSON(self):
+        json_exclude = getattr(self, '__json_exclude__', set())
+        return {key: value for key, value in self.__dict__.items()
+                # Do not serialize 'private' attributes
+                # (SQLAlchemy-internal attributes are among those, too)
+                if not key.startswith('_')
+                and key not in json_exclude}
+
+Base = declarative_base(cls=Base)
 
 """
 Junction tables to show the relationship between countries and their
@@ -129,18 +139,17 @@ class Borders(Base):
 	Countries = relationship('Countries', secondary=country_border, backref='Borders_')
 
 class Regions(Base):
-	"""
-	Regions Model: contains all regions that the countries in the Countries Model are apart of
-	Attributes:
-		id - Unique id of the region
-		name - Name of the region
-	"""
+    """
+    Regions Model: contains all regions that the countries in the Countries Model are apart of
+    Attributes:
+    	id - Unique id of the region
+    	name - Name of the region
+    """
 
-	__tablename__ = 'Regions'
+    __tablename__ = 'Regions'
 
-	id = Column(Integer, primary_key=True)
-	name = Column(String(255)) #nullable=False
-	#num_subregions = Column(Integer)
+    id = Column(Integer, primary_key=True)
+    name = Column(String(255)) #nullable=False
 
 class SubRegions(Base):
 	"""
