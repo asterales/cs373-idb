@@ -36,7 +36,7 @@ services:
       - backend
     environment:
       # Environment variables to configure MySQL on startup.
-      - MYSQL_DATABASE=countires_db
+      - MYSQL_DATABASE=countries_db
 
   data:
     container_name: sweography_db_data
