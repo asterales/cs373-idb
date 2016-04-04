@@ -10,27 +10,27 @@ from sqlalchemy import create_engine
 Base = declarative_base()
 
 """
-Junction tables to show the relationship between countries and their 
+Junction tables to show the relationship between countries and their
 respective languages, currencies, and borders
 Attributes:
 	Foreign keys to the country id and the language, currency, or border id
 """
 
 country_language = Table('country_language', Base.metadata,
-	Column('id', Integer, primary_key=True), 
-	Column('country_id', Integer, ForeignKey('Countries.id')), 
+	Column('id', Integer, primary_key=True),
+	Column('country_id', Integer, ForeignKey('Countries.id')),
 	Column('language_id', Integer, ForeignKey('Languages.id'))
 )
 
 country_currency = Table('country_currency', Base.metadata,
 	Column('id', Integer, primary_key=True),
-	Column('country_id', Integer, ForeignKey('Countries.id')), 
+	Column('country_id', Integer, ForeignKey('Countries.id')),
 	Column('currency_id', Integer, ForeignKey('Currencies.id'))
 )
 
 country_border = Table('country_border', Base.metadata,
 	Column('id', Integer, primary_key=True),
-	Column('country_id', Integer, ForeignKey('Countries.id')), 
+	Column('country_id', Integer, ForeignKey('Countries.id')),
 	Column('border_id', Integer, ForeignKey('Borders.id'))
 )
 
@@ -61,7 +61,7 @@ class Countries(Base):
 	area = Column(Integer)
 	population = Column(Integer)
 
-	#one-to-many relationship 
+	#one-to-many relationship
 	region = relationship('Regions')
 	subregion = relationship('SubRegions')
 
@@ -94,7 +94,7 @@ class Currencies(Base):
 	Attributes:
 		id - Unique id of the currency
 		name - Name of the currency
-		code - The currency code  
+		code - The currency code
 	"""
 
 	__tablename__ = 'Currencies'
@@ -113,7 +113,7 @@ class Borders(Base):
 		id - Unique id of the border
 		name - Name of the border
 	"""
-	
+
 	__tablename__ = 'Borders'
 
 	id = Column(Integer, primary_key=True)
@@ -122,7 +122,7 @@ class Borders(Base):
 	#many-to-many relationships
 	Countries = relationship('Countries', secondary=country_border, backref='Borders')
 
-class Regions(Base): 
+class Regions(Base):
 	"""
 	Regions Model: contains all regions that the countries in the Countries Model are apart of
 	Attributes:
@@ -134,7 +134,7 @@ class Regions(Base):
 
 	id = Column(Integer, primary_key=True)
 	name = Column(String(255)) #nullable=False
-	#num_subregions = Column(Integer) 
+	#num_subregions = Column(Integer)
 
 class SubRegions(Base):
 	"""
@@ -148,12 +148,12 @@ class SubRegions(Base):
 
 	id = Column(Integer, primary_key=True)
 	name = Column(String(255))
-	#parent_region = Column(String(255)) 
+	#parent_region = Column(String(255))
 
 ###connects to a database that has already been created
 
 ###                             user:pass@server/database_name
 #engine = create_engine('mysql://root:root@localhost/SWEography')
 
-###creates all tables in database 
+###creates all tables in database
 #Base.metadata.create_all(engine)
