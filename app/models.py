@@ -9,8 +9,18 @@ from sqlalchemy import create_engine
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
+SQLALCHEMY_DATABASE_URI = \
+    '{engine}://{username}:{password}@{hostname}/{database}'.format(
+        engine='mysql+pymysql',
+        username=os.getenv('MYSQL_USER'),
+        password=os.getenv('MYSQL_PASSWORD'),
+        hostname=os.getenv('MYSQL_HOST'),
+        database=os.getenv('MYSQL_DATABASE'))
+
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://countries-admin:countries-password@localhost/SWEography'
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 ## our models will extend base model
@@ -172,7 +182,7 @@ class SubRegions(Base):
 ### CREATE DATABASE SWEography
 ### CREATE USER 'sweography'@'localhost'IDENTIFIED BY 'dNZ4QP77ayKFd3Md'
 ### GRANT ALL ON SWEography.* TO 'sweopgrahy'@'localhost';
-engine = create_engine('mysql://countries-admin:countries-password@localhost/SWEography')
+engine = create_engine(SQLALCHEMY_DATABASE_URI)
 
 ##creates all tables in database
 Base.metadata.create_all(engine)
