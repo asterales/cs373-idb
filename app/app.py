@@ -71,7 +71,7 @@ def about():
 
 @app.route("/about/tests")
 def run_tests():
-	subprocess.check_output(["python3","../tests.py"], universal_newlines=True)
+	subprocess.check_output(["python3","tests.py"], universal_newlines=True)
 	return
 
 # Individual Pages
