@@ -117,23 +117,23 @@ class Languages(Base):
 	Countries = relationship('Countries', secondary=country_language, backref='Languages_')
 
 class Currencies(Base):
-	"""
-	Currencies Model: contains the different currencies used in the countries in the Countries Model
-	Attributes:
-		id - Unique id of the currency
-		name - Name of the currency
-		code - The currency code
-	"""
+    """
+    Currencies Model: contains the different currencies used in the countries in the Countries Model
+    Attributes:
+    	id - Unique id of the currency
+    	name - Name of the currency
+    	code - The currency code
+    """
 
-	__tablename__ = 'Currencies'
+    __tablename__ = 'Currencies'
 
-	id = Column(Integer, primary_key=True)
-	name = Column(String(255)) #nullable=False
-	code = Column(String(255))
+    id = Column(Integer, primary_key=True)
+    name = Column(String(255)) #nullable=False
+    code = Column(String(255))
     unicode = Column(String(255))
 
-	#many-to-many relationships
-	Countries = relationship('Countries', secondary=country_currency, backref='Currencies_')
+    #many-to-many relationships
+    Countries = relationship('Countries', secondary=country_currency, backref='Currencies_')
 
 class Borders(Base):
 	"""
