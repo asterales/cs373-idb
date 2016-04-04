@@ -8,6 +8,8 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy_utils import database_exists, create_database
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://countries-admin:countries-password@localhost/SWEography'
@@ -173,6 +175,9 @@ class SubRegions(Base):
 ### CREATE USER 'sweography'@'localhost'IDENTIFIED BY 'dNZ4QP77ayKFd3Md'
 ### GRANT ALL ON SWEography.* TO 'sweopgrahy'@'localhost';
 engine = create_engine('mysql://countries-admin:countries-password@localhost/SWEography')
+
+if not database_exists(engine.url):
+    create_database(engine.url)
 
 ##creates all tables in database
 Base.metadata.create_all(engine)
