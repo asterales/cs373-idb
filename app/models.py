@@ -130,6 +130,7 @@ class Currencies(Base):
 	id = Column(Integer, primary_key=True)
 	name = Column(String(255)) #nullable=False
 	code = Column(String(255))
+    unicode = Column(String(255))
 
 	#many-to-many relationships
 	Countries = relationship('Countries', secondary=country_currency, backref='Currencies_')

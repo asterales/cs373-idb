@@ -231,8 +231,8 @@ def getRegions():
     return jsonify({"regions":regions}), 200
 
 def getRegionModels():
-    query = text("SELECT r.*, SUM( c.population ) AS  'population', SUM( c.area ) AS  'area', COUNT( c.id ) AS  'countries', \
-        COUNT( l.id ) AS  'languages', COUNT( s.id ) AS  'subregions', COUNT( cur.id ) AS 'currencies'\
+    query = text("SELECT r.*, SUM( DISTINCT c.population ) AS  'population', SUM( DISTINCT c.area ) AS  'area', COUNT( DISTINCT c.id ) AS  'countries', \
+        COUNT( DISTINCT l.id ) AS  'languages', COUNT( DISTINCT s.id ) AS  'subregions', COUNT( DISTINCT cur.id ) AS 'currencies'\
         FROM Regions r\
         LEFT JOIN Countries c ON c.region_id = r.id\
         LEFT JOIN country_language cl ON cl.country_id = c.id\
@@ -255,8 +255,8 @@ def getRegion(id):
     return jsonify(region), 200
 
 def getRegionModel(id):
-    query = text("SELECT r.*, SUM( c.population ) AS  'population', SUM( c.area ) AS  'area', COUNT( c.id ) AS  'countries', \
-        COUNT( l.id ) AS  'languages', COUNT( s.id ) AS  'subregions', COUNT( cur.id ) AS 'currencies'\
+    query = text("SELECT r.*, SUM( DISTINCT c.population ) AS  'population', SUM( DISTINCT c.area ) AS  'area', COUNT( DISTINCT c.id ) AS  'countries', \
+        COUNT( DISTINCT l.id ) AS  'languages', COUNT( DISTINCT s.id ) AS  'subregions', COUNT( DISTINCT cur.id ) AS 'currencies'\
         FROM Regions r\
         LEFT JOIN Countries c ON c.region_id = r.id\
         LEFT JOIN country_language cl ON cl.country_id = c.id\
@@ -332,9 +332,9 @@ def getSubRegions():
     return jsonify({"subregions":subregions}), 200
 
 def getSubRegionModels():
-    query = text("SELECT sr.*, COUNT( c.id ) AS  'countries', \
+    query = text("SELECT sr.*, COUNT( DISTINCT c.id ) AS  'countries', \
         r.name AS 'region', \
-        COUNT( l.id ) AS  'languages', COUNT( cur.id ) AS 'currencies'\
+        COUNT( DISTINCT l.id ) AS  'languages', COUNT( DISTINCT cur.id ) AS 'currencies'\
         FROM SubRegions sr\
         LEFT JOIN Countries c ON c.subregion_id = sr.id\
         LEFT JOIN country_language cl ON cl.country_id = c.id\
@@ -357,9 +357,9 @@ def getSubRegion(id):
     return jsonify(subregion), 200
 
 def getSubRegionModel(id):
-    query = text("SELECT sr.*, COUNT( c.id ) AS  'countries', \
+    query = text("SELECT sr.*, COUNT( DISTINCT c.id ) AS  'countries', \
         r.name AS 'region', \
-        COUNT( l.id ) AS  'languages', COUNT( cur.id ) AS 'currencies'\
+        COUNT( DISTINCT l.id ) AS  'languages', COUNT( DISTINCT cur.id ) AS 'currencies'\
         FROM SubRegions sr\
         LEFT JOIN Countries c ON c.subregion_id = sr.id\
         LEFT JOIN country_language cl ON cl.country_id = c.id\
@@ -435,8 +435,8 @@ def getLanguages():
     return jsonify({"languages":languages}), 200
 
 def getLanguageModels():
-    query = text("SELECT l.*, COUNT( c.id ) AS  'countries', \
-        COUNT( r.id ) AS  'regions', COUNT( s.id ) AS  'subregions'\
+    query = text("SELECT l.*, COUNT( DISTINCT c.id ) AS  'countries', \
+        COUNT( DISTINCT r.id ) AS  'regions', COUNT( DISTINCT s.id ) AS  'subregions'\
         FROM Languages l\
         LEFT JOIN country_language cl ON cl.language_id = l.id\
         LEFT JOIN Countries c ON cl.country_id = c.id\
@@ -458,8 +458,8 @@ def getLanguage(id):
     return jsonify(language), 200
 
 def getLanguageModel(id):
-    query = text("SELECT l.*, COUNT( c.id ) AS  'countries', \
-        COUNT( r.id ) AS  'regions', COUNT( s.id ) AS  'subregions'\
+    query = text("SELECT l.*, COUNT( DISTINCT c.id ) AS  'countries', \
+        COUNT( DISTINCT r.id ) AS  'regions', COUNT( DISTINCT s.id ) AS  'subregions'\
         FROM Languages l\
         LEFT JOIN country_language cl ON cl.language_id = l.id\
         LEFT JOIN Countries c ON cl.country_id = c.id\
@@ -522,7 +522,7 @@ def createCurrency():
     return jsonify(getCurrencyModel(currency.id)), 201
 
 def createCurrencyModel(data):
-    currency = Currencies(name=data["name"], code=data["code"])
+    currency = Currencies(name=data["name"], code=data["code"], unicode=data["unicode"])
     db.session.add(currency)
     db.session.commit()
     return currency
@@ -534,8 +534,8 @@ def getCurrencies():
     return jsonify({"currencies":currencies}), 200
 
 def getCurrencyModels():
-    query = text("SELECT cur.*, COUNT( c.id ) AS  'countries', \
-        COUNT( r.id ) AS  'regions', COUNT( s.id ) AS  'subregions'\
+    query = text("SELECT cur.*, COUNT( DISTINCT c.id ) AS  'countries', \
+        COUNT( DISTINCT r.id ) AS  'regions', COUNT( DISTINCT s.id ) AS  'subregions'\
         FROM Currencies cur\
         LEFT JOIN country_currency cc ON cc.currency_id = cur.id\
         LEFT JOIN Countries c ON cc.country_id = c.id\
@@ -557,8 +557,8 @@ def getCurrency(id):
     return jsonify(currency), 200
 
 def getCurrencyModel(id):
-    query = text("SELECT cur.*, COUNT( c.id ) AS  'countries', \
-        COUNT( r.id ) AS  'regions', COUNT( s.id ) AS  'subregions'\
+    query = text("SELECT cur.*, COUNT( DISTINCT c.id ) AS  'countries', \
+        COUNT( DISTINCT r.id ) AS  'regions', COUNT( DISTINCT s.id ) AS  'subregions'\
         FROM Currencies cur\
         LEFT JOIN country_currency cc ON cc.currency_id = cur.id\
         LEFT JOIN Countries c ON cc.country_id = c.id\
