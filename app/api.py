@@ -25,7 +25,7 @@ def createCountryModel(data):
     # check for existing subregion, create new if necessary
     subregion = db.session.query(SubRegions).filter(SubRegions.name==data["subregion"]).first()
     if not subregion:
-        subregion = SubRegions(name=data["region"])
+        subregion = SubRegions(name=data["subregion"])
 
     country = Countries(name=data["name"], capital=data["capital"], lat=data["lat"], lng=data["lng"],\
         area=data["area"], population=data["population"], region=region, subregion=subregion)

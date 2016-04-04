@@ -184,6 +184,9 @@ class SubRegions(Base):
 ### CREATE DATABASE SWEography
 ### CREATE USER 'sweography'@'localhost'IDENTIFIED BY 'dNZ4QP77ayKFd3Md'
 ### GRANT ALL ON SWEography.* TO 'sweopgrahy'@'localhost';
+
+## use this for localhost only
+# SQLALCHEMY_DATABASE_URI = "mysql://user:password@localhost/countries_db"
 engine = create_engine(SQLALCHEMY_DATABASE_URI)
 
 if not database_exists(engine.url):
