@@ -43,6 +43,7 @@ build_dev:
 	source docker_source/dev/docker.env && make build
 
 build:
+	docker login
 	docker build -t nathanbain314/sweography_app app
 	docker push nathanbain314/sweography_app
 	docker build -t nathanbain314/sweography_lb lb
@@ -52,8 +53,17 @@ build:
 	docker-compose --file docker-compose-prod.yml up -d
 	docker port sweography_lb 80
 
+build_master_db:
+	source docker_source/master/docker.env && make build_db
+
 build_dev_db:
 	source docker_source/dev/docker.env && make build_db
 
 build_db:
-	docker-compose --file docker-compose-prod.yml run -d --rm --no-deps app python app.py create_db
+	docker-compose --file docker-compose-prod.yml run -d --rm --no-deps app python models.py create_db
+
+master_ip:
+	source docker_source/master/docker.env && docker port sweography_lb 80
+
+dev_ip:
+	source docker_source/dev/docker.env && docker port sweography_lb 80
