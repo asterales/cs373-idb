@@ -8,6 +8,8 @@ services:
     extends:
       file: docker-compose-common.yml
       service: lb
+    depends_on:
+      - app
 
   # app
   app:
@@ -30,6 +32,8 @@ services:
     command: gunicorn --reload app:app --bind 0.0.0.0:8000
       # Run Gunicorn to serve app requests and reload on change so we can see our
       # changes to the app code
+    depends_on:
+      - db
 
   db:
     extends:
