@@ -58,15 +58,31 @@ def createCountryModel(data):
 ## list
 @sweography_api.route('/country', methods=['GET'])
 def getCountries():
-    countries = getCountryModels()
+    params = request.args
+    countries = getCountryModels(params)
     return jsonify({"countries":countries}), 200
 
-def getCountryModels():
-    query = text("SELECT c.id, c.name, c.capital, c.population, c.area, c.lat, c.lng, r.name AS 'region', s.name AS 'subregion'\
+def getCountryModels(params):
+    query_params = {}
+    query = "SELECT c.id, c.name, c.capital, c.population, c.area, c.lat, c.lng, r.name AS 'region', s.name AS 'subregion'\
         FROM Countries c\
         JOIN Regions r ON r.id = c.region_id\
-        JOIN SubRegions s ON s.id = c.subregion_id")
-    countries = db.session.execute(query).fetchall()
+        JOIN SubRegions s ON s.id = c.subregion_id"
+    if params.get('language_id'):
+        query += " JOIN country_language cl ON cl.language_id=:language_id AND cl.country_id=c.id"
+        query_params["language_id"] = params.get('language_id')
+    if params.get('currency_id'):
+        query += " JOIN country_currency cc ON cc.currency_id=:currency_id AND cc.country_id=c.id"
+        query_params["currency_id"] = params.get('currency_id')
+    query += " WHERE 1"
+    if params.get('region_id'):
+        query += " AND c.region_id=:region_id"
+        query_params["region_id"] = params.get('region_id')
+    if params.get('subregion_id'):
+        query += " AND c.subregion_id=:subregion_id"
+        query_params["subregion_id"] = params.get('subregion_id')
+
+    countries = db.session.execute(text(query), params=query_params).fetchall()
     cols = ["id","name","capital","population","area","lat","lng","region","subregion"]
     countriesJSON = [{col: str(getattr(r, col)) for col in cols} for r in countries]
 
