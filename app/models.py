@@ -8,7 +8,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy_utils import database_exists, create_database
+from sqlalchemy_utils import database_exists, create_database, drop_database
 
 
 SQLALCHEMY_DATABASE_URI = \
@@ -187,11 +187,16 @@ class SubRegions(Base):
 ### GRANT ALL ON SWEography.* TO 'sweopgrahy'@'localhost';
 
 ## use this for localhost only
-# SQLALCHEMY_DATABASE_URI = "mysql://user:password@localhost/countries_db"
+# app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI = 'mysql://user:password@localhost/countries_db2'
+# engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
 engine = create_engine(SQLALCHEMY_DATABASE_URI)
 
-if not database_exists(engine.url):
-    create_database(engine.url)
+if database_exists(engine.url):
+    drop_database(engine.url)
+create_database(engine.url)
+
+# if not database_exists(engine.url):
+#     create_database(engine.url)
 
 ##creates all tables in database
 Base.metadata.create_all(engine)
