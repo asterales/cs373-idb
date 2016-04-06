@@ -6,7 +6,6 @@ from lang_codes import lang_codes
 api_url = "https://restcountries.eu/rest/v1/all"
 countries_list = []
 languages_list = []
-currencies_list = []
 
 def parse_country_codes():
 	resp = requests.get(api_url)
@@ -17,10 +16,13 @@ def parse_country_codes():
 
 def parse_countries():
 	country_codes = parse_country_codes()
-	attr = ["name", "capital", "region", "subregion", "area", "population", "languages", "currencies"]
+	attr = ["name", "area", "population", "languages", "currencies"]
+	nullable_attr = ["capital", "region", "subregion"]
 	resp = requests.get(api_url)
 	for country in resp.json():
 		d = {a : country[a] for a in attr}
+		for na in nullable_attr:
+			d[na] = country[na] if country[na] else "N/A"
 		if country["latlng"]:
 			d["lat"] = country["latlng"][0]
 			d["lng"] = country["latlng"][1]
