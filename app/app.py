@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, url_for
 from flask_googlemaps import GoogleMaps
 from collections import namedtuple
-from api import sweography_api
+import api
 import subprocess
 
 # Get examples data from outside file
@@ -14,7 +14,7 @@ from examples import usa, china, norway, \
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 GoogleMaps(app)
-app.register_blueprint(sweography_api)
+app.register_blueprint(api.sweography_api)
 
 panel_styles = {"countries" : "panel-primary", "regions" : "panel-danger", "subregions" : "panel-info", \
 				"languages" : "panel-success", "currencies" : "panel-warning", "media" : "panel-default"}
@@ -30,7 +30,8 @@ def countries_table():
 	attributes = {"name" : "Name", "capital" : "Capital", "latitude" :  "Latitude", "longitude" : "Longitude", "region" : "Region", "subregion" : "Subregion",\
 				  "area":"Area", "population" : "Population", "languages" : "Languages", "currencies" : "Currencies", "borders" : "Bordering Countries"}
 	short_attributes = ["name", "capital", "latitude", "longitude", "region", "subregion", "area", "population", "languages", "currencies", "borders"]
-	countries = [china, norway, usa]
+	# countries = [china, norway, usa]
+	countries = api.getCountryModels({})
 	return render_template('models.html', model_type = "Countries", attributes = attributes, models = countries, short_name = short_attributes, style = panel_styles["countries"])
 
 @app.route("/regions")
@@ -39,7 +40,8 @@ def regions_table():
 	attributes = {"name":"Name", "area":"Area", "population":"Population", "subregions":"Subregions", "countries":"Countries", \
 				  "languages":"Languages", "currencies":"Currencies"}
 	short_attributes = ["name", "area", "population", "subregions", "countries", "languages", "currencies"]
-	regions = [americas, asia, europe]
+	# regions = [americas, asia, europe]
+	regions = api.getRegionModels()
 	return render_template('models.html', model_type = "Regions", attributes = attributes, models = regions, short_name = short_attributes, style = panel_styles["regions"])
 
 @app.route("/subregions")
@@ -47,7 +49,8 @@ def regions_table():
 def subregions_table():
 	attributes = {"name" : "Name", "region" : "Region", "countries" : "Countries", "languages" : "Languages", "currencies" : "Currencies"}
 	short_attributes = ["name", "region", "countries", "languages", "currencies"]
-	subregions = [east_asia, north_amer, north_euro]
+	# subregions = [east_asia, north_amer, north_euro]
+	subregions = api.getSubregionModels()
 	return render_template('models.html', model_type = "Subregions", attributes = attributes, models = subregions, short_name = short_attributes, style = panel_styles["subregions"])
 
 @app.route("/languages")
@@ -55,7 +58,8 @@ def subregions_table():
 def languages_table():
 	attributes = {"name":"Name", "iso":"ISO 639-1 Code", "countries":"Countries", "regions":"Regions", "subregions":"Subregions"}
 	short_attributes = ["name", "iso", "countries", "regions", "subregions"]
-	languages = [chinese, english, norwegian]
+	# languages = [chinese, english, norwegian]
+	languages = api.getLanguageModels()
 	return render_template('models.html', model_type = "Languages", attributes = attributes, models = languages, short_name = short_attributes, style = panel_styles["languages"])
 
 @app.route("/currencies")
@@ -63,7 +67,8 @@ def languages_table():
 def currencies_table():
 	attributes = {"code":"Currency Code", "name":"Name", "countries":"Countries", "regions":"Regions", "subregions":"Subregions"}
 	short_attributes = ["code", "name", "countries", "regions", "subregions"]
-	currencies = [cny, nok, usd]
+	# currencies = [cny, nok, usd]
+	currencies = api.getCurrencyModels()
 	return render_template('models.html', model_type = "Currencies", attributes = attributes, models = currencies, short_name = short_attributes, style = panel_styles["currencies"])
 
 @app.route("/about")
@@ -78,21 +83,24 @@ def run_tests():
 # Individual Pages
 @app.route("/countries/<country>")
 def country_page(country):
-	if country == "united-states-of-america":
-		languages = get_links_list(usa["languages_list"])
-		currencies = get_links_list(usa["currencies_list"])
-		borders = get_links_list(usa["borders_list"])
-		return render_template('country.html', country = usa, languages = languages, currencies = currencies, borders = borders, panel_styles = panel_styles)
-	if country == "china":
-		languages = get_links_list(china["languages_list"])
-		currencies = get_links_list(china["currencies_list"])
-		borders = get_links_list(china["borders_list"])
-		return render_template('country.html', country = china, languages = languages, currencies = currencies, borders = borders, panel_styles = panel_styles)
-	if country == "norway":
-		languages = get_links_list(norway["languages_list"])
-		currencies = get_links_list(norway["currencies_list"])
-		borders = get_links_list(norway["borders_list"])
-		return render_template('country.html', country = norway, languages = languages, currencies = currencies, borders = borders, panel_styles = panel_styles)
+	# if country == "united-states-of-america":
+	# 	languages = get_links_list(usa["languages_list"])
+	# 	currencies = get_links_list(usa["currencies_list"])
+	# 	borders = get_links_list(usa["borders_list"])
+	# 	return render_template('country.html', country = usa, languages = languages, currencies = currencies, borders = borders, panel_styles = panel_styles)
+	# if country == "china":
+	# 	languages = get_links_list(china["languages_list"])
+	# 	currencies = get_links_list(china["currencies_list"])
+	# 	borders = get_links_list(china["borders_list"])
+	# 	return render_template('country.html', country = china, languages = languages, currencies = currencies, borders = borders, panel_styles = panel_styles)
+	# if country == "norway":
+	# 	languages = get_links_list(norway["languages_list"])
+	# 	currencies = get_links_list(norway["currencies_list"])
+	# 	borders = get_links_list(norway["borders_list"])
+	# 	return render_template('country.html', country = norway, languages = languages, currencies = currencies, borders = borders, panel_styles = panel_styles)
+	country = api.getCountryModel(country)
+	if(country):
+		return render_template('country.html', country = country, languages = country["languages"], currencies = country["currencies"], borders = country["borders"], panel_styles = panel_styles)
 	return render_template('nopage.html', model_title = "Country", model = "country", redirect = "countries")
 
 @app.route("/regions/<region>")

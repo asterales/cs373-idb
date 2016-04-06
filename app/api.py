@@ -59,7 +59,7 @@ def createCountryModel(data):
 @sweography_api.route('/country', methods=['GET'])
 def getCountries():
     params = request.args
-    countries = getCountryModels(params)   
+    countries = getCountryModels(params)
     return jsonify_utf8({"countries":countries}), 200
 
 def getCountryModels(params):
@@ -627,4 +627,4 @@ def removeCurrencyModel(id):
 def jsonify_utf8(data):
     resp = jsonify(data)
     resp.headers['Content-Type'] = 'application/json; charset=utf-8'
-    return resp   
+    return resp
