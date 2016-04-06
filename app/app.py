@@ -163,21 +163,24 @@ def language_page(language):
 		regions = get_links_list(chinese["regions_list"])
 		subregions = get_links_list(chinese["subregions_list"])
 		return render_template('language.html', language = chinese, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles,\
-								img_src = "http://media.moddb.com/images/downloads/1/74/73375/chinese_Character.png")
+								center = map_center(chinese["coords"]))
+								#img_src = "http://media.moddb.com/images/downloads/1/74/73375/chinese_Character.png")
 
 	if language == "english":
 		countries = get_links_list(english["countries_list"])
 		regions = get_links_list(english["regions_list"])
 		subregions = get_links_list(english["subregions_list"])
 		return render_template('language.html', language = english, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles, \
-								img_src = "http://www.paulnoll.com/Books/alphabet-1.jpg")
+								center = map_center(english["coords"]))
+								#img_src = "http://www.paulnoll.com/Books/alphabet-1.jpg")
 
 	if language == "norwegian":
 		countries = get_links_list(norwegian["countries_list"])
 		regions = get_links_list(norwegian["regions_list"])
 		subregions = get_links_list(norwegian["subregions_list"])
 		return render_template('language.html', language = norwegian, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles, \
-								img_src = "http://www.omniglot.com/images/writing/norwegian.gif")
+								center = map_center(norwegian["coords"]))
+								#img_src = "http://www.omniglot.com/images/writing/norwegian.gif")
 
 	return render_template('nopage.html', model_title = "Language", model = "language", redirect = "languages")
 
@@ -188,21 +191,23 @@ def currency_page(currency):
 		regions = get_links_list(cny["regions_list"])
 		subregions = get_links_list(cny["subregions_list"])
 		return render_template('currency.html', currency = cny, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles, \
-								img_src = "https://upload.wikimedia.org/wikipedia/en/8/88/Yuan_collection.jpg" )
-
+								center = map_center(cny["coords"]))
+								#img_src = "https://upload.wikimedia.org/wikipedia/en/8/88/Yuan_collection.jpg" )
 	if currency == "nok":
 		countries = get_links_list(nok["countries_list"])
 		regions = get_links_list(nok["regions_list"])
 		subregions = get_links_list(nok["subregions_list"])
 		return render_template('currency.html', currency = nok, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles, \
-								img_src = "https://upload.wikimedia.org/wikipedia/commons/e/e5/Norwegian_coins_as_of_2015.png")
+								center = map_center(nok["coords"]))
+								#img_src = "https://upload.wikimedia.org/wikipedia/commons/e/e5/Norwegian_coins_as_of_2015.png")
 
 	if currency == "usd":
 		countries = get_links_list(usd["countries_list"])
 		regions = get_links_list(usd["regions_list"])
 		subregions = get_links_list(usd["subregions_list"])
 		return render_template('currency.html', currency = usd, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles, \
-								img_src = "https://upload.wikimedia.org/wikipedia/commons/6/64/USDnotes.png")
+								center = map_center(usd["coords"]))
+								#img_src = "https://upload.wikimedia.org/wikipedia/commons/6/64/USDnotes.png")
 
 	return render_template('nopage.html', model_title = "Currency", model = "currency", redirect = "currencies")
 
@@ -213,6 +218,26 @@ def get_links_list(list):
 def get_link(s):
 	return s.replace(" ", "-").lower()
 app.jinja_env.globals.update(get_link=get_link)
+
+from math import radians, degrees, hypot, cos, sin, atan2, fsum
+
+def cartesian_coord(latlng):
+	lat = radians(latlng[0])
+	lng = radians(latlng[1])
+	x = cos(lat) * cos(lng)
+	y = cos(lat) * sin(lng)
+	z = sin(lat)
+	return (x, y, z)
+
+def map_center(coords):
+	cartesians = list(map(cartesian_coord, coords))
+	xavg = fsum((t[0] for t in cartesians))/ len(coords)
+	yavg = fsum((t[1] for t in cartesians)) / len(coords)
+	zavg = fsum((t[2] for t in cartesians)) / len(coords)
+
+	lng = degrees(atan2(yavg, xavg))
+	lat = degrees(atan2(zavg, hypot(xavg, yavg)))
+	return (lat, lng)
 
 import populate_db
 
