@@ -12,9 +12,17 @@ def populate_countries():
 	for country in countries:
 		api.createCountryModel(country)
 
+def populate_currencies():
+	currencies = json.load(open("data/currency_data.json"))
+	for data in currencies:
+		currency = {}
+		currency["name"] = data["currency_name"]
+		currency["code"] = data["code"]
+		currency["unicode"] = data["unicode"]
+		api.createCurrencyModel(currency)
+
 populate_languages()
+populate_currencies()
 populate_countries()
 
-#note: add currencies
-#note: account for countries with non-standard characters in names
 

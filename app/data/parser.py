@@ -6,6 +6,7 @@ from lang_codes import lang_codes
 api_url = "https://restcountries.eu/rest/v1/all"
 countries_list = []
 languages_list = []
+currencies_list = []
 
 def parse_country_codes():
 	resp = requests.get(api_url)
@@ -39,7 +40,7 @@ def parse_languages():
 
 def write_json(filename, list_data):
 	w = open(filename, "w")
-	w.write(json.dumps(list_data, ensure_ascii=False))
+	w.write(json.dumps(list_data, ensure_ascii=False, indent=4))
 	w.close()
 
 if __name__ == "__main__":
@@ -48,7 +49,6 @@ if __name__ == "__main__":
 	
 	parse_languages()
 	write_json("languages.json", languages_list)
-
 
 
 
