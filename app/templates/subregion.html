@@ -14,7 +14,7 @@
 		    		<h3 class="panel-title"><a href="{{ url_for('subregions_table') }}">Subregion</a> Info</h3>
 		  		</div>
 		  		<div class="panel-body">
-					<p><strong>Region: </strong><a href="{{ url_for('region_page', region=get_link(subregion["region"])) }}">{{ subregion["region"] }}</a></p>
+					<p><strong>Region: </strong><a href="{{ url_for('region_page', region=subregion["region_id"]) }}">{{ subregion["region"] }}</a></p>
 					<p><strong>Countries: </strong>{{ subregion["countries"] }}
 					<p><strong>Languages: </strong>{{ subregion["languages"] }}</p>
 					<p><strong>Currencies: </strong>{{ subregion["currencies"] }}</p>

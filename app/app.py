@@ -50,7 +50,7 @@ def subregions_table():
 	attributes = {"name" : "Name", "region" : "Region", "countries" : "Countries", "languages" : "Languages", "currencies" : "Currencies"}
 	short_attributes = ["name", "region", "countries", "languages", "currencies"]
 	# subregions = [east_asia, north_amer, north_euro]
-	subregions = api.getSubregionModels()
+	subregions = api.getSubRegionModels()
 	return render_template('models.html', model_type = "Subregions", attributes = attributes, models = subregions, short_name = short_attributes, style = panel_styles["subregions"])
 
 @app.route("/languages")
@@ -105,54 +105,63 @@ def country_page(country):
 
 @app.route("/regions/<region>")
 def region_page(region):
-	if region == "americas":
-		subregions = get_links_list(americas["subregions_list"])
-		countries = get_links_list(americas["countries_list"])
-		languages = get_links_list(americas["languages_list"])
-		currencies = get_links_list(americas["currencies_list"])
-		mapData = {"latitude":13,"longitude":-84,"zoom":2}
-		return render_template('region.html', region = americas, countries = countries, subregions = subregions, \
-								languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
-
-	if region == "asia":
-		subregions = get_links_list(asia["subregions_list"])
-		countries = get_links_list(asia["countries_list"])
-		languages = get_links_list(asia["languages_list"])
-		currencies = get_links_list(asia["currencies_list"])
-		mapData = {"latitude":39,"longitude":84,"zoom":3}
-		return render_template('region.html', region = asia, countries = countries, subregions = subregions, \
-								languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
-	if region == "europe":
-		subregions = get_links_list(europe["subregions_list"])
-		countries = get_links_list(europe["countries_list"])
-		languages = get_links_list(europe["languages_list"])
-		currencies = get_links_list(europe["currencies_list"])
+	# if region == "americas":
+	# 	subregions = get_links_list(americas["subregions_list"])
+	# 	countries = get_links_list(americas["countries_list"])
+	# 	languages = get_links_list(americas["languages_list"])
+	# 	currencies = get_links_list(americas["currencies_list"])
+	# 	mapData = {"latitude":13,"longitude":-84,"zoom":2}
+	# 	return render_template('region.html', region = americas, countries = countries, subregions = subregions, \
+	# 							languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
+	#
+	# if region == "asia":
+	# 	subregions = get_links_list(asia["subregions_list"])
+	# 	countries = get_links_list(asia["countries_list"])
+	# 	languages = get_links_list(asia["languages_list"])
+	# 	currencies = get_links_list(asia["currencies_list"])
+	# 	mapData = {"latitude":39,"longitude":84,"zoom":3}
+	# 	return render_template('region.html', region = asia, countries = countries, subregions = subregions, \
+	# 							languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
+	# if region == "europe":
+	# 	subregions = get_links_list(europe["subregions_list"])
+	# 	countries = get_links_list(europe["countries_list"])
+	# 	languages = get_links_list(europe["languages_list"])
+	# 	currencies = get_links_list(europe["currencies_list"])
+	# 	mapData = {"latitude":48,"longitude":20,"zoom":4}
+	# 	return render_template('region.html', region = europe, countries = countries, subregions = subregions, \
+	# 							languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
+	region = api.getRegionModel(region)
+	if(region):
+		# countries = getCountryModels({"region_id":region})
 		mapData = {"latitude":48,"longitude":20,"zoom":4}
-		return render_template('region.html', region = europe, countries = countries, subregions = subregions, \
-								languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
-
+		return render_template('region.html', region = region, panel_styles = panel_styles, mapData = mapData)
 	return render_template('nopage.html', model_title = "Region", model = "region", redirect = "regions")
 
 @app.route("/subregions/<subregion>")
 def subregion_page(subregion):
-	if subregion == "eastern-asia":
-		countries = get_links_list(east_asia["countries_list"])
-		languages = get_links_list(east_asia["languages_list"])
-		currencies = get_links_list(east_asia["currencies_list"])
-		mapData = {"latitude":34,"longitude":126,"zoom":4}
-		return render_template('subregion.html', subregion = east_asia, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
-	if subregion == "northern-america":
-		countries = get_links_list(north_amer["countries_list"])
-		languages = get_links_list(north_amer["languages_list"])
-		currencies = get_links_list(north_amer["currencies_list"])
-		mapData = {"latitude":52,"longitude":-90,"zoom":3}
-		return render_template('subregion.html', subregion = north_amer, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
-	if subregion == "northern-europe":
-		countries = get_links_list(north_euro["countries_list"])
-		languages = get_links_list(north_euro["languages_list"])
-		currencies = get_links_list(north_euro["currencies_list"])
-		mapData = {"latitude":63,"longitude":3,"zoom":4}
-		return render_template('subregion.html', subregion = north_euro, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
+	# if subregion == "eastern-asia":
+	# 	countries = get_links_list(east_asia["countries_list"])
+	# 	languages = get_links_list(east_asia["languages_list"])
+	# 	currencies = get_links_list(east_asia["currencies_list"])
+	# 	mapData = {"latitude":34,"longitude":126,"zoom":4}
+	# 	return render_template('subregion.html', subregion = east_asia, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
+	# if subregion == "northern-america":
+	# 	countries = get_links_list(north_amer["countries_list"])
+	# 	languages = get_links_list(north_amer["languages_list"])
+	# 	currencies = get_links_list(north_amer["currencies_list"])
+	# 	mapData = {"latitude":52,"longitude":-90,"zoom":3}
+	# 	return render_template('subregion.html', subregion = north_amer, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
+	# if subregion == "northern-europe":
+	# 	countries = get_links_list(north_euro["countries_list"])
+	# 	languages = get_links_list(north_euro["languages_list"])
+	# 	currencies = get_links_list(north_euro["currencies_list"])
+	# 	mapData = {"latitude":63,"longitude":3,"zoom":4}
+	# 	return render_template('subregion.html', subregion = north_euro, countries = countries, languages = languages, currencies = currencies, panel_styles = panel_styles, mapData = mapData)
+
+	subregion = api.getSubRegionModel(subregion)
+	if subregion:
+		mapData = {"latitude":48,"longitude":20,"zoom":4}
+		return render_template('subregion.html', subregion = subregion, panel_styles = panel_styles, mapData = mapData)
 
 	return render_template('nopage.html', model_title = "Subregion", model = "subregion", redirect = "subregions")
 

@@ -49,13 +49,13 @@
 						{% for short_attr in short_name %}
 							{% if loop.first %}
 								<td>
-									<a href="{a member.{{short_attr}} | url a}">
+									<a href="{a member.id a}">
 										{a member.{{short_attr}} a}
 									</a>
 								</td>
 							{% elif short_attr in ["region","subregion"] %}
 								<td>
-									<a href="../{{ short_attr }}s/{a member.{{short_attr}} | url a}">
+									<a href="../{{ short_attr }}s/{a member.id a}">
 										{a member.{{short_attr}} a}
 									</a>
 								</td>
