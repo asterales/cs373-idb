@@ -14,7 +14,7 @@ def createCountry():
     country = createCountryModel(data)
     if not country:
         return jsonify({"error":"JSON object did not pass validation"}), 422
-    return jsonify(getCountryModel(country.id)), 201
+    return jsonify_utf8(getCountryModel(country.id)), 201
 
 def createCountryModel(data):
     # check for existing region, create new if necessary
@@ -59,8 +59,8 @@ def createCountryModel(data):
 @sweography_api.route('/country', methods=['GET'])
 def getCountries():
     params = request.args
-    countries = getCountryModels(params)
-    return jsonify({"countries":countries}), 200
+    countries = getCountryModels(params)   
+    return jsonify_utf8({"countries":countries}), 200
 
 def getCountryModels(params):
     query_params = {}
@@ -113,7 +113,7 @@ def getCountry(id):
     country = getCountryModel(id)
     if not country:
         abort(404)
-    return jsonify(country), 200
+    return jsonify_utf8(country), 200
 
 def getCountryModel(id):
     query = text("SELECT c.id, c.name, c.capital, c.population, c.area, c.lat, c.lng, r.name AS 'region', s.name AS 'subregion'\
@@ -153,7 +153,7 @@ def updateCountry(id):
     country = updateCountryModel(id, data)
     if not country:
         abort(404)
-    return jsonify(getCountryModel(id)), 200
+    return jsonify_utf8(getCountryModel(id)), 200
 
 def updateCountryModel(id, data):
     country = db.session.query(Countries).get(id)
@@ -232,7 +232,7 @@ def createRegion():
     region = createRegionModel(data)
     if not region:
         return jsonify({"error":"JSON object did not pass validation"}), 422
-    return jsonify(getRegionModel(region.id)), 201
+    return jsonify_utf8(getRegionModel(region.id)), 201
 
 def createRegionModel(data):
     region = Regions(name=data["name"])
@@ -244,7 +244,7 @@ def createRegionModel(data):
 @sweography_api.route('/region', methods=['GET'])
 def getRegions():
     regions = getRegionModels()
-    return jsonify({"regions":regions}), 200
+    return jsonify_utf8({"regions":regions}), 200
 
 def getRegionModels():
     query = text("SELECT r.*, SUM( DISTINCT c.population ) AS  'population', SUM( DISTINCT c.area ) AS  'area', COUNT( DISTINCT c.id ) AS  'countries', \
@@ -268,7 +268,7 @@ def getRegion(id):
     region = getRegionModel(id)
     if not region:
         abort(404)
-    return jsonify(region), 200
+    return jsonify_utf8(region), 200
 
 def getRegionModel(id):
     query = text("SELECT r.*, SUM( DISTINCT c.population ) AS  'population', SUM( DISTINCT c.area ) AS  'area', COUNT( DISTINCT c.id ) AS  'countries', \
@@ -297,7 +297,7 @@ def updateRegion(id):
     region = updateRegionModel(id, data)
     if not region:
         abort(404)
-    return jsonify(region), 200
+    return jsonify_utf8(region), 200
 
 def updateRegionModel(id, data):
     region = db.session.query(Regions).get(id)
@@ -333,7 +333,7 @@ def createSubRegion():
     subregion = createSubRegionModel(data)
     if not subregion:
         return jsonify({"error":"JSON object did not pass validation"}), 422
-    return jsonify(getSubRegionModel(subregion.id)), 201
+    return jsonify_utf8(getSubRegionModel(subregion.id)), 201
 
 def createSubRegionModel(data):
     subregion = SubRegions(name=data["name"])
@@ -345,7 +345,7 @@ def createSubRegionModel(data):
 @sweography_api.route('/subregion', methods=['GET'])
 def getSubRegions():
     subregions = getSubRegionModels()
-    return jsonify({"subregions":subregions}), 200
+    return jsonify_utf8({"subregions":subregions}), 200
 
 def getSubRegionModels():
     query = text("SELECT sr.*, COUNT( DISTINCT c.id ) AS  'countries', \
@@ -370,7 +370,7 @@ def getSubRegion(id):
     subregion = getSubRegionModel(id)
     if not subregion:
         abort(404)
-    return jsonify(subregion), 200
+    return jsonify_utf8(subregion), 200
 
 def getSubRegionModel(id):
     query = text("SELECT sr.*, COUNT( DISTINCT c.id ) AS  'countries', \
@@ -400,7 +400,7 @@ def updateSubRegion(id):
     subregion = updateSubRegionModel(id, data)
     if not subregion:
         abort(404)
-    return jsonify(subregion), 200
+    return jsonify_utf8(subregion), 200
 
 def updateSubRegionModel(id, data):
     subregion = db.session.query(SubRegions).get(id)
@@ -436,7 +436,7 @@ def createLanguage():
     language = createLanguageModel(data)
     if not language:
         return jsonify({"error":"JSON object did not pass validation"}), 422
-    return jsonify(getLanguageModel(language.id)), 201
+    return jsonify_utf8(getLanguageModel(language.id)), 201
 
 def createLanguageModel(data):
     language = Languages(name=data["name"], iso_code=data["iso_code"])
@@ -448,7 +448,7 @@ def createLanguageModel(data):
 @sweography_api.route('/language', methods=['GET'])
 def getLanguages():
     languages = getLanguageModels()
-    return jsonify({"languages":languages}), 200
+    return jsonify_utf8({"languages":languages}), 200
 
 def getLanguageModels():
     query = text("SELECT l.*, COUNT( DISTINCT c.id ) AS  'countries', \
@@ -471,7 +471,7 @@ def getLanguage(id):
     language = getLanguageModel(id)
     if not language:
         abort(404)
-    return jsonify(language), 200
+    return jsonify_utf8(language), 200
 
 def getLanguageModel(id):
     query = text("SELECT l.*, COUNT( DISTINCT c.id ) AS  'countries', \
@@ -498,7 +498,7 @@ def updateLanguage(id):
     language = updateLanguageModel(id, data)
     if not language:
         abort(404)
-    return jsonify(language), 200
+    return jsonify_utf8(language), 200
 
 def updateLanguageModel(id, data):
     language = db.session.query(Languages).get(id)
@@ -535,7 +535,7 @@ def createCurrency():
     currency = createCurrencyModel(data)
     if not currency:
         return jsonify({"error":"JSON object did not pass validation"}), 422
-    return jsonify(getCurrencyModel(currency.id)), 201
+    return jsonify_utf8(getCurrencyModel(currency.id)), 201
 
 def createCurrencyModel(data):
     currency = Currencies(name=data["name"], code=data["code"], unicode=data["unicode"])
@@ -547,7 +547,7 @@ def createCurrencyModel(data):
 @sweography_api.route('/currency', methods=['GET'])
 def getCurrencies():
     currencies = getCurrencyModels()
-    return jsonify({"currencies":currencies}), 200
+    return jsonify_utf8({"currencies":currencies}), 200
 
 def getCurrencyModels():
     query = text("SELECT cur.*, COUNT( DISTINCT c.id ) AS  'countries', \
@@ -570,7 +570,7 @@ def getCurrency(id):
     currency = getCurrencyModel(id)
     if not currency:
         abort(404)
-    return jsonify(currency), 200
+    return jsonify_utf8(currency), 200
 
 def getCurrencyModel(id):
     query = text("SELECT cur.*, COUNT( DISTINCT c.id ) AS  'countries', \
@@ -597,7 +597,7 @@ def updateCurrency(id):
     currency = updateCurrencyModel(id, data)
     if not currency:
         abort(404)
-    return jsonify(currency), 200
+    return jsonify_utf8(currency), 200
 
 def updateCurrencyModel(id, data):
     currency = db.session.query(Currencies).get(id)
@@ -623,3 +623,8 @@ def removeCurrencyModel(id):
     db.session.delete(currency)
     db.session.commit()
     return True
+
+def jsonify_utf8(data):
+    resp = jsonify(data)
+    resp.headers['Content-Type'] = 'application/json; charset=utf-8'
+    return resp   

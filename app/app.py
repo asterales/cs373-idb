@@ -12,6 +12,7 @@ from examples import usa, china, norway, \
 					 east_asia, north_amer, north_euro
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 GoogleMaps(app)
 app.register_blueprint(sweography_api)
 
@@ -205,6 +206,7 @@ def get_link(s):
 	return s.replace(" ", "-").lower()
 app.jinja_env.globals.update(get_link=get_link)
 
+import populate_db
 
 if __name__ == "__main__":
     app.run(debug=True)
