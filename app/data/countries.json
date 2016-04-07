@@ -4198,7 +4198,7 @@
     {
         "capital": "Honiara",
         "currencies": [
-            "SDB"
+            "SBD"
         ],
         "name": "Solomon Islands",
         "borders": [],
@@ -4901,9 +4901,7 @@
     {
         "capital": "Washington D.C.",
         "currencies": [
-            "USD",
-            "USN",
-            "USS"
+            "USD"
         ],
         "name": "United States",
         "borders": [
@@ -4923,7 +4921,6 @@
     {
         "capital": "Montevideo",
         "currencies": [
-            "UYI",
             "UYU"
         ],
         "name": "Uruguay",

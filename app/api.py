@@ -84,7 +84,7 @@ def getCountryModels(params):
 
     countries = db.session.execute(text(query), params=query_params).fetchall()
     cols = ["id","name","capital","population","area","lat","lng","region","subregion","region_id","subregion_id"]
-    countriesJSON = [{col: str(getattr(r, col)) for col in cols} for r in countries]
+    countriesJSON = [{col: getattr(r, col) for col in cols} for r in countries]
 
     # grab many to many relationships
     for country in countriesJSON:
@@ -123,7 +123,7 @@ def getCountryModel(id):
         WHERE c.id = :id")
     country = db.session.execute(query, params={"id":id}).fetchone()
     cols = ["id","name","capital","population","area","lat","lng","region","subregion","region_id","subregion_id"]
-    countriesJSON = {col: str(getattr(country, col)) for col in cols}
+    countriesJSON = {col: getattr(country, col) for col in cols}
 
     # grab many to many relationships
     countryModel = db.session.query(Countries).filter(Countries.id==country.id).first()
@@ -251,7 +251,7 @@ def getRegions():
     return jsonify_utf8({"regions":regions}), 200
 
 def getRegionModels(params):
-    query = "SELECT r.*, SUM( DISTINCT c.population ) AS  'population', SUM( DISTINCT c.area ) AS  'area', COUNT( DISTINCT c.id ) AS  'countries', \
+    query = "SELECT r.*, CAST(SUM( DISTINCT c.population ) AS SIGNED) AS  'population', CAST(SUM( DISTINCT c.area ) AS SIGNED) AS  'area', COUNT( DISTINCT c.id ) AS  'countries', \
         COUNT( DISTINCT l.id ) AS  'languages', COUNT( DISTINCT s.id ) AS  'subregions', COUNT( DISTINCT cur.id ) AS 'currencies'\
         FROM Regions r\
         LEFT JOIN Countries c ON c.region_id = r.id\
@@ -278,7 +278,7 @@ def getRegionModels(params):
     query += " GROUP BY r.id"
     regions = db.session.execute(text(query), query_params).fetchall()
     cols = ["id","name","languages","countries","currencies","area","population","subregions"]
-    regionsJSON = [{col: str(getattr(r, col)) for col in cols} for r in regions]
+    regionsJSON = [{col: getattr(r, col) for col in cols} for r in regions]
     return regionsJSON
 
 ## get
@@ -290,7 +290,7 @@ def getRegion(id):
     return jsonify_utf8(region), 200
 
 def getRegionModel(id):
-    query = text("SELECT r.*, SUM( DISTINCT c.population ) AS  'population', SUM( DISTINCT c.area ) AS  'area', COUNT( DISTINCT c.id ) AS  'countries', \
+    query = text("SELECT r.*, CAST(SUM( DISTINCT c.population ) AS SIGNED) AS  'population', CAST(SUM( DISTINCT c.area ) AS SIGNED) AS  'area', COUNT( DISTINCT c.id ) AS  'countries', \
         COUNT( DISTINCT l.id ) AS  'languages', COUNT( DISTINCT s.id ) AS  'subregions', COUNT( DISTINCT cur.id ) AS 'currencies'\
         FROM Regions r\
         LEFT JOIN Countries c ON c.region_id = r.id\
@@ -304,7 +304,7 @@ def getRegionModel(id):
         ")
     region = db.session.execute(query, params={"id":id}).fetchone()
     cols = ["id","name","languages","countries","currencies","area","population","subregions"]
-    regionsJSON = {col: str(getattr(region, col)) for col in cols}
+    regionsJSON = {col: getattr(region, col) for col in cols}
     return regionsJSON
 
 ## update
@@ -397,7 +397,7 @@ def getSubRegionModels(params):
 
     data = db.session.execute(text(query), query_params).fetchall()
     cols = ["id","name","languages","countries","currencies","region","region_id"]
-    subregionsJSON = [{col: str(getattr(d, col)) for col in cols} for d in data]
+    subregionsJSON = [{col: getattr(d, col) for col in cols} for d in data]
     return subregionsJSON
 
 ## get
@@ -425,7 +425,7 @@ def getSubRegionModel(id):
 
     subregion = db.session.execute(query, params={"id":id}).fetchone()
     cols = ["id","name","languages","countries","currencies","region","region_id"]
-    subregionsJSON = {col: str(getattr(subregion, col)) for col in cols}
+    subregionsJSON = {col: getattr(subregion, col) for col in cols}
     return subregionsJSON
 
 ## update
@@ -511,7 +511,7 @@ def getLanguageModels(params):
 
     languages = db.session.execute(text(query), query_params).fetchall()
     cols = ["id","name","countries","regions","subregions","iso_code"]
-    languagesJSON = [{col: str(getattr(r, col)) for col in cols} for r in languages]
+    languagesJSON = [{col: getattr(r, col) for col in cols} for r in languages]
     return languagesJSON
 
 ## get
@@ -535,7 +535,7 @@ def getLanguageModel(id):
         ")
     language = db.session.execute(query, params={"id":id}).fetchone()
     cols = ["id","name","countries","regions","subregions","iso_code"]
-    languagesJSON = {col: str(getattr(language, col)) for col in cols}
+    languagesJSON = {col: getattr(language, col) for col in cols}
     return languagesJSON
 
 ## update
@@ -622,7 +622,7 @@ def getCurrencyModels(params):
 
     currencies = db.session.execute(text(query), query_params).fetchall()
     cols = ["id","name","countries","regions","subregions","code"]
-    currenciesJSON = [{col: str(getattr(r, col)) for col in cols} for r in currencies]
+    currenciesJSON = [{col: getattr(r, col) for col in cols} for r in currencies]
     return currenciesJSON
 
 ## get
@@ -646,7 +646,7 @@ def getCurrencyModel(id):
         ")
     currency = db.session.execute(query, params={"id":id}).fetchone()
     cols = ["id","name","countries","regions","subregions","code"]
-    currenciesJSON = {col: str(getattr(currency, col)) for col in cols}
+    currenciesJSON = {col: getattr(currency, col) for col in cols}
     return currenciesJSON
 
 ## update

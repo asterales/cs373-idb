@@ -553,5 +553,285 @@
     "currency_name":"Zimbabwe Dollar",
     "code":"ZWD",
     "unicode":"90, 36"
+  },
+  {
+    "currency_name":"Algerian Dinar",
+    "code":"DZD",
+    "unicode":"1583, 1580"
+  },
+  {
+    "currency_name":"Angolan Kwanza",
+    "code":"AOA",
+    "unicode":"75, 122"
+  },
+  {
+    "currency_name":"Armenian Dram",
+    "code":"AMD",
+    "unicode":"1423"
+  },
+  {
+    "currency_name":"Bahraini Dinar",
+    "code":"BHD",
+    "unicode":"46, 1583, 46, 1576"
+  },
+  {
+    "currency_name":"Bangladeshi Taka",
+    "code":"BDT",
+    "unicode":"2547"
+  },
+  {
+    "currency_name":"West African CFA Franc",
+    "code":"XOF",
+    "unicode":"67, 70, 65"
+  },
+  {
+    "currency_name":"Bhutanese Ngultrum",
+    "code":"BTN",
+    "unicode":"78, 117"
+  },
+  {
+    "currency_name":"Bolivian Mvdol",
+    "code":"BOV",
+    "unicode":"66, 79, 86"
+  },
+  {
+    "currency_name":"Burundian Franc",
+    "code":"BIF",
+    "unicode":"70, 66, 117"
+  },
+  {
+    "currency_name":"Central African CFA Franc",
+    "code":"XAF",
+    "unicode":"70, 67, 70, 65"
+  },
+  {
+    "currency_name":"Cape Verdean Escudo",
+    "code":"CVE",
+    "unicode":"36"
+  },
+  {
+    "currency_name":"Unidad de Fomento",
+    "code":"CLF",
+    "unicode":"85, 70"
+  },
+  {
+    "currency_name":"Comorian Franc",
+    "code":"KMF",
+    "unicode":"67, 70"
+  },
+  {
+    "currency_name":"Congolese Franc",
+    "code":"CDF",
+    "unicode":"70, 67"
+  },
+  {
+    "currency_name":"Cuban Convertible Peso",
+    "code":"CUC",
+    "unicode":"36"
+  },
+  {
+    "currency_name":"Djiboutian Franc",
+    "code":"DJF",
+    "unicode":"70, 100, 106"
+  },
+  {
+    "currency_name":"Eritrean Nakfa",
+    "code":"ERN",
+    "unicode":"78, 102, 107"
+  },
+  {
+    "currency_name":"Ethiopian Birr",
+    "code":"ETB",
+    "unicode":"4709, 4653"
+  },
+  {
+    "currency_name":"CFP Franc",
+    "code":"XPF",
+    "unicode":"70"
+  },
+  {
+    "currency_name":"Gambian Dalasi",
+    "code":"GMD",
+    "unicode":"68"
+  },
+  {
+    "currency_name":"Georgian Lari",
+    "code":"GEL",
+    "unicode":"4314"
+  },
+  {
+    "currency_name":"Guinean Franc",
+    "code":"GNF",
+    "unicode":"70, 71"
+  },
+  {
+    "currency_name":"Haitian Gourde",
+    "code":"HTG",
+    "unicode":"71"
+  },
+  {
+    "currency_name":"Iraqi Dinar",
+    "code":"IQD",
+    "unicode":"1593, 46, 1583"
+  },
+  {
+    "currency_name":"Jordanian Dinar",
+    "code":"JOD",
+    "unicode":"1610, 1606, 1575, 1585"
+  },
+  {
+    "currency_name":"Kenyan Shilling",
+    "code":"KES",
+    "unicode":"75, 83, 104"
+  },
+  {
+    "currency_name":"Kuwaiti Dinar",
+    "code":"KWD",
+    "unicode":"1583, 46, 1603"
+  },
+  {
+    "currency_name":"Lesotho Loti",
+    "code":"LSL",
+    "unicode":"76"
+  },
+  {
+    "currency_name":"Libyan Dinar",
+    "code":"LYD",
+    "unicode":"1604, 46, 1583"
+  },
+  {
+    "currency_name":"Macanese Pataca",
+    "code":"MOP",
+    "unicode":"77, 79, 80, 36"
+  },
+  {
+    "currency_name":"Malagasy Ariary",
+    "code":"MGA",
+    "unicode":"65, 114"
+  },
+  {
+    "currency_name":"Malawian Kwacha",
+    "code":"MWK",
+    "unicode":"77, 75"
+  },
+  {
+    "currency_name":"Maldivian Rufiyaa",
+    "code":"MVR",
+    "unicode":"82, 102"
+  },
+  {
+    "currency_name":"Mauritanian Ouguiya",
+    "code":"MRO",
+    "unicode":"85, 77"
+  },
+  {
+    "currency_name":"Moldovan Leu",
+    "code":"MDL",
+    "unicode":"76"
+  },
+  {
+    "currency_name":"Moroccan Dirham",
+    "code":"MAD",
+    "unicode":"77, 65, 68"
+  },
+  {
+    "currency_name":"Burmese Kyat",
+    "code":"MMK",
+    "unicode":"75"
+  },
+  {
+    "currency_name":"Papua New Guinean Kina",
+    "code":"PGK",
+    "unicode":"75"
+  },
+  {
+    "currency_name":"Rwandan Franc",
+    "code":"RWF",
+    "unicode":"70, 82, 119"
+  },
+  {
+    "currency_name":"Samoan t_l_",
+    "code":"WST",
+    "unicode":"87, 83, 36"
+  },
+  {
+    "currency_name":"SÃ£o TomÃ© and PrÃ­ncipe Dobra",
+    "code":"STD",
+    "unicode":"68, 98"
+  },
+  {
+    "currency_name":"Sierra Leonean Leone",
+    "code":"SLL",
+    "unicode":"76, 101"
+  },
+  {
+    "currency_name":"South Sudanese Pound",
+    "code":"SSP",
+    "unicode":"163"
+  },
+  {
+    "currency_name":"Sudanese Pound",
+    "code":"SDG",
+    "unicode":"1580, 46, 1587, 46"
+  },
+  {
+    "currency_name":"Swazi Lilangeni",
+    "code":"SZL",
+    "unicode":"76"
+  },
+  {
+    "currency_name":"WIR Euro",
+    "code":"CHE",
+    "unicode":"8364"
+  },
+  {
+    "currency_name":"WIR Franc",
+    "code":"CHW",
+    "unicode":"8355"
+  },
+  {
+    "currency_name":"Tajikistani Somoni",
+    "code":"TJS",
+    "unicode":"84, 74, 83"
+  },
+  {
+    "currency_name":"Tanzanian Shilling",
+    "code":"TZS",
+    "unicode":"84, 83, 104"
+  },
+  {
+    "currency_name":"Tongan Pa_anga",
+    "code":"TOP",
+    "unicode":"84, 36"
+  },
+  {
+    "currency_name":"Tunisian Dinar",
+    "code":"TND",
+    "unicode":"68, 84"
+  },
+  {
+    "currency_name":"Turkmenistan Manat",
+    "code":"TMT",
+    "unicode":"84"
+  },
+  {
+    "currency_name":"Ugandan Shilling",
+    "code":"UGX",
+    "unicode":"85, 83, 104"
+  },
+  {
+    "currency_name":"United Arab Emirates Dirham",
+    "code":"AED",
+    "unicode":"1583, 46, 1573"
+  },
+  {
+    "currency_name":"Vanuatu vatu",
+    "code":"VUV",
+    "unicode":"86, 84"
+  },
+  {
+    "currency_name":"Zambian Kwacha",
+    "code":"ZMK",
+    "unicode":"90, 77, 87"
   }
 ]

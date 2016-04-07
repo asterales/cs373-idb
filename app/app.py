@@ -61,8 +61,8 @@ def subregions_table():
 @app.route("/languages")
 @app.route("/languages/")
 def languages_table():
-	attributes = {"name":"Name", "iso":"ISO 639-1 Code", "countries":"Countries", "regions":"Regions", "subregions":"Subregions"}
-	short_attributes = ["name", "iso", "countries", "regions", "subregions"]
+	attributes = {"name":"Name", "iso_code":"ISO 639-1 Code", "countries":"Countries", "regions":"Regions", "subregions":"Subregions"}
+	short_attributes = ["name", "iso_code", "countries", "regions", "subregions"]
 	# languages = [chinese, english, norwegian]
 	languages = api.getLanguageModels({})
 	return render_template('models.html', model_type = "Languages", attributes = attributes, models = languages, short_name = short_attributes, style = panel_styles["languages"])
