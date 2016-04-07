@@ -3,7 +3,6 @@ from flask_googlemaps import GoogleMaps
 from collections import namedtuple
 import api
 import os
-import subprocess
 from cgi import escape
 
 app = Flask(__name__)
@@ -78,7 +77,6 @@ def run_tests():
 		for line in output:
 			result += line
 	os.system("rm tests.tmp")
-	# subprocess.check_output(["python3","tests.py"], universal_newlines=True)
 	result = "<br />".join(result.split("\n"))
 	return result
 
