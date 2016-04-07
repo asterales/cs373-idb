@@ -27,11 +27,11 @@ def index():
 @app.route("/countries")
 @app.route("/countries/")
 def countries_table():
-	attributes = {"name" : "Name", "capital" : "Capital", "latitude" :  "Latitude", "longitude" : "Longitude", "region" : "Region", "subregion" : "Subregion",\
+	attributes = {"name" : "Name", "capital" : "Capital", "lat" :  "Latitude", "lng" : "Longitude", "region" : "Region", "subregion" : "Subregion",\
 				  "area":"Area", "population" : "Population", "languages" : "Languages", "currencies" : "Currencies", "borders" : "Bordering Countries"}
 	short_attributes = ["name", "capital", "lat", "lng", "region", "subregion", "area", "population", "languages", "currencies", "borders"]
 	# countries = [china, norway, usa]
-	countries = api.getCountryModels()
+	countries = api.getCountryModels({})
 	for c in countries:
 		c["currencies"] = len(c["currencies"])
 		c["languages"] = len(c["languages"])
@@ -82,7 +82,7 @@ def about():
 
 @app.route("/about/tests")
 def run_tests():
-	subprocess.check_output(["python3","tests.py"], universal_newlines=True)
+	subprocess.check_output(["python3","tests.py"], universal_newlines=True) 
 	return
 
 # Individual Pages
@@ -257,14 +257,16 @@ def currency_page(currency):
 
 		coords = []
 		for c in countries:
-			latlng = (float(c["lat"]),float(c["lng"]))
-			coords.append(latlng)
+			if c["lat"] != "" and c["lng"] != "":
+				latlng = (float(c["lat"]),float(c["lng"]))
+				coords.append(latlng)
 
 		return render_template('currency.html', currency = currency, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles, \
 								center = map_center(coords))
 
 	return render_template('nopage.html', model_title = "Currency", model = "currency", redirect = "currencies")
 
+# helper functions to process examples
 Link = namedtuple('Link', ['name', 'link'])
 def get_links_list(list):
 	return map(lambda s: Link(s, get_link(s)), list)
@@ -273,6 +275,7 @@ def get_link(s):
 	return s.replace(" ", "-").lower()
 app.jinja_env.globals.update(get_link=get_link)
 
+# helper functions for calculating map position
 from math import radians, degrees, hypot, cos, sin, atan2, fsum
 
 def cartesian_coord(latlng):
@@ -284,6 +287,8 @@ def cartesian_coord(latlng):
 	return (x, y, z)
 
 def map_center(coords):
+	if not coords:
+		return (0, 0)
 	cartesians = list(map(cartesian_coord, coords))
 	xavg = fsum((t[0] for t in cartesians))/ len(coords)
 	yavg = fsum((t[1] for t in cartesians)) / len(coords)
