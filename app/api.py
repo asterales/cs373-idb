@@ -14,7 +14,7 @@ def createCountry():
     country = createCountryModel(data)
     if not country:
         return jsonify({"error":"JSON object did not pass validation"}), 422
-    return jsonify(getCountryModel(country.id)), 201
+    return jsonify_utf8(getCountryModel(country.id)), 201
 
 def createCountryModel(data):
     # check for existing region, create new if necessary
@@ -60,11 +60,12 @@ def createCountryModel(data):
 def getCountries():
     params = request.args
     countries = getCountryModels(params)
-    return jsonify({"countries":countries}), 200
+    return jsonify_utf8({"countries":countries}), 200
 
 def getCountryModels(params):
     query_params = {}
-    query = "SELECT c.id, c.name, c.capital, c.population, c.area, c.lat, c.lng, r.name AS 'region', s.name AS 'subregion'\
+
+    query = "SELECT c.id, c.name, c.capital, c.population, c.area, c.lat, c.lng, c.region_id, c.subregion_id, r.name AS 'region', s.name AS 'subregion'\
         FROM Countries c\
         JOIN Regions r ON r.id = c.region_id\
         JOIN SubRegions s ON s.id = c.subregion_id"
@@ -83,9 +84,9 @@ def getCountryModels(params):
         query_params["subregion_id"] = params.get('subregion_id')
 
     countries = db.session.execute(text(query), params=query_params).fetchall()
-    cols = ["id","name","capital","population","area","lat","lng","region","subregion"]
-    countriesJSON = [{col: str(getattr(r, col)) for col in cols} for r in countries]
-
+    cols = ["id","name","capital","population","area","lat","lng","region","subregion","region_id","subregion_id"]
+    countriesJSON = [{col: get_val(r, col) for col in cols} for r in countries]
+    
     # grab many to many relationships
     for country in countriesJSON:
         country["borders"] = []
@@ -113,24 +114,27 @@ def getCountry(id):
     country = getCountryModel(id)
     if not country:
         abort(404)
-    return jsonify(country), 200
+    return jsonify_utf8(country), 200
 
 def getCountryModel(id):
-    query = text("SELECT c.id, c.name, c.capital, c.population, c.area, c.lat, c.lng, r.name AS 'region', s.name AS 'subregion'\
+    query = text("SELECT c.id, c.name, c.capital, c.population, c.area, c.lat, c.lng, c.region_id, c.subregion_id, r.name AS 'region', s.name AS 'subregion'\
         FROM Countries c\
         JOIN Regions r ON r.id = c.region_id\
         JOIN SubRegions s ON s.id = c.subregion_id\
         WHERE c.id = :id")
     country = db.session.execute(query, params={"id":id}).fetchone()
-    cols = ["id","name","capital","population","area","lat","lng","region","subregion"]
-    countriesJSON = {col: str(getattr(country, col)) for col in cols}
+    cols = ["id","name","capital","population","area","lat","lng","region","subregion","region_id","subregion_id"]
+    countriesJSON = {col: get_val(country, col) for col in cols}
 
     # grab many to many relationships
     countryModel = db.session.query(Countries).filter(Countries.id==country.id).first()
     countriesJSON["borders"] = []
     borders = countryModel.Borders
     for b in borders:
-        countriesJSON["borders"].append(b.toJSON())
+        border = b.toJSON()
+        c = db.session.query(Countries).filter(Countries.name.like("%" + border["name"] + "%")).first()
+        border["country_id"] = c.id
+        countriesJSON["borders"].append(border)
 
     countriesJSON["languages"] = []
     languages = countryModel.Languages
@@ -153,7 +157,7 @@ def updateCountry(id):
     country = updateCountryModel(id, data)
     if not country:
         abort(404)
-    return jsonify(getCountryModel(id)), 200
+    return jsonify_utf8(getCountryModel(id)), 200
 
 def updateCountryModel(id, data):
     country = db.session.query(Countries).get(id)
@@ -232,7 +236,7 @@ def createRegion():
     region = createRegionModel(data)
     if not region:
         return jsonify({"error":"JSON object did not pass validation"}), 422
-    return jsonify(getRegionModel(region.id)), 201
+    return jsonify_utf8(getRegionModel(region.id)), 201
 
 def createRegionModel(data):
     region = Regions(name=data["name"])
@@ -243,23 +247,39 @@ def createRegionModel(data):
 ## list
 @sweography_api.route('/region', methods=['GET'])
 def getRegions():
-    regions = getRegionModels()
-    return jsonify({"regions":regions}), 200
+    params = request.args
+    regions = getRegionModels(params)
+    return jsonify_utf8({"regions":regions}), 200
 
-def getRegionModels():
-    query = text("SELECT r.*, SUM( DISTINCT c.population ) AS  'population', SUM( DISTINCT c.area ) AS  'area', COUNT( DISTINCT c.id ) AS  'countries', \
-        COUNT( DISTINCT l.id ) AS  'languages', COUNT( DISTINCT s.id ) AS  'subregions', COUNT( DISTINCT cur.id ) AS 'currencies'\
+def getRegionModels(params):
+    query = "SELECT r.*, CAST(SUM( DISTINCT c.population ) AS UNSIGNED) AS  'population', CAST(SUM( DISTINCT c.area ) AS UNSIGNED) AS  'area', \
+        COUNT( DISTINCT c.id ) AS  'countries', COUNT( DISTINCT l.id ) AS  'languages', COUNT( DISTINCT s.id ) AS  'subregions', COUNT( DISTINCT cur.id ) AS 'currencies'\
         FROM Regions r\
         LEFT JOIN Countries c ON c.region_id = r.id\
         LEFT JOIN country_language cl ON cl.country_id = c.id\
         LEFT JOIN Languages l ON l.id = cl.language_id\
         LEFT JOIN SubRegions s ON s.id = c.subregion_id\
         LEFT JOIN country_currency cc ON cc.country_id = c.id\
-        LEFT JOIN Currencies cur ON cur.id = cc.currency_id\
-        GROUP BY r.id")
-    regions = db.session.execute(query).fetchall()
-    cols = ["id","name","languages","countries","currencies","area","population"]
-    regionsJSON = [{col: str(getattr(r, col)) for col in cols} for r in regions]
+        LEFT JOIN Currencies cur ON cur.id = cc.currency_id"
+    query += " WHERE 1";
+
+    query_params = {}
+    if params.get('subregion_id'):
+        query += " AND s.id=:subregion_id"
+        query_params["subregion_id"] = params.get('subregion_id')
+
+    if params.get('language_id'):
+        query += " AND l.id=:language_id"
+        query_params["language_id"] = params.get('language_id')
+
+    if params.get('currency_id'):
+        query += " AND cur.id=:currency_id"
+        query_params["currency_id"] = params.get('currency_id')
+
+    query += " GROUP BY r.id"
+    regions = db.session.execute(text(query), query_params).fetchall()
+    cols = ["id","name","languages","countries","currencies","area","population","subregions"]
+    regionsJSON = [{col: get_val(r, col) for col in cols} for r in regions]
     return regionsJSON
 
 ## get
@@ -268,11 +288,11 @@ def getRegion(id):
     region = getRegionModel(id)
     if not region:
         abort(404)
-    return jsonify(region), 200
+    return jsonify_utf8(region), 200
 
 def getRegionModel(id):
-    query = text("SELECT r.*, SUM( DISTINCT c.population ) AS  'population', SUM( DISTINCT c.area ) AS  'area', COUNT( DISTINCT c.id ) AS  'countries', \
-        COUNT( DISTINCT l.id ) AS  'languages', COUNT( DISTINCT s.id ) AS  'subregions', COUNT( DISTINCT cur.id ) AS 'currencies'\
+    query = text("SELECT r.*, CAST(SUM( DISTINCT c.population ) AS UNSIGNED) AS  'population', CAST(SUM( DISTINCT c.area ) AS UNSIGNED) AS  'area', \
+        COUNT( DISTINCT c.id ) AS  'countries', COUNT( DISTINCT l.id ) AS  'languages', COUNT( DISTINCT s.id ) AS  'subregions', COUNT( DISTINCT cur.id ) AS 'currencies'\
         FROM Regions r\
         LEFT JOIN Countries c ON c.region_id = r.id\
         LEFT JOIN country_language cl ON cl.country_id = c.id\
@@ -284,8 +304,8 @@ def getRegionModel(id):
         GROUP BY r.id\
         ")
     region = db.session.execute(query, params={"id":id}).fetchone()
-    cols = ["id","name","languages","countries","currencies","area","population"]
-    regionsJSON = {col: str(getattr(region, col)) for col in cols}
+    cols = ["id","name","languages","countries","currencies","area","population","subregions"]
+    regionsJSON = {col: get_val(region, col) for col in cols}
     return regionsJSON
 
 ## update
@@ -297,7 +317,7 @@ def updateRegion(id):
     region = updateRegionModel(id, data)
     if not region:
         abort(404)
-    return jsonify(region), 200
+    return jsonify_utf8(region), 200
 
 def updateRegionModel(id, data):
     region = db.session.query(Regions).get(id)
@@ -333,7 +353,7 @@ def createSubRegion():
     subregion = createSubRegionModel(data)
     if not subregion:
         return jsonify({"error":"JSON object did not pass validation"}), 422
-    return jsonify(getSubRegionModel(subregion.id)), 201
+    return jsonify_utf8(getSubRegionModel(subregion.id)), 201
 
 def createSubRegionModel(data):
     subregion = SubRegions(name=data["name"])
@@ -344,12 +364,13 @@ def createSubRegionModel(data):
 ## list
 @sweography_api.route('/subregion', methods=['GET'])
 def getSubRegions():
-    subregions = getSubRegionModels()
-    return jsonify({"subregions":subregions}), 200
+    params = request.args
+    subregions = getSubRegionModels(params)
+    return jsonify_utf8({"subregions":subregions}), 200
 
-def getSubRegionModels():
-    query = text("SELECT sr.*, COUNT( DISTINCT c.id ) AS  'countries', \
-        r.name AS 'region', \
+def getSubRegionModels(params):
+    query = "SELECT sr.*, COUNT( DISTINCT c.id ) AS  'countries', \
+        r.name AS 'region', r.id AS 'region_id', \
         COUNT( DISTINCT l.id ) AS  'languages', COUNT( DISTINCT cur.id ) AS 'currencies'\
         FROM SubRegions sr\
         LEFT JOIN Countries c ON c.subregion_id = sr.id\
@@ -358,10 +379,26 @@ def getSubRegionModels():
         LEFT JOIN Regions r ON r.id = c.region_id\
         LEFT JOIN country_currency cc ON cc.country_id = c.id\
         LEFT JOIN Currencies cur ON cur.id = cc.currency_id\
-        GROUP BY sr.id")
-    data = db.session.execute(query).fetchall()
-    cols = ["id","name","languages","countries","currencies","region"]
-    subregionsJSON = [{col: str(getattr(d, col)) for col in cols} for d in data]
+        WHERE 1"
+
+    query_params = {}
+    if params.get('region_id'):
+        query += " AND r.id=:region_id"
+        query_params["region_id"] = params.get('region_id')
+
+    if params.get('language_id'):
+        query += " AND l.id=:language_id"
+        query_params["language_id"] = params.get('language_id')
+
+    if params.get('currency_id'):
+        query += " AND cur.id=:currency_id"
+        query_params["currency_id"] = params.get('currency_id')
+
+    query += " GROUP BY sr.id"
+
+    data = db.session.execute(text(query), query_params).fetchall()
+    cols = ["id","name","languages","countries","currencies","region","region_id"]
+    subregionsJSON = [{col: get_val(d, col) for col in cols} for d in data]
     return subregionsJSON
 
 ## get
@@ -370,11 +407,11 @@ def getSubRegion(id):
     subregion = getSubRegionModel(id)
     if not subregion:
         abort(404)
-    return jsonify(subregion), 200
+    return jsonify_utf8(subregion), 200
 
 def getSubRegionModel(id):
     query = text("SELECT sr.*, COUNT( DISTINCT c.id ) AS  'countries', \
-        r.name AS 'region', \
+        r.name AS 'region', r.id AS 'region_id', \
         COUNT( DISTINCT l.id ) AS  'languages', COUNT( DISTINCT cur.id ) AS 'currencies'\
         FROM SubRegions sr\
         LEFT JOIN Countries c ON c.subregion_id = sr.id\
@@ -386,9 +423,10 @@ def getSubRegionModel(id):
         WHERE sr.id=:id\
         GROUP BY sr.id\
         ")
+
     subregion = db.session.execute(query, params={"id":id}).fetchone()
-    cols = ["id","name","languages","countries","currencies","region"]
-    subregionsJSON = {col: str(getattr(subregion, col)) for col in cols}
+    cols = ["id","name","languages","countries","currencies","region","region_id"]
+    subregionsJSON = {col: get_val(subregion, col) for col in cols}
     return subregionsJSON
 
 ## update
@@ -400,7 +438,7 @@ def updateSubRegion(id):
     subregion = updateSubRegionModel(id, data)
     if not subregion:
         abort(404)
-    return jsonify(subregion), 200
+    return jsonify_utf8(subregion), 200
 
 def updateSubRegionModel(id, data):
     subregion = db.session.query(SubRegions).get(id)
@@ -436,7 +474,7 @@ def createLanguage():
     language = createLanguageModel(data)
     if not language:
         return jsonify({"error":"JSON object did not pass validation"}), 422
-    return jsonify(getLanguageModel(language.id)), 201
+    return jsonify_utf8(getLanguageModel(language.id)), 201
 
 def createLanguageModel(data):
     language = Languages(name=data["name"], iso_code=data["iso_code"])
@@ -447,22 +485,34 @@ def createLanguageModel(data):
 ## list
 @sweography_api.route('/language', methods=['GET'])
 def getLanguages():
-    languages = getLanguageModels()
-    return jsonify({"languages":languages}), 200
+    params = request.args
+    languages = getLanguageModels(params)
+    return jsonify_utf8({"languages":languages}), 200
 
-def getLanguageModels():
-    query = text("SELECT l.*, COUNT( DISTINCT c.id ) AS  'countries', \
+def getLanguageModels(params):
+    query = "SELECT l.*, COUNT( DISTINCT c.id ) AS  'countries', \
         COUNT( DISTINCT r.id ) AS  'regions', COUNT( DISTINCT s.id ) AS  'subregions'\
         FROM Languages l\
         LEFT JOIN country_language cl ON cl.language_id = l.id\
         LEFT JOIN Countries c ON cl.country_id = c.id\
         LEFT JOIN Regions r ON r.id = c.region_id\
         LEFT JOIN SubRegions s ON s.id = c.subregion_id\
-        GROUP BY l.id\
-        ")
-    languages = db.session.execute(query).fetchall()
+        WHERE 1"
+
+    query_params = {}
+    if params.get('region_id'):
+        query += " AND r.id=:region_id"
+        query_params["region_id"] = params.get('region_id')
+
+    if params.get('subregion_id'):
+        query += " AND s.id=:subregion_id"
+        query_params["subregion_id"] = params.get('subregion_id')
+
+    query += " GROUP BY l.id"
+
+    languages = db.session.execute(text(query), query_params).fetchall()
     cols = ["id","name","countries","regions","subregions","iso_code"]
-    languagesJSON = [{col: str(getattr(r, col)) for col in cols} for r in languages]
+    languagesJSON = [{col: get_val(r, col) for col in cols} for r in languages]
     return languagesJSON
 
 ## get
@@ -471,7 +521,7 @@ def getLanguage(id):
     language = getLanguageModel(id)
     if not language:
         abort(404)
-    return jsonify(language), 200
+    return jsonify_utf8(language), 200
 
 def getLanguageModel(id):
     query = text("SELECT l.*, COUNT( DISTINCT c.id ) AS  'countries', \
@@ -486,7 +536,7 @@ def getLanguageModel(id):
         ")
     language = db.session.execute(query, params={"id":id}).fetchone()
     cols = ["id","name","countries","regions","subregions","iso_code"]
-    languagesJSON = {col: str(getattr(language, col)) for col in cols}
+    languagesJSON = {col: get_val(language, col) for col in cols}
     return languagesJSON
 
 ## update
@@ -498,7 +548,7 @@ def updateLanguage(id):
     language = updateLanguageModel(id, data)
     if not language:
         abort(404)
-    return jsonify(language), 200
+    return jsonify_utf8(language), 200
 
 def updateLanguageModel(id, data):
     language = db.session.query(Languages).get(id)
@@ -535,7 +585,7 @@ def createCurrency():
     currency = createCurrencyModel(data)
     if not currency:
         return jsonify({"error":"JSON object did not pass validation"}), 422
-    return jsonify(getCurrencyModel(currency.id)), 201
+    return jsonify_utf8(getCurrencyModel(currency.id)), 201
 
 def createCurrencyModel(data):
     currency = Currencies(name=data["name"], code=data["code"], unicode=data["unicode"])
@@ -546,22 +596,34 @@ def createCurrencyModel(data):
 ## list
 @sweography_api.route('/currency', methods=['GET'])
 def getCurrencies():
-    currencies = getCurrencyModels()
-    return jsonify({"currencies":currencies}), 200
+    params = request.args
+    currencies = getCurrencyModels(params)
+    return jsonify_utf8({"currencies":currencies}), 200
 
-def getCurrencyModels():
-    query = text("SELECT cur.*, COUNT( DISTINCT c.id ) AS  'countries', \
+def getCurrencyModels(params):
+    query = "SELECT cur.*, COUNT( DISTINCT c.id ) AS  'countries', \
         COUNT( DISTINCT r.id ) AS  'regions', COUNT( DISTINCT s.id ) AS  'subregions'\
         FROM Currencies cur\
         LEFT JOIN country_currency cc ON cc.currency_id = cur.id\
         LEFT JOIN Countries c ON cc.country_id = c.id\
         LEFT JOIN Regions r ON r.id = c.region_id\
         LEFT JOIN SubRegions s ON s.id = c.subregion_id\
-        GROUP BY cur.id\
-        ")
-    currencies = db.session.execute(query).fetchall()
+        WHERE 1"
+
+    query_params = {}
+    if params.get('region_id'):
+        query += " AND r.id=:region_id"
+        query_params["region_id"] = params.get('region_id')
+
+    if params.get('subregion_id'):
+        query += " AND s.id=:subregion_id"
+        query_params["subregion_id"] = params.get('subregion_id')
+
+    query += " GROUP BY cur.id"
+
+    currencies = db.session.execute(text(query), query_params).fetchall()
     cols = ["id","name","countries","regions","subregions","code"]
-    currenciesJSON = [{col: str(getattr(r, col)) for col in cols} for r in currencies]
+    currenciesJSON = [{col: get_val(r, col) for col in cols} for r in currencies]
     return currenciesJSON
 
 ## get
@@ -570,7 +632,7 @@ def getCurrency(id):
     currency = getCurrencyModel(id)
     if not currency:
         abort(404)
-    return jsonify(currency), 200
+    return jsonify_utf8(currency), 200
 
 def getCurrencyModel(id):
     query = text("SELECT cur.*, COUNT( DISTINCT c.id ) AS  'countries', \
@@ -585,7 +647,7 @@ def getCurrencyModel(id):
         ")
     currency = db.session.execute(query, params={"id":id}).fetchone()
     cols = ["id","name","countries","regions","subregions","code"]
-    currenciesJSON = {col: str(getattr(currency, col)) for col in cols}
+    currenciesJSON = {col: get_val(currency, col) for col in cols}
     return currenciesJSON
 
 ## update
@@ -597,7 +659,7 @@ def updateCurrency(id):
     currency = updateCurrencyModel(id, data)
     if not currency:
         abort(404)
-    return jsonify(currency), 200
+    return jsonify_utf8(currency), 200
 
 def updateCurrencyModel(id, data):
     currency = db.session.query(Currencies).get(id)
@@ -623,3 +685,13 @@ def removeCurrencyModel(id):
     db.session.delete(currency)
     db.session.commit()
     return True
+
+## ------------------- Helpers ------------------- ##
+def jsonify_utf8(data):
+    resp = jsonify(data)
+    resp.headers['Content-Type'] = 'application/json; charset=utf-8'
+    return resp
+
+def get_val(table, col):
+    val = getattr(table, col)
+    return val if val != None else ""

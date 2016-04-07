@@ -41,8 +41,8 @@ americas = {"name": "Americas", "area": 42247698, "population": 983832674, "subr
 asia = {"name": "Asia", "area": 32064971, "population": 4339964684, "subregions": 5, "countries": 50, \
 		"languages": 37, "currencies": 49, \
 		"subregions_list" : ['Central Asia', 'Eastern Asia', 'South-Eastern Asia', 'Southern Asia', 'Western Asia'], \
-		"countries_list" : ['Afghanistan', 'Armenia', 'Azerbaijan', 'Bahrain', 'Bangladesh', 'Bhutan', 'Brunei', 'Cambodia', '\
-			China', 'East Timor', 'Georgia', 'Hong Kong', 'India', 'Indonesia', 'Iran', 'Iraq', 'Israel', 'Japan', 'Jordan', \
+		"countries_list" : ['Afghanistan', 'Armenia', 'Azerbaijan', 'Bahrain', 'Bangladesh', 'Bhutan', 'Brunei', 'Cambodia', \
+			'China', 'East Timor', 'Georgia', 'Hong Kong', 'India', 'Indonesia', 'Iran', 'Iraq', 'Israel', 'Japan', 'Jordan', \
 			'Kazakhstan', 'Kuwait', 'Kyrgyzstan', 'Laos', 'Lebanon', 'Macau', 'Malaysia', 'Maldives', 'Mongolia', 'Myanmar', \
 			'Nepal', 'North Korea', 'Oman', 'Pakistan', 'Palestine', 'Philippines', 'Qatar', 'Saudi Arabia', 'Singapore', \
 			'South Korea', 'Sri Lanka', 'Syria', 'Taiwan', 'Tajikistan', 'Thailand', 'Turkey', 'Turkmenistan', \
@@ -93,11 +93,12 @@ north_euro = {"name" : "Northern Europe", "region" : "Europe", "countries" : 16,
 
 
 #languages
-chinese = {"name" : "Chinese", "iso" : "zh", "countries" : 5, "regions" : 1, "subregions": 2, \
+chinese = {"name" : "Chinese", "iso_code" : "zh", "countries" : 5, "regions" : 1, "subregions": 2, \
 			"subregions_list" : ['Eastern Asia', 'South-Eastern Asia'], \
-			"countries_list" : ['China', 'Hong Kong', 'Macau', 'Singapore', 'Taiwan'], "regions_list" : ['Asia']}
+			"countries_list" : ['China', 'Hong Kong', 'Macau', 'Singapore', 'Taiwan'], "regions_list" : ['Asia'], \
+			"coords" : [(23.5, 121.0), (22.16666666, 113.55), (35.0, 105.0), (22.25, 114.16666666), (1.36666666, 103.8)]}
 
-english = {"name" : "English", "iso" : "en", "countries" : 89, "regions" : 15, "subregions": 18, \
+english = {"name" : "English", "iso_code" : "en", "countries" : 89, "regions" : 15, "subregions": 18, \
 		   "subregions_list" : ['Australia and New Zealand', 'Caribbean', 'Central America', 'Eastern Africa', \
 		   		'Eastern Asia', 'Melanesia', 'Micronesia', 'Middle Africa', 'Northern Africa', 'Northern America', \
 		   		'Northern Europe', 'Polynesia', 'South America', 'South-Eastern Asia', 'Southern Africa', 'Southern Asia', \
@@ -114,24 +115,40 @@ english = {"name" : "English", "iso" : "en", "countries" : 89, "regions" : 15, "
 		   		'Sint Maarten', 'Solomon Islands', 'South Africa', 'South Georgia', 'South Sudan', 'Sudan', 'Swaziland', 'Tanzania', \
 		   		'The Bahamas', 'The Gambia', 'Tokelau', 'Tonga', 'Trinidad and Tobago', 'Turks and Caicos Islands', 'Tuvalu', 'Uganda', \
 		   		'United Kingdom', 'United States', 'United States Minor Outlying Islands', 'Vanuatu', 'Zambia', 'Zimbabwe'],\
-		   	"regions_list" : ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']}
+		   	"regions_list" : ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'], \
+		   	"coords" : [(-29.0, 24.0), (21.75, -71.58333333), (-19.03333333, -169.86666666), (15.41666666, -61.33333333), (13.46666666, -16.56666666), \
+		   		(-10.5, 105.66666666), (10.0, 8.0), (9.0, 168.0), (15.0, 30.0), (8.5, -11.5), (13.46666666, 144.78333333), (-12.5, 96.83333333), \
+		   		(-22.0, 24.0), (-54.5, -37.0), (18.431383, -64.62305), (16.75, -62.2), (6.91666666, 158.25), (-0.53333333, 166.91666666), (-18.0, 175.0), \
+		   		(-20.0, -175.0), (-2.0, 30.0), (15.2, 145.75), (17.25, -88.75), (13.25, -61.2), (-51.75, -59.0), (17.33333333, -62.75), (1.0, 38.0), (-29.5, 28.5), \
+		   		(20.0, 77.0), (-27.0, 133.0), (19.5, -80.5), (36.13333333, -5.35), (30.0, 70.0), (7.5, 134.5), (-4.58333333, 55.66666666), (-6.0, 35.0), (53.0, -8.0), \
+		   		(35.83333333, 14.58333333), (54.0, -2.0), (18.25, -63.16666666), (18.08333333, -63.95), (18.033333, -63.05), (-53.1, 72.51666666), (-9.0, -172.0), \
+		   		(18.25, -77.5), (18.25, -66.5), (38.0, -97.0), (-13.5, 34.0), (1.36666666, 103.8), (-29.03333333, 167.95), (-14.33333333, -170.0), \
+		   		(13.16666666, -59.53333333), (-25.06666666, -130.1), (15.0, 39.0), (1.0, 32.0), (-26.5, 31.5), (-20.0, 30.0), (12.116667, -68.933333), \
+		   		(-6.0, 147.0), (49.46666666, -2.58333333), (49.25, -2.16666666), (13.0, 122.0), (7.0, 30.0), (-13.58333333, -172.33333333), (12.11666666, -61.66666666), \
+		   		(-20.28333333, 57.55), (-15.95, -5.7), (-16.0, 167.0), (32.33333333, -64.75), (-8.0, 178.0), (1.41666666, 173.0), (11.0, -61.0), (8.0, -2.0), (-41.0, 174.0), \
+		   		(-21.23333333, -159.76666666), (24.25, -76.0), (13.88333333, -60.96666666), (-15.0, 30.0), (17.05, -61.8), (60.0, -95.0), (22.25, 114.16666666), \
+		   		(-6.0, 71.5), (6.0, 12.0), (5.0, -59.0), (-22.0, 17.0), (6.5, -9.5), (54.25, -4.5), (-8.0, 159.0)]}
 
-norwegian = {"name" : "Norwegian", "iso" : "no", "countries" : 2, "regions" : 1, "subregions": 1, \
-			 "subregions_list" : ['Northern Europe'], "countries_list" : ['Norway', 'Svalbard and Jan Mayen'], "regions_list" : ['Europe']}
+norwegian = {"name" : "Norwegian", "iso_code" : "no", "countries" : 2, "regions" : 1, "subregions": 1, \
+			 "subregions_list" : ['Northern Europe'], "countries_list" : ['Norway', 'Svalbard and Jan Mayen'], "regions_list" : ['Europe'], 
+			 "coords" : [(78.0, 20.0), (62.0, 10.0)]}
 
 
 #currencies
 cny = {"code" : "CNY", "name" : "Yuan Renminbi", "countries" : 1, "regions": 1, "subregions": 1, \
-		"subregions_list" : ['Eastern Asia'], "countries_list" : ['China'], "regions_list" : ['Asia']}
+		"subregions_list" : ['Eastern Asia'], "countries_list" : ['China'], "regions_list" : ['Asia'], "coords" : [(35.0, 105.0)]}
 
 nok = {"code" : "NOK", "name" : "Norway Kroner", "countries" : 3, "regions": 1, "subregions": 1, \
-		"subregions_list" : ['Northern Europe'], "countries_list" : ['Bouvet Island', 'Norway', 'Svalbard and Jan Mayen'], "regions_list" : ['Europe']}
+		"subregions_list" : ['Northern Europe'], "countries_list" : ['Bouvet Island', 'Norway', 'Svalbard and Jan Mayen'], "regions_list" : ['Europe'], \
+		"coords" : [(78.0, 20.0), (62.0, 10.0), (-54.43333333, 3.4)]}
 
 usd = {"code" : "USD", "name" : "US Dollar", "countries" : 19, "regions": 4, "subregions": 8, \
 		"subregions_list" : ['Caribbean', 'Central America', 'Eastern Africa', 'Micronesia', 'Northern America', 'Polynesia', 'South America', 'South-Eastern Asia'], \
 		"countries_list" : ['American Samoa', 'Bonaire', 'British Indian Ocean Territory', 'British Virgin Islands', 'East Timor', 'Ecuador', 'El Salvador', \
 			'Federated States of Micronesia', 'Guam', 'Haiti', 'Marshall Islands', 'Northern Mariana Islands', 'Palau', 'Panama', 'Puerto Rico', \
 			'Turks and Caicos Islands', 'United States', 'United States Minor Outlying Islands', 'Zimbabwe'], \
-		"regions_list" : ['Africa', 'Americas', 'Asia', 'Oceania']}
+		"regions_list" : ['Africa', 'Americas', 'Asia', 'Oceania'], \
+		"coords" : [(18.431383, -64.62305), (21.75, -71.58333333), (-14.33333333, -170.0), (-8.83333333, 125.91666666), (9.0, 168.0), (7.5, 134.5), (38.0, -97.0), \
+			(13.46666666, 144.78333333), (6.91666666, 158.25), (19.0, -72.41666666), (9.0, -80.0), (-20.0, 30.0), (13.83333333, -88.91666666), (-6.0, 71.5), (-2.0, -77.5), (12.15, -68.266667), (18.25, -66.5), (15.2, 145.75)]}
 
 

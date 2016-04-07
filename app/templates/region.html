@@ -29,7 +29,7 @@
 					<h3 class="panel-title">Map</h3>
 				</div>
 				<div class='panel-body'>
-					{{googlemap("region_map", lat=mapData["latitude"], lng=mapData["longitude"], zoom=mapData["zoom"], style="height:400px;width:100%;margin:0")}}
+					{{googlemap("region_map", lat=map_data["lat"], lng=map_data["lng"], zoom=3, style="height:400px;width:100%;margin:0")}}
 				</div>
 			</div>
 		</div>
@@ -41,7 +41,7 @@
   		<div class="panel-body">
   			<ul class="list-inline">
 				{% for subregion in subregions %}
-					<li><a href = "{{ url_for('subregion_page', subregion=subregion.link)}}">{{ subregion.name }}</a></li>
+					<li><a href = "{{ url_for('subregion_page', subregion=subregion.id)}}">{{ subregion.name }}</a></li>
 				{% endfor %}
 			</ul>
 	  	</div>
@@ -53,7 +53,7 @@
   		<div class="panel-body">
   			<ul class = list-inline>
 				{% for country in countries %}
-					<li><a href = "{{ url_for('country_page', country=country.link)}}">{{ country.name }}</a></li>
+					<li><a href = "{{ url_for('country_page', country=country.id)}}">{{ country.name }}</a></li>
 				{% endfor %}
 			<ul>
 	  	</div>
@@ -65,7 +65,7 @@
   		<div class="panel-body">
    			<ul class = list-inline>
 				{% for lang in languages %}
-					<li><a href = "{{ url_for('language_page', language=lang.link)}}">{{ lang.name }}</a></li>
+					<li><a href = "{{ url_for('language_page', language=lang.id)}}">{{ lang.name }}</a></li>
 				{% endfor %}
 			</ul>
 		</div>
@@ -77,7 +77,7 @@
   		<div class="panel-body">
   			<ul class = "list-inline">
 				{% for curr in currencies %}
-					<li><a href = "{{ url_for('currency_page', currency=curr.link)}}">{{ curr.name }}</a></li>
+					<li><a href = "{{ url_for('currency_page', currency=curr.id)}}">{{ curr.name }}</a></li>
 				{% endfor %}
 			</ul>
 		</div>

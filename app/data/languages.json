@@ -1,0 +1,442 @@
+[
+    {
+        "iso_code": "km",
+        "name": "Central Khmer"
+    },
+    {
+        "iso_code": "lu",
+        "name": "Luba-Katanga"
+    },
+    {
+        "iso_code": "sm",
+        "name": "Samoan"
+    },
+    {
+        "iso_code": "am",
+        "name": "Amharic"
+    },
+    {
+        "iso_code": "nl",
+        "name": "Dutch"
+    },
+    {
+        "iso_code": "na",
+        "name": "Nauru"
+    },
+    {
+        "iso_code": "fj",
+        "name": "Fijian"
+    },
+    {
+        "iso_code": "sr",
+        "name": "Serbian"
+    },
+    {
+        "iso_code": "gn",
+        "name": "Guarani"
+    },
+    {
+        "iso_code": "sk",
+        "name": "Slovak"
+    },
+    {
+        "iso_code": "ss",
+        "name": "Swati"
+    },
+    {
+        "iso_code": "kk",
+        "name": "Kazakh"
+    },
+    {
+        "iso_code": "hu",
+        "name": "Hungarian"
+    },
+    {
+        "iso_code": "da",
+        "name": "Danish"
+    },
+    {
+        "iso_code": "tr",
+        "name": "Turkish"
+    },
+    {
+        "iso_code": "bi",
+        "name": "Bislama"
+    },
+    {
+        "iso_code": "ny",
+        "name": "Chichewa"
+    },
+    {
+        "iso_code": "hi",
+        "name": "Hindi"
+    },
+    {
+        "iso_code": "nd",
+        "name": "Ndebele, North"
+    },
+    {
+        "iso_code": "fo",
+        "name": "Faroese"
+    },
+    {
+        "iso_code": "ch",
+        "name": "Chamorro"
+    },
+    {
+        "iso_code": "kl",
+        "name": "Kalaallisut"
+    },
+    {
+        "iso_code": "bs",
+        "name": "Bosnian"
+    },
+    {
+        "iso_code": "fr",
+        "name": "French"
+    },
+    {
+        "iso_code": "dz",
+        "name": "Dzongkha"
+    },
+    {
+        "iso_code": "lo",
+        "name": "Lao"
+    },
+    {
+        "iso_code": "si",
+        "name": "Sinhala"
+    },
+    {
+        "iso_code": "mn",
+        "name": "Mongolian"
+    },
+    {
+        "iso_code": "af",
+        "name": "Afrikaans"
+    },
+    {
+        "iso_code": "de",
+        "name": "German"
+    },
+    {
+        "iso_code": "tn",
+        "name": "Tswana"
+    },
+    {
+        "iso_code": "is",
+        "name": "Icelandic"
+    },
+    {
+        "iso_code": "sv",
+        "name": "Swedish"
+    },
+    {
+        "iso_code": "ta",
+        "name": "Tamil"
+    },
+    {
+        "iso_code": "gv",
+        "name": "Manx"
+    },
+    {
+        "iso_code": "qu",
+        "name": "Quechua"
+    },
+    {
+        "iso_code": "he",
+        "name": "Hebrew"
+    },
+    {
+        "iso_code": "hy",
+        "name": "Armenian"
+    },
+    {
+        "iso_code": "ne",
+        "name": "Nepali"
+    },
+    {
+        "iso_code": "so",
+        "name": "Somali"
+    },
+    {
+        "iso_code": "ru",
+        "name": "Russian"
+    },
+    {
+        "iso_code": "ro",
+        "name": "Romanian"
+    },
+    {
+        "iso_code": "lt",
+        "name": "Lithuanian"
+    },
+    {
+        "iso_code": "en",
+        "name": "English"
+    },
+    {
+        "iso_code": "mk",
+        "name": "Macedonian"
+    },
+    {
+        "iso_code": "kg",
+        "name": "Kongo"
+    },
+    {
+        "iso_code": "dv",
+        "name": "Divehi"
+    },
+    {
+        "iso_code": "xh",
+        "name": "Xhosa"
+    },
+    {
+        "iso_code": "ff",
+        "name": "Fulah"
+    },
+    {
+        "iso_code": "lb",
+        "name": "Luxembourgish"
+    },
+    {
+        "iso_code": "mh",
+        "name": "Marshallese"
+    },
+    {
+        "iso_code": "pa",
+        "name": "Panjabi"
+    },
+    {
+        "iso_code": "ms",
+        "name": "Malay"
+    },
+    {
+        "iso_code": "ka",
+        "name": "Georgian"
+    },
+    {
+        "iso_code": "sw",
+        "name": "Swahili"
+    },
+    {
+        "iso_code": "ht",
+        "name": "Haitian"
+    },
+    {
+        "iso_code": "ti",
+        "name": "Tigrinya"
+    },
+    {
+        "iso_code": "my",
+        "name": "Burmese"
+    },
+    {
+        "iso_code": "ar",
+        "name": "Arabic"
+    },
+    {
+        "iso_code": "vi",
+        "name": "Vietnamese"
+    },
+    {
+        "iso_code": "bg",
+        "name": "Bulgarian"
+    },
+    {
+        "iso_code": "no",
+        "name": "Norwegian"
+    },
+    {
+        "iso_code": "rn",
+        "name": "Rundi"
+    },
+    {
+        "iso_code": "zu",
+        "name": "Zulu"
+    },
+    {
+        "iso_code": "tg",
+        "name": "Tajik"
+    },
+    {
+        "iso_code": "pl",
+        "name": "Polish"
+    },
+    {
+        "iso_code": "sq",
+        "name": "Albanian"
+    },
+    {
+        "iso_code": "mg",
+        "name": "Malagasy"
+    },
+    {
+        "iso_code": "et",
+        "name": "Estonian"
+    },
+    {
+        "iso_code": "zh",
+        "name": "Chinese"
+    },
+    {
+        "iso_code": "th",
+        "name": "Thai"
+    },
+    {
+        "iso_code": "ku",
+        "name": "Kurdish"
+    },
+    {
+        "iso_code": "fi",
+        "name": "Finnish"
+    },
+    {
+        "iso_code": "be",
+        "name": "Belarusian"
+    },
+    {
+        "iso_code": "ca",
+        "name": "Catalan"
+    },
+    {
+        "iso_code": "ur",
+        "name": "Urdu"
+    },
+    {
+        "iso_code": "sg",
+        "name": "Sango"
+    },
+    {
+        "iso_code": "it",
+        "name": "Italian"
+    },
+    {
+        "iso_code": "tk",
+        "name": "Turkmen"
+    },
+    {
+        "iso_code": "ky",
+        "name": "Kirghiz"
+    },
+    {
+        "iso_code": "hr",
+        "name": "Croatian"
+    },
+    {
+        "iso_code": "ga",
+        "name": "Irish"
+    },
+    {
+        "iso_code": "uz",
+        "name": "Uzbek"
+    },
+    {
+        "iso_code": "ps",
+        "name": "Pushto"
+    },
+    {
+        "iso_code": "st",
+        "name": "Sotho, Southern"
+    },
+    {
+        "iso_code": "es",
+        "name": "Spanish"
+    },
+    {
+        "iso_code": "cs",
+        "name": "Czech"
+    },
+    {
+        "iso_code": "uk",
+        "name": "Ukrainian"
+    },
+    {
+        "iso_code": "sl",
+        "name": "Slovenian"
+    },
+    {
+        "iso_code": "lv",
+        "name": "Latvian"
+    },
+    {
+        "iso_code": "el",
+        "name": "Greek, Modern (1453-)"
+    },
+    {
+        "iso_code": "fa",
+        "name": "Persian"
+    },
+    {
+        "iso_code": "rw",
+        "name": "Kinyarwanda"
+    },
+    {
+        "iso_code": "nn",
+        "name": "Norwegian Nynorsk"
+    },
+    {
+        "iso_code": "ay",
+        "name": "Aymara"
+    },
+    {
+        "iso_code": "mi",
+        "name": "Maori"
+    },
+    {
+        "iso_code": "ve",
+        "name": "Venda"
+    },
+    {
+        "iso_code": "ko",
+        "name": "Korean"
+    },
+    {
+        "iso_code": "pt",
+        "name": "Portuguese"
+    },
+    {
+        "iso_code": "ja",
+        "name": "Japanese"
+    },
+    {
+        "iso_code": "sn",
+        "name": "Shona"
+    },
+    {
+        "iso_code": "ln",
+        "name": "Lingala"
+    },
+    {
+        "iso_code": "nr",
+        "name": "Ndebele, South"
+    },
+    {
+        "iso_code": "ts",
+        "name": "Tsonga"
+    },
+    {
+        "iso_code": "nb",
+        "name": "Bokmål, Norwegian"
+    },
+    {
+        "iso_code": "id",
+        "name": "Indonesian"
+    },
+    {
+        "iso_code": "mt",
+        "name": "Maltese"
+    },
+    {
+        "iso_code": "bn",
+        "name": "Bengali"
+    },
+    {
+        "iso_code": "az",
+        "name": "Azerbaijani"
+    },
+    {
+        "iso_code": "to",
+        "name": "Tonga (Tonga Islands)"
+    }
+]
