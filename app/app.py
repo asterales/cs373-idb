@@ -79,6 +79,7 @@ def run_tests():
 			result += line
 	os.system("rm tests.tmp")
 	# subprocess.check_output(["python3","tests.py"], universal_newlines=True)
+	result = "<br />".join(result.split("\n"))
 	return result
 
 # Individual Pages
