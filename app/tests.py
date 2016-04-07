@@ -313,5 +313,11 @@ class ModelsTest(TestCase) :
 
     	self.assertEqual(sr.name, 'Northern Africa')
 
+
+class APITests(TestCase):
+
+	def test_api_requests_country(self):
+		self.assertEqual(1,1)
+
 if __name__ == "__main__" :
 	main()
