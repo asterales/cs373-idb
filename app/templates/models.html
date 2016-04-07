@@ -6,8 +6,9 @@
 {% endblock %}
 
 {% block content %}
+	<script src = "{{ url_for('static', filename = 'js/dirPagination.js')}}"></script>
 	<script>
-	var app = angular.module('sortApp', []);
+	var app = angular.module('sortApp', ['angularUtils.directives.dirPagination']);
 	app.config(['$interpolateProvider', function($interpolateProvider) {
 	  $interpolateProvider.startSymbol('{a');
 	  $interpolateProvider.endSymbol('a}');
@@ -45,17 +46,17 @@
 				</thead>
 
 				<tbody>
-					<tr ng-repeat="member in model | orderBy:sortType:sortReverse">
+					<tr dir-paginate="member in model | orderBy:sortType:sortReverse|itemsPerPage:10">
 						{% for short_attr in short_name %}
 							{% if loop.first %}
 								<td>
-									<a href="{a member.{{short_attr}} | url a}">
+									<a href="{a member.id a}">
 										{a member.{{short_attr}} a}
 									</a>
 								</td>
 							{% elif short_attr in ["region","subregion"] %}
 								<td>
-									<a href="../{{ short_attr }}s/{a member.{{short_attr}} | url a}">
+									<a href="../{{ short_attr }}s/{a member.{{ short_attr }}_id a}">
 										{a member.{{short_attr}} a}
 									</a>
 								</td>
@@ -69,7 +70,10 @@
 				</tbody>
 			</table>
 		</div>
+		 <dir-pagination-controls
+	       max-size="5"
+	       direction-links="true"
+	       boundary-links="true">
+	    </dir-pagination-controls>
 	</div>
-
-	</table>
 {% endblock %}

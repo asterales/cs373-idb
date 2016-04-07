@@ -14,7 +14,7 @@
 		    		<h3 class="panel-title"><a href="{{ url_for('currencies_table') }}">Currency</a> Info</h3>
 		  		</div>
 		  		<div class="panel-body">
-					<p><strong>Name: </strong>{{ currency["name"] }}</p> 
+					<p><strong>Name: </strong>{{ currency["name"] }}</p>
 					<p><strong>Countries: </strong>{{ currency["countries"] }}</p>
 					<p><strong>Regions: </strong>{{ currency["regions"] }}</p>
 					<p><strong>Subregions: </strong>{{ currency["subregions"] }}</p>
@@ -27,7 +27,7 @@
 					<h3 class="panel-title">Map</h3>
 				</div>
 				<div class='panel-body'>
-					{{googlemap("country_map", lat=center[0], lng=center[1], zoom=1, style="height:400px;width:100%;margin:0", markers=currency["coords"])}}
+					{{googlemap("country_map", lat=map_data["lat"], lng=map_data["lng"], zoom=1, style="height:400px;width:100%;margin:0", markers=map_data["coords"])}}
 				</div>
 			</div>
 		</div>
@@ -38,8 +38,8 @@
   		</div>
   		<div class="panel-body">
   			<ul class="list-inline">
-				{% for region in regions %} 
-					<li><a href = "{{ url_for('region_page', region=region.link)}}">{{ region.name }}</a></li>
+				{% for region in regions %}
+					<li><a href = "{{ url_for('region_page', region=region.id)}}">{{ region.name }}</a></li>
 				{% endfor %}
 			</ul>
 	  	</div>
@@ -50,8 +50,8 @@
   		</div>
   		<div class="panel-body">
   			<ul class="list-inline">
-				{% for subregion in subregions %} 
-					<li><a href = "{{ url_for('subregion_page', subregion=subregion.link)}}">{{ subregion.name }}</a></li>
+				{% for subregion in subregions %}
+					<li><a href = "{{ url_for('subregion_page', subregion=subregion.id)}}">{{ subregion.name }}</a></li>
 				{% endfor %}
 			</ul>
 	  	</div>
@@ -62,8 +62,8 @@
   		</div>
   		<div class="panel-body">
   			<ul class = list-inline>
-				{% for country in countries %} 
-					<li><a href = "{{ url_for('country_page', country=country.link)}}">{{ country.name }}</a></li>
+				{% for country in countries %}
+					<li><a href = "{{ url_for('country_page', country=country.id)}}">{{ country.name }}</a></li>
 				{% endfor %}
 			<ul>
 	  	</div>

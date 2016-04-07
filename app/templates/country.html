@@ -15,15 +15,15 @@
 					</div>
 					<div class="panel-body">
 						<p><strong>Capital: </strong>{{ country["name"] }}</t></p>
-						<p><strong>Latitude: </strong>{{ country["latitude"] }}</p>
-						<p><strong>Longitude: </strong>{{ country["longitude"] }}</p>
-						<p><strong>Region: </strong><a href="{{ url_for('region_page', region=get_link(country["region"])) }}">{{ country["region"] }}</a></p>
-						<p><strong>Subregion: </strong><a href="{{ url_for('subregion_page', subregion=get_link(country["subregion"])) }}">{{ country["subregion"] }}</a></p>
+						<p><strong>Latitude: </strong>{{ country["lat"] }}</p>
+						<p><strong>Longitude: </strong>{{ country["lng"] }}</p>
+						<p><strong>Region: </strong><a href="{{ url_for('region_page', region=country["region_id"]) }}">{{ country["region"] }}</a></p>
+						<p><strong>Subregion: </strong><a href="{{ url_for('subregion_page', subregion=country["subregion_id"]) }}">{{ country["subregion"] }}</a></p>
 						<p><strong>Area: </strong>{{ country["area"] }}</p>
 						<p><strong>Population: </strong>{{ country["population"] }}<p>
-						<p><strong>Languages: </strong>{{ country["languages"] }}</p>
-						<p><strong>Currencies: </strong>{{ country["currencies"] }}</p>
-						<p><strong>Bordering Countries: </strong>{{ country["borders"] }}</p>
+						<p><strong>Languages: </strong>{{ country["languages"]|length }}</p>
+						<p><strong>Currencies: </strong>{{ country["currencies"]|length }}</p>
+						<p><strong>Bordering Countries: </strong>{{ country["borders"]|length }}</p>
 					</div>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 				</div>
 				<div class='panel-body'>
 
-					{{googlemap("country_map", lat=country["latitude"], lng=country["longitude"], zoom=3, style="height:400px;width:100%;margin:0", markers=[(country["latitude"], country["longitude"])])}}
+					{{googlemap("country_map", lat=country["lat"], lng=country["lng"], zoom=3, style="height:400px;width:100%;margin:0", markers=[(country["lat"], country["lng"])])}}
 
 				</div>
 			</div>
@@ -46,8 +46,8 @@
   		</div>
   		<div class="panel-body">
    			<ul class = list-inline>
-				{% for lang in languages %}
-					<li><a href = "{{ url_for('language_page', language=lang.link)}}">{{ lang.name }}</a></li>
+				{% for lang in country["languages"] %}
+					<li><a href = "{{ url_for('language_page', language=lang.id)}}">{{ lang.name }}</a></li>
 				{% endfor %}
 			</ul>
 		</div>
@@ -58,8 +58,8 @@
   		</div>
   		<div class="panel-body">
   			<ul class = "list-inline">
-				{% for curr in currencies %}
-					<li><a href = "{{ url_for('currency_page', currency=curr.link)}}">{{ curr.name }}</a></li>
+				{% for curr in country["currencies"] %}
+					<li><a href = "{{ url_for('currency_page', currency=curr.id)}}">{{ curr.name }}</a></li>
 				{% endfor %}
 			</ul>
 		</div>
@@ -70,8 +70,8 @@
   		</div>
   		<div class="panel-body">
   			<ul class="list-inline">
-				{% for border in borders %}
-					<li><a href = "{{ url_for('country_page', country=border.link)}}">{{ border.name }}</a></li>
+				{% for border in country["borders"] %}
+					<li><a href = "{{ url_for('country_page', country=border.country_id)}}">{{ border.name }}</a></li>
 				{% endfor %}
 			</ul>
 		</div>
