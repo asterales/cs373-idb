@@ -246,11 +246,12 @@ def createRegionModel(data):
 ## list
 @sweography_api.route('/region', methods=['GET'])
 def getRegions():
-    regions = getRegionModels()
+    params = request.args
+    regions = getRegionModels(params)
     return jsonify_utf8({"regions":regions}), 200
 
-def getRegionModels():
-    query = text("SELECT r.*, SUM( DISTINCT c.population ) AS  'population', SUM( DISTINCT c.area ) AS  'area', COUNT( DISTINCT c.id ) AS  'countries', \
+def getRegionModels(params):
+    query = "SELECT r.*, SUM( DISTINCT c.population ) AS  'population', SUM( DISTINCT c.area ) AS  'area', COUNT( DISTINCT c.id ) AS  'countries', \
         COUNT( DISTINCT l.id ) AS  'languages', COUNT( DISTINCT s.id ) AS  'subregions', COUNT( DISTINCT cur.id ) AS 'currencies'\
         FROM Regions r\
         LEFT JOIN Countries c ON c.region_id = r.id\
@@ -258,9 +259,24 @@ def getRegionModels():
         LEFT JOIN Languages l ON l.id = cl.language_id\
         LEFT JOIN SubRegions s ON s.id = c.subregion_id\
         LEFT JOIN country_currency cc ON cc.country_id = c.id\
-        LEFT JOIN Currencies cur ON cur.id = cc.currency_id\
-        GROUP BY r.id")
-    regions = db.session.execute(query).fetchall()
+        LEFT JOIN Currencies cur ON cur.id = cc.currency_id"
+    query += " WHERE 1";
+
+    query_params = {}
+    if params.get('subregion_id'):
+        query += " AND s.id=:subregion_id"
+        query_params["subregion_id"] = params.get('subregion_id')
+
+    if params.get('language_id'):
+        query += " AND l.id=:language_id"
+        query_params["language_id"] = params.get('language_id')
+
+    if params.get('currency_id'):
+        query += " AND cur.id=:currency_id"
+        query_params["currency_id"] = params.get('currency_id')
+
+    query += " GROUP BY r.id"
+    regions = db.session.execute(text(query), query_params).fetchall()
     cols = ["id","name","languages","countries","currencies","area","population","subregions"]
     regionsJSON = [{col: str(getattr(r, col)) for col in cols} for r in regions]
     return regionsJSON
@@ -347,11 +363,12 @@ def createSubRegionModel(data):
 ## list
 @sweography_api.route('/subregion', methods=['GET'])
 def getSubRegions():
-    subregions = getSubRegionModels()
+    params = request.args
+    subregions = getSubRegionModels(params)
     return jsonify_utf8({"subregions":subregions}), 200
 
-def getSubRegionModels():
-    query = text("SELECT sr.*, COUNT( DISTINCT c.id ) AS  'countries', \
+def getSubRegionModels(params):
+    query = "SELECT sr.*, COUNT( DISTINCT c.id ) AS  'countries', \
         r.name AS 'region', r.id AS 'region_id', \
         COUNT( DISTINCT l.id ) AS  'languages', COUNT( DISTINCT cur.id ) AS 'currencies'\
         FROM SubRegions sr\
@@ -361,9 +378,24 @@ def getSubRegionModels():
         LEFT JOIN Regions r ON r.id = c.region_id\
         LEFT JOIN country_currency cc ON cc.country_id = c.id\
         LEFT JOIN Currencies cur ON cur.id = cc.currency_id\
-        GROUP BY sr.id")
+        WHERE 1"
 
-    data = db.session.execute(query).fetchall()
+    query_params = {}
+    if params.get('region_id'):
+        query += " AND r.id=:region_id"
+        query_params["region_id"] = params.get('region_id')
+
+    if params.get('language_id'):
+        query += " AND l.id=:language_id"
+        query_params["language_id"] = params.get('language_id')
+
+    if params.get('currency_id'):
+        query += " AND cur.id=:currency_id"
+        query_params["currency_id"] = params.get('currency_id')
+
+    query += " GROUP BY sr.id"
+
+    data = db.session.execute(text(query), query_params).fetchall()
     cols = ["id","name","languages","countries","currencies","region","region_id"]
     subregionsJSON = [{col: str(getattr(d, col)) for col in cols} for d in data]
     return subregionsJSON
@@ -452,20 +484,32 @@ def createLanguageModel(data):
 ## list
 @sweography_api.route('/language', methods=['GET'])
 def getLanguages():
-    languages = getLanguageModels()
+    params = request.args
+    languages = getLanguageModels(params)
     return jsonify_utf8({"languages":languages}), 200
 
-def getLanguageModels():
-    query = text("SELECT l.*, COUNT( DISTINCT c.id ) AS  'countries', \
+def getLanguageModels(params):
+    query = "SELECT l.*, COUNT( DISTINCT c.id ) AS  'countries', \
         COUNT( DISTINCT r.id ) AS  'regions', COUNT( DISTINCT s.id ) AS  'subregions'\
         FROM Languages l\
         LEFT JOIN country_language cl ON cl.language_id = l.id\
         LEFT JOIN Countries c ON cl.country_id = c.id\
         LEFT JOIN Regions r ON r.id = c.region_id\
         LEFT JOIN SubRegions s ON s.id = c.subregion_id\
-        GROUP BY l.id\
-        ")
-    languages = db.session.execute(query).fetchall()
+        WHERE 1"
+
+    query_params = {}
+    if params.get('region_id'):
+        query += " AND r.id=:region_id"
+        query_params["region_id"] = params.get('region_id')
+
+    if params.get('subregion_id'):
+        query += " AND s.id=:subregion_id"
+        query_params["subregion_id"] = params.get('subregion_id')
+
+    query += " GROUP BY l.id"
+
+    languages = db.session.execute(text(query), query_params).fetchall()
     cols = ["id","name","countries","regions","subregions","iso_code"]
     languagesJSON = [{col: str(getattr(r, col)) for col in cols} for r in languages]
     return languagesJSON
@@ -551,20 +595,32 @@ def createCurrencyModel(data):
 ## list
 @sweography_api.route('/currency', methods=['GET'])
 def getCurrencies():
-    currencies = getCurrencyModels()
+    params = request.args
+    currencies = getCurrencyModels(params)
     return jsonify_utf8({"currencies":currencies}), 200
 
-def getCurrencyModels():
-    query = text("SELECT cur.*, COUNT( DISTINCT c.id ) AS  'countries', \
+def getCurrencyModels(params):
+    query = "SELECT cur.*, COUNT( DISTINCT c.id ) AS  'countries', \
         COUNT( DISTINCT r.id ) AS  'regions', COUNT( DISTINCT s.id ) AS  'subregions'\
         FROM Currencies cur\
         LEFT JOIN country_currency cc ON cc.currency_id = cur.id\
         LEFT JOIN Countries c ON cc.country_id = c.id\
         LEFT JOIN Regions r ON r.id = c.region_id\
         LEFT JOIN SubRegions s ON s.id = c.subregion_id\
-        GROUP BY cur.id\
-        ")
-    currencies = db.session.execute(query).fetchall()
+        WHERE 1"
+
+    query_params = {}
+    if params.get('region_id'):
+        query += " AND r.id=:region_id"
+        query_params["region_id"] = params.get('region_id')
+
+    if params.get('subregion_id'):
+        query += " AND s.id=:subregion_id"
+        query_params["subregion_id"] = params.get('subregion_id')
+
+    query += " GROUP BY cur.id"
+
+    currencies = db.session.execute(text(query), query_params).fetchall()
     cols = ["id","name","countries","regions","subregions","code"]
     currenciesJSON = [{col: str(getattr(r, col)) for col in cols} for r in currencies]
     return currenciesJSON
