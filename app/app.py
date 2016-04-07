@@ -2,7 +2,9 @@ from flask import Flask, render_template, request, url_for
 from flask_googlemaps import GoogleMaps
 from collections import namedtuple
 import api
+import os
 import subprocess
+from cgi import escape
 
 # Get examples data from outside file
 from examples import usa, china, norway, \
@@ -77,8 +79,14 @@ def about():
 
 @app.route("/about/tests")
 def run_tests():
-	subprocess.check_output(["python3","tests.py"], universal_newlines=True)
-	return
+	os.system("python3 tests.py > tests.tmp 2>&1")
+	result = ""
+	with open('tests.tmp', 'r') as output:
+		for line in output:
+			result += line
+	os.system("rm tests.tmp")
+	# subprocess.check_output(["python3","tests.py"], universal_newlines=True)
+	return escape(result,True)
 
 # Individual Pages
 @app.route("/countries/<country>")
