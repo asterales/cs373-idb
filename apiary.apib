@@ -332,9 +332,17 @@ Internet Country Database gives you information about countries and their relati
 + Response 204
 
 
-## Regions Collection -- /region [/region]
+## Regions Collection -- /region [/region{?subregion_id,currency_id,language_id}]
 
 ### List Regions [GET]
+
++ Parameters
+    + subregion_id (optional, integer)
+        Response contains only regions containing the specified subregion        
+    + currency_id (optional, integer)
+        Response contains only regions that use the specified currency
+    + language_id (optional, integer)
+        Response contains only regions who speak the specified language
 
 + Response 200 (application/json)
 
@@ -435,9 +443,15 @@ Internet Country Database gives you information about countries and their relati
 + Response 204
 
 
-## Languages Collection -- /language [/language]
+## Languages Collection -- /language [/language{?region_id,subregion_id}]
 
 ### List Languages [GET]
+
++ Parameters
+    + region_id (optional, integer)
+        Response contains only languages used in the specified region
+    + subregion_id (optional, integer)
+        Response contains only languages used in the specified subregion        
 
 + Response 200 (application/json)
 
@@ -535,9 +549,15 @@ Internet Country Database gives you information about countries and their relati
 + Response 204
 
 
-## Currency Collection -- /currency [/currency]
+## Currency Collection -- /currency [/currency{?region_id,subregion_id}]
 
 ### List Currencies [GET]
+
++ Parameters
+    + region_id (optional, integer)
+        Response contains only currencies used in the specified region
+    + subregion_id (optional, integer)
+        Response contains only currencies in the specified subregion        
 
 + Response 200 (application/json)
 
@@ -636,9 +656,17 @@ Internet Country Database gives you information about countries and their relati
 + Response 204
 
 
-## Subregion Collection -- /subregion [/subregion]
+## Subregion Collection -- /subregion [/subregion{?language_id,currency_id,region_id}]
 
 ### List Subregions [GET]
+
++ Parameters
+    + region_id (optional, integer)
+        Response contains only subregions in the specified region
+    + currency_id (optional, integer)
+        Response contains only subregions that use the specified currency
+    + language_id (optional, integer)
+        Response contains only subregions who speak the specified language
 
 + Response 200 (application/json)
 
