@@ -56,7 +56,7 @@
 								</td>
 							{% elif short_attr in ["region","subregion"] %}
 								<td>
-									<a href="../{{ short_attr }}s/{a member.id a}">
+									<a href="../{{ short_attr }}s/{a member.{{ short_attr }}_id a}">
 										{a member.{{short_attr}} a}
 									</a>
 								</td>
@@ -73,7 +73,7 @@
 		 <dir-pagination-controls
 	       max-size="5"
 	       direction-links="true"
-	       boundary-links="true" class = "centered">
+	       boundary-links="true">
 	    </dir-pagination-controls>
 	</div>
 {% endblock %}
