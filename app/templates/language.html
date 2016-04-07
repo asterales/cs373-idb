@@ -27,7 +27,7 @@
 					<h3 class="panel-title">Map</h3>
 				</div>
 				<div class='panel-body'>
-					{{googlemap("country_map", lat=center[0], lng=center[1], zoom=1, style="height:400px;width:100%;margin:0", markers=language["coords"])}}
+					{{googlemap("country_map", lat=map_data["lat"], lng=map_data["lng"], zoom=1, style="height:400px;width:100%;margin:0", markers=map_data["coords"])}}
 				</div>
 			</div>
 		</div>

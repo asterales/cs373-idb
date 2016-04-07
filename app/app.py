@@ -214,13 +214,8 @@ def language_page(language):
 		subregions = api.getSubRegionModels({"language_id":language_id})
 		countries = api.getCountryModels({"language_id":language_id})
 
-		coords = []
-		for c in countries:
-			latlng = (float(c["lat"]),float(c["lng"]))
-			coords.append(latlng)
-
 		return render_template('language.html', language = language, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles, \
-			center = map_center(coords))
+								map_data = get_map_data(countries))
 
 	return render_template('nopage.html', model_title = "Language", model = "language", redirect = "languages")
 
@@ -255,14 +250,8 @@ def currency_page(currency):
 		subregions = api.getSubRegionModels({"currency_id":currency_id})
 		countries = api.getCountryModels({"currency_id":currency_id})
 
-		coords = []
-		for c in countries:
-			if c["lat"] != "" and c["lng"] != "":
-				latlng = (float(c["lat"]),float(c["lng"]))
-				coords.append(latlng)
-
 		return render_template('currency.html', currency = currency, countries = countries, regions = regions, subregions = subregions, panel_styles = panel_styles, \
-								center = map_center(coords))
+								map_data = get_map_data(countries))
 
 	return render_template('nopage.html', model_title = "Currency", model = "currency", redirect = "currencies")
 
@@ -297,6 +286,20 @@ def map_center(coords):
 	lng = degrees(atan2(yavg, xavg))
 	lat = degrees(atan2(zavg, hypot(xavg, yavg)))
 	return (lat, lng)
+
+def get_map_data(countries):
+	coords = []
+	for c in countries:
+		if c["lat"] != "" and c["lng"] != "":
+			latlng = (float(c["lat"]),float(c["lng"]))
+			coords.append(latlng)
+
+	center = map_center(coords)
+	map_data = {}
+	map_data["lat"] = center[0]
+	map_data["lng"] = center[1]
+	map_data["coords"] = coords
+	return map_data
 
 import populate_db
 
