@@ -29,9 +29,14 @@ def index():
 def countries_table():
 	attributes = {"name" : "Name", "capital" : "Capital", "latitude" :  "Latitude", "longitude" : "Longitude", "region" : "Region", "subregion" : "Subregion",\
 				  "area":"Area", "population" : "Population", "languages" : "Languages", "currencies" : "Currencies", "borders" : "Bordering Countries"}
-	short_attributes = ["name", "capital", "latitude", "longitude", "region", "subregion", "area", "population", "languages", "currencies", "borders"]
+	short_attributes = ["name", "capital", "lat", "lng", "region", "subregion", "area", "population", "languages", "currencies", "borders"]
 	# countries = [china, norway, usa]
-	countries = api.getCountryModels({})
+	countries = api.getCountryModels()
+	for c in countries:
+		c["currencies"] = len(c["currencies"])
+		c["languages"] = len(c["languages"])
+		c["borders"] = len(c["borders"])
+
 	return render_template('models.html', model_type = "Countries", attributes = attributes, models = countries, short_name = short_attributes, style = panel_styles["countries"])
 
 @app.route("/regions")
