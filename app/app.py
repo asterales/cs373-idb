@@ -138,14 +138,14 @@ def region_page(region):
 	region_id = region
 	region = api.getRegionModel(region_id)
 	if(region):
-		# countries = getCountryModels({"region_id":region})
-		mapData = {"latitude":48,"longitude":20,"zoom":4}
 		subregions = api.getSubRegionModels({"region_id":region_id})
 		countries = api.getCountryModels({"region_id":region_id})
 		languages = api.getLanguageModels({"region_id":region_id})
 		currencies = api.getCurrencyModels({"region_id":region_id})
+		
 		return render_template('region.html', region = region, subregions=subregions, countries=countries, languages=languages, \
-			currencies = currencies, panel_styles = panel_styles, mapData = mapData)
+								currencies = currencies, panel_styles = panel_styles, map_data = get_map_data(countries))
+
 	return render_template('nopage.html', model_title = "Region", model = "region", redirect = "regions")
 
 @app.route("/subregions/<subregion>")
@@ -171,13 +171,12 @@ def subregion_page(subregion):
 	subregion_id = subregion
 	subregion = api.getSubRegionModel(subregion_id)
 	if subregion:
-		mapData = {"latitude":48,"longitude":20,"zoom":4}
 		countries = api.getCountryModels({"subregion_id":subregion_id})
 		languages = api.getLanguageModels({"subregion_id":subregion_id})
 		currencies = api.getCurrencyModels({"subregion_id":subregion_id})
-
+	
 		return render_template('subregion.html', subregion = subregion, countries=countries, languages=languages, currencies=currencies,\
-			panel_styles = panel_styles, mapData = mapData)
+								panel_styles = panel_styles, map_data = get_map_data(countries))
 
 	return render_template('nopage.html', model_title = "Subregion", model = "subregion", redirect = "subregions")
 
