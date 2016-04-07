@@ -346,7 +346,7 @@ Internet Country Database gives you information about countries and their relati
 
 + Response 200 (application/json)
 
-        [
+        {"regions":[
             {
                 "id": 1,
                 "name": "Americas",
@@ -367,7 +367,7 @@ Internet Country Database gives you information about countries and their relati
                 "languages": 10,
                 "currencies": 10
             }
-        ]
+        ]}
 
 ### Create a New Region [POST]
 
@@ -455,7 +455,7 @@ Internet Country Database gives you information about countries and their relati
 
 + Response 200 (application/json)
 
-        [
+        {"languages":[
             {
                 "id": 1,
                 "iso_code": "en",
@@ -472,7 +472,7 @@ Internet Country Database gives you information about countries and their relati
                 "regions": 1,
                 "subregion": 1
             }
-        ]
+        ]}
 
 ### Create a New Language [POST]
 
@@ -561,7 +561,7 @@ Internet Country Database gives you information about countries and their relati
 
 + Response 200 (application/json)
 
-        [
+        {"currencies":[
             {
                 "id": 1,
                 "code": "USD",
@@ -578,7 +578,7 @@ Internet Country Database gives you information about countries and their relati
                 "regions": 1,
                 "subregions": 1
             }
-        ]
+        ]}
 
 ### Create a New Currency [POST]
 
@@ -670,7 +670,7 @@ Internet Country Database gives you information about countries and their relati
 
 + Response 200 (application/json)
 
-        [
+        {"subregions":[
             {
                 "id": 1,
                 "name": "North America",
@@ -687,7 +687,7 @@ Internet Country Database gives you information about countries and their relati
                 "countries": 1,
                 "currencies": 1
             }
-        ]
+        ]}
 
 ### Create a New Subregion [POST]
 
