@@ -70,3 +70,5 @@ dev_ip:
 
 test:
 	python3 app/tests.py
+	coverage3 run --branch app/tests.py
+	coverage3 report --include=app/models.py
