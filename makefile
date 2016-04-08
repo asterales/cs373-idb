@@ -30,7 +30,7 @@ check:
 models.html:
 	pydoc3 -w models
 
-IDB1.log:
+IDB2.log:
 	git log > IDB2.log
 
 retrieve_sha:
