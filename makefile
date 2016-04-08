@@ -3,7 +3,7 @@ FILES :=                              \
     apiary.apib   				\
     IDB1.log  					\
     models.html 				\
-    models.py  					\
+    app/models.py  					\
     app/tests.py                     	\
     UML.pdf  
 
@@ -67,3 +67,6 @@ master_ip:
 
 dev_ip:
 	source docker_source/dev/docker.env && docker port sweography_lb 80
+
+test:
+	python3 tests.py

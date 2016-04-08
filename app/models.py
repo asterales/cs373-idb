@@ -180,24 +180,17 @@ class SubRegions(Base):
 
 ###connects to a database that has already been created
 
-###                             user:pass@server/database_name
-### MySQL code to create database, user, and grant privileges
-### CREATE DATABASE SWEography
-### CREATE USER 'sweography'@'localhost'IDENTIFIED BY 'dNZ4QP77ayKFd3Md'
-### GRANT ALL ON SWEography.* TO 'sweopgrahy'@'localhost';
+# use this for local host only
+if "TRAVIS" in os.getenv:
+	app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:@localhost/myapp_test'
 
-## use this for localhost only
-# app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://user:password@localhost/countries_db2'
-# engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
-engine = create_engine(SQLALCHEMY_DATABASE_URI)
+def create_sweography_db():
 
-def create_database():
+    engine = create_engine(SQLALCHEMY_DATABASE_URI)
+
     if database_exists(engine.url):
         drop_database(engine.url)
     create_database(engine.url)
-
-    # if not database_exists(engine.url):
-    #     create_database(engine.url)
 
     ##creates all tables in database
     Base.metadata.create_all(engine)
