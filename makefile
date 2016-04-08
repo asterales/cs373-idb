@@ -69,6 +69,5 @@ dev_ip:
 	source docker_source/dev/docker.env && docker port sweography_lb 80
 
 test:
-	python3 app/tests.py
 	coverage3 run --branch app/tests.py
 	coverage3 report --include=app/models.py
