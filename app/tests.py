@@ -22,8 +22,7 @@ class ModelsTest(TestCase) :
         db.session.add(country)
         db.session.commit()
 
-        c = db.session.query(Countries).filter_by(name=None).first()
-
+        c = db.session.query(Countries).get(country.id)
         self.assertEqual(c.name, None)
         self.assertEqual(c.capital, None)
         self.assertEqual(c.population, None)
