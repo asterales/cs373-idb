@@ -18,6 +18,7 @@ install:
     - pip install Flask-SQLAlchemy
     - pip3 install flask-googlemaps
     - pip3 install sqlalchemy_utils
+    - pip3 install pymysql
 
 before_script:
     - uname -a
