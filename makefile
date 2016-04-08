@@ -1,7 +1,7 @@
 FILES :=                              \
     .travis.yml                       \
     apiary.apib   				\
-    IDB1.log  					\
+    IDB2.log  					\
     models.html 				\
     app/models.py  					\
     app/tests.py                     	\
@@ -31,7 +31,7 @@ models.html:
 	pydoc3 -w models
 
 IDB1.log:
-	git log > IDB1.log
+	git log > IDB2.log
 
 retrieve_sha:
 	git rev-parse HEAD
