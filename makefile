@@ -4,7 +4,7 @@ FILES :=                              \
     IDB1.log  					\
     models.html 				\
     models.py  					\
-    tests.py                     	\
+    app/tests.py                     	\
     UML.pdf  
 
 check:
