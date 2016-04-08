@@ -181,7 +181,7 @@ class SubRegions(Base):
 ###connects to a database that has already been created
 
 # use this for local host only
-if "TRAVIS" in os.getenv:
+if "TRAVIS" in os.environ:
 	app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:@localhost/myapp_test'
 
 def create_sweography_db():
