@@ -117,13 +117,12 @@ class ModelsTest(TestCase) :
 
     def test_languages_blank(self):
 
-    	language = Languages()
+    	language = Languages()	
 
     	db.session.add(language)
     	db.session.commit()
 
     	l = db.session.query(Languages).get(language.id)
-
     	self.assertEqual(l.name, None)
     	self.assertEqual(l.iso_code, None)
 
@@ -135,7 +134,7 @@ class ModelsTest(TestCase) :
     	language = Languages(
     		name='English',
     		iso_code='en'
-    	)
+    	)	
 
     	db.session.add(language)
     	db.session.commit()
@@ -153,7 +152,7 @@ class ModelsTest(TestCase) :
     	language = Languages(
     		name='Chinese',
     		iso_code='zh'
-    	)
+    	)	
 
     	db.session.add(language)
     	db.session.commit()
@@ -179,7 +178,6 @@ class ModelsTest(TestCase) :
     	db.session.commit()
 
     	c = db.session.query(Currencies).get(currency.id)
-
     	self.assertEqual(c.name, None)
     	self.assertEqual(c.code, None)
 
@@ -197,7 +195,7 @@ class ModelsTest(TestCase) :
     	db.session.commit()
 
     	c = db.session.query(Currencies).get(currency.id)
-
+    	
     	self.assertEqual(c.name, 'US Dollar')
     	self.assertEqual(c.code, 'USD')
 
@@ -235,7 +233,6 @@ class ModelsTest(TestCase) :
     	db.session.commit()
 
     	b = db.session.query(Borders).get(border.id)
-
     	self.assertEqual(b.name, None)
 
     	db.session.delete(border)
@@ -286,7 +283,6 @@ class ModelsTest(TestCase) :
     	db.session.commit()
 
     	r = db.session.query(Regions).get(region.id)
-
     	self.assertEqual(r.name, None)
 
     	db.session.delete(region)
@@ -336,7 +332,6 @@ class ModelsTest(TestCase) :
     	db.session.commit()
 
     	sr = db.session.query(SubRegions).get(subregion.id)
-
     	self.assertEqual(sr.name, None)
 
     	db.session.delete(subregion)
@@ -352,7 +347,7 @@ class ModelsTest(TestCase) :
 
     	sr = db.session.query(SubRegions).get(subregion.id)
 
-    	self.assertEqual(sr.name, 'Southern Europe')
+    	self.assertEqual(sr.name, 'Southern Europe')    	
 
     	db.session.delete(subregion)
     	db.session.commit()

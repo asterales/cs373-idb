@@ -179,10 +179,6 @@ class SubRegions(Base):
 	#parent_region = Column(String(255))
 
 ###connects to a database that has already been created
-
-# use this for local host only
-# app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://user:password@localhost/countries_db2'
-
 def create_sweography_db():
 
     engine = create_engine(SQLALCHEMY_DATABASE_URI)
@@ -193,3 +189,9 @@ def create_sweography_db():
 
     ##creates all tables in database
     Base.metadata.create_all(engine)
+
+# use this for local host only
+if "TRAVIS" in os.environ:
+	app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:@localhost/myapp_test'
+	create_sweography_db();
+

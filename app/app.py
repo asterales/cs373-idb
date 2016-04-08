@@ -193,9 +193,8 @@ def get_map_data(countries):
 
 
 if __name__ == "__main__":
-	from models import create_sweography_db
-	create_sweography_db()
-	import populate_db
 	app.run(debug=True)
-
+	from models import create_database
+	create_database()
+	import populate_db
 
