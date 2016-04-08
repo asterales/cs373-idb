@@ -368,210 +368,210 @@ class ModelsTest(TestCase) :
     	db.session.commit()
 
 
-class APITests(TestCase):
+# class APITests(TestCase):
 
-	# --------------------
-    # Country API GET Test
-    # --------------------
+# 	# --------------------
+#     # Country API GET Test
+#     # --------------------
 
-	def test_api_get_country_1(self):
-		apiResponse = urlopen('http://sweography.me/api/v1/country/1')
-		apiResponseInfo = apiResponse.info()
-		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
-		jsonResponse = json.loads(apiResponseRaw)
+# 	def test_api_get_country_1(self):
+# 		apiResponse = urlopen('http://sweography.me/api/v1/country/1')
+# 		apiResponseInfo = apiResponse.info()
+# 		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
+# 		jsonResponse = json.loads(apiResponseRaw)
 
-		self.assertEqual(jsonResponse['name'], 'Afghanistan')
-		self.assertEqual(jsonResponse['region'], 'Asia')
-		self.assertEqual(jsonResponse['subregion'], 'Southern Asia')
-		self.assertEqual(jsonResponse['capital'], 'Kabul')
-		self.assertEqual(len(jsonResponse['borders']), 6)
-		self.assertEqual(jsonResponse['currencies'][0]['code'], 'AFN')
+# 		self.assertEqual(jsonResponse['name'], 'Afghanistan')
+# 		self.assertEqual(jsonResponse['region'], 'Asia')
+# 		self.assertEqual(jsonResponse['subregion'], 'Southern Asia')
+# 		self.assertEqual(jsonResponse['capital'], 'Kabul')
+# 		self.assertEqual(len(jsonResponse['borders']), 6)
+# 		self.assertEqual(jsonResponse['currencies'][0]['code'], 'AFN')
 
-	def test_api_get_country_2(self):
-		apiResponse = urlopen('http://sweography.me/api/v1/country/10')
-		apiResponseInfo = apiResponse.info()
-		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
-		jsonResponse = json.loads(apiResponseRaw)
+# 	def test_api_get_country_2(self):
+# 		apiResponse = urlopen('http://sweography.me/api/v1/country/10')
+# 		apiResponseInfo = apiResponse.info()
+# 		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
+# 		jsonResponse = json.loads(apiResponseRaw)
 
-		self.assertEqual(jsonResponse['name'], 'Argentina')
-		self.assertEqual(jsonResponse['region'], 'Americas')
-		self.assertEqual(jsonResponse['subregion'], 'South America')
-		self.assertEqual(jsonResponse['capital'], 'Buenos Aires')
-		self.assertEqual(len(jsonResponse['borders']), 5)
-		self.assertEqual(jsonResponse['currencies'][0]['code'], 'ARS')
+# 		self.assertEqual(jsonResponse['name'], 'Argentina')
+# 		self.assertEqual(jsonResponse['region'], 'Americas')
+# 		self.assertEqual(jsonResponse['subregion'], 'South America')
+# 		self.assertEqual(jsonResponse['capital'], 'Buenos Aires')
+# 		self.assertEqual(len(jsonResponse['borders']), 5)
+# 		self.assertEqual(jsonResponse['currencies'][0]['code'], 'ARS')
 
-	def test_api_get_country_3(self):
-		apiResponse = urlopen('http://sweography.me/api/v1/country/225')
-		apiResponseInfo = apiResponse.info()
-		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
-		jsonResponse = json.loads(apiResponseRaw)
+# 	def test_api_get_country_3(self):
+# 		apiResponse = urlopen('http://sweography.me/api/v1/country/225')
+# 		apiResponseInfo = apiResponse.info()
+# 		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
+# 		jsonResponse = json.loads(apiResponseRaw)
 
-		self.assertEqual(jsonResponse['name'], 'Tokelau')
-		self.assertEqual(jsonResponse['region'], 'Oceania')
-		self.assertEqual(jsonResponse['subregion'], 'Polynesia')
-		self.assertEqual(jsonResponse['capital'], 'Fakaofo')
-		self.assertEqual(len(jsonResponse['borders']), 0)
-		self.assertEqual(jsonResponse['currencies'][0]['code'], 'NZD')
+# 		self.assertEqual(jsonResponse['name'], 'Tokelau')
+# 		self.assertEqual(jsonResponse['region'], 'Oceania')
+# 		self.assertEqual(jsonResponse['subregion'], 'Polynesia')
+# 		self.assertEqual(jsonResponse['capital'], 'Fakaofo')
+# 		self.assertEqual(len(jsonResponse['borders']), 0)
+# 		self.assertEqual(jsonResponse['currencies'][0]['code'], 'NZD')
 
-	# -------------------
-    # Region API GET Test
-    # -------------------
+# 	# -------------------
+#     # Region API GET Test
+#     # -------------------
 
-	def test_api_get_region_1(self):
-		apiResponse = urlopen('http://sweography.me/api/v1/region/5')
-		apiResponseInfo = apiResponse.info()
-		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
-		jsonResponse = json.loads(apiResponseRaw)
+# 	def test_api_get_region_1(self):
+# 		apiResponse = urlopen('http://sweography.me/api/v1/region/5')
+# 		apiResponseInfo = apiResponse.info()
+# 		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
+# 		jsonResponse = json.loads(apiResponseRaw)
 
-		self.assertEqual(jsonResponse['name'], 'Americas')
-		self.assertEqual(jsonResponse['languages'], 11)
-		self.assertEqual(jsonResponse['subregions'], 4)
-		self.assertEqual(jsonResponse['currencies'], 40)
-		self.assertEqual(jsonResponse['countries'], 56)
+# 		self.assertEqual(jsonResponse['name'], 'Americas')
+# 		self.assertEqual(jsonResponse['languages'], 11)
+# 		self.assertEqual(jsonResponse['subregions'], 4)
+# 		self.assertEqual(jsonResponse['currencies'], 40)
+# 		self.assertEqual(jsonResponse['countries'], 56)
 
-	def test_api_get_region_2(self):
-		apiResponse = urlopen('http://sweography.me/api/v1/region/4')
-		apiResponseInfo = apiResponse.info()
-		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
-		jsonResponse = json.loads(apiResponseRaw)
+# 	def test_api_get_region_2(self):
+# 		apiResponse = urlopen('http://sweography.me/api/v1/region/4')
+# 		apiResponseInfo = apiResponse.info()
+# 		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
+# 		jsonResponse = json.loads(apiResponseRaw)
 
-		self.assertEqual(jsonResponse['name'], 'Oceania')
-		self.assertEqual(jsonResponse['languages'], 13)
-		self.assertEqual(jsonResponse['subregions'], 4)
-		self.assertEqual(jsonResponse['currencies'], 10)
-		self.assertEqual(jsonResponse['countries'], 27)
+# 		self.assertEqual(jsonResponse['name'], 'Oceania')
+# 		self.assertEqual(jsonResponse['languages'], 13)
+# 		self.assertEqual(jsonResponse['subregions'], 4)
+# 		self.assertEqual(jsonResponse['currencies'], 10)
+# 		self.assertEqual(jsonResponse['countries'], 27)
 
-	def test_api_get_region_3(self):
-		apiResponse = urlopen('http://sweography.me/api/v1/region/1')
-		apiResponseInfo = apiResponse.info()
-		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
-		jsonResponse = json.loads(apiResponseRaw)
+# 	def test_api_get_region_3(self):
+# 		apiResponse = urlopen('http://sweography.me/api/v1/region/1')
+# 		apiResponseInfo = apiResponse.info()
+# 		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
+# 		jsonResponse = json.loads(apiResponseRaw)
 
-		self.assertEqual(jsonResponse['name'], 'Asia')
-		self.assertEqual(jsonResponse['languages'], 37)
-		self.assertEqual(jsonResponse['subregions'], 5)
-		self.assertEqual(jsonResponse['currencies'], 49)
-		self.assertEqual(jsonResponse['countries'], 50)
+# 		self.assertEqual(jsonResponse['name'], 'Asia')
+# 		self.assertEqual(jsonResponse['languages'], 37)
+# 		self.assertEqual(jsonResponse['subregions'], 5)
+# 		self.assertEqual(jsonResponse['currencies'], 49)
+# 		self.assertEqual(jsonResponse['countries'], 50)
 
-	# ----------------------
-    # Subregion API GET Test
-    # ----------------------
+# 	# ----------------------
+#     # Subregion API GET Test
+#     # ----------------------
 
-	def test_api_get_subregion_1(self):
-		apiResponse = urlopen('http://sweography.me/api/v1/subregion/10')
-		apiResponseInfo = apiResponse.info()
-		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
-		jsonResponse = json.loads(apiResponseRaw)
+# 	def test_api_get_subregion_1(self):
+# 		apiResponse = urlopen('http://sweography.me/api/v1/subregion/10')
+# 		apiResponseInfo = apiResponse.info()
+# 		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
+# 		jsonResponse = json.loads(apiResponseRaw)
 
-		self.assertEqual(jsonResponse['name'], 'Australia and New Zealand')
-		self.assertEqual(jsonResponse['languages'], 2)
-		self.assertEqual(jsonResponse['region'], 'Oceania')
-		self.assertEqual(jsonResponse['currencies'], 2)
-		self.assertEqual(jsonResponse['countries'], 5)
+# 		self.assertEqual(jsonResponse['name'], 'Australia and New Zealand')
+# 		self.assertEqual(jsonResponse['languages'], 2)
+# 		self.assertEqual(jsonResponse['region'], 'Oceania')
+# 		self.assertEqual(jsonResponse['currencies'], 2)
+# 		self.assertEqual(jsonResponse['countries'], 5)
 
-	def test_api_get_subregion_2(self):
-		apiResponse = urlopen('http://sweography.me/api/v1/subregion/20')
-		apiResponseInfo = apiResponse.info()
-		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
-		jsonResponse = json.loads(apiResponseRaw)
+# 	def test_api_get_subregion_2(self):
+# 		apiResponse = urlopen('http://sweography.me/api/v1/subregion/20')
+# 		apiResponseInfo = apiResponse.info()
+# 		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
+# 		jsonResponse = json.loads(apiResponseRaw)
 
-		self.assertEqual(jsonResponse['name'], 'Eastern Asia')
-		self.assertEqual(jsonResponse['languages'], 6)
-		self.assertEqual(jsonResponse['region'], 'Asia')
-		self.assertEqual(jsonResponse['currencies'], 8)
-		self.assertEqual(jsonResponse['countries'], 8)
+# 		self.assertEqual(jsonResponse['name'], 'Eastern Asia')
+# 		self.assertEqual(jsonResponse['languages'], 6)
+# 		self.assertEqual(jsonResponse['region'], 'Asia')
+# 		self.assertEqual(jsonResponse['currencies'], 8)
+# 		self.assertEqual(jsonResponse['countries'], 8)
 
-	def test_api_get_subregion_3(self):
-		apiResponse = urlopen('http://sweography.me/api/v1/subregion/7')
-		apiResponseInfo = apiResponse.info()
-		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
-		jsonResponse = json.loads(apiResponseRaw)
+# 	def test_api_get_subregion_3(self):
+# 		apiResponse = urlopen('http://sweography.me/api/v1/subregion/7')
+# 		apiResponseInfo = apiResponse.info()
+# 		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
+# 		jsonResponse = json.loads(apiResponseRaw)
 
-		self.assertEqual(jsonResponse['name'], 'Caribbean')
-		self.assertEqual(jsonResponse['languages'], 6)
-		self.assertEqual(jsonResponse['region'], 'Americas')
-		self.assertEqual(jsonResponse['currencies'], 14)
-		self.assertEqual(jsonResponse['countries'], 27)
+# 		self.assertEqual(jsonResponse['name'], 'Caribbean')
+# 		self.assertEqual(jsonResponse['languages'], 6)
+# 		self.assertEqual(jsonResponse['region'], 'Americas')
+# 		self.assertEqual(jsonResponse['currencies'], 14)
+# 		self.assertEqual(jsonResponse['countries'], 27)
 
-	# ---------------------
-    # Language API GET Test
-    # ---------------------
+# 	# ---------------------
+#     # Language API GET Test
+#     # ---------------------
 
-	def test_api_get_languages_1(self):
-		apiResponse = urlopen('http://sweography.me/api/v1/language/3')
-		apiResponseInfo = apiResponse.info()
-		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
-		jsonResponse = json.loads(apiResponseRaw)
+# 	def test_api_get_languages_1(self):
+# 		apiResponse = urlopen('http://sweography.me/api/v1/language/3')
+# 		apiResponseInfo = apiResponse.info()
+# 		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
+# 		jsonResponse = json.loads(apiResponseRaw)
 
-		self.assertEqual(jsonResponse['name'], 'Samoan')
-		self.assertEqual(jsonResponse['iso_code'], 'sm')
-		self.assertEqual(jsonResponse['regions'], 1)
-		self.assertEqual(jsonResponse['subregions'], 1)
-		self.assertEqual(jsonResponse['countries'], 2)
+# 		self.assertEqual(jsonResponse['name'], 'Samoan')
+# 		self.assertEqual(jsonResponse['iso_code'], 'sm')
+# 		self.assertEqual(jsonResponse['regions'], 1)
+# 		self.assertEqual(jsonResponse['subregions'], 1)
+# 		self.assertEqual(jsonResponse['countries'], 2)
 
-	def test_api_get_languages_2(self):
-		apiResponse = urlopen('http://sweography.me/api/v1/language/50')
-		apiResponseInfo = apiResponse.info()
-		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
-		jsonResponse = json.loads(apiResponseRaw)
+# 	def test_api_get_languages_2(self):
+# 		apiResponse = urlopen('http://sweography.me/api/v1/language/50')
+# 		apiResponseInfo = apiResponse.info()
+# 		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
+# 		jsonResponse = json.loads(apiResponseRaw)
 
-		self.assertEqual(jsonResponse['name'], 'Luxembourgish')
-		self.assertEqual(jsonResponse['iso_code'], 'lb')
-		self.assertEqual(jsonResponse['regions'], 1)
-		self.assertEqual(jsonResponse['subregions'], 1)
-		self.assertEqual(jsonResponse['countries'], 1)
+# 		self.assertEqual(jsonResponse['name'], 'Luxembourgish')
+# 		self.assertEqual(jsonResponse['iso_code'], 'lb')
+# 		self.assertEqual(jsonResponse['regions'], 1)
+# 		self.assertEqual(jsonResponse['subregions'], 1)
+# 		self.assertEqual(jsonResponse['countries'], 1)
 
-	def test_api_get_languages_3(self):
-		apiResponse = urlopen('http://sweography.me/api/v1/language/29')
-		apiResponseInfo = apiResponse.info()
-		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
-		jsonResponse = json.loads(apiResponseRaw)
+# 	def test_api_get_languages_3(self):
+# 		apiResponse = urlopen('http://sweography.me/api/v1/language/29')
+# 		apiResponseInfo = apiResponse.info()
+# 		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
+# 		jsonResponse = json.loads(apiResponseRaw)
 
-		self.assertEqual(jsonResponse['name'], 'Afrikaans')
-		self.assertEqual(jsonResponse['iso_code'], 'af')
-		self.assertEqual(jsonResponse['regions'], 1)
-		self.assertEqual(jsonResponse['subregions'], 1)
-		self.assertEqual(jsonResponse['countries'], 2)
+# 		self.assertEqual(jsonResponse['name'], 'Afrikaans')
+# 		self.assertEqual(jsonResponse['iso_code'], 'af')
+# 		self.assertEqual(jsonResponse['regions'], 1)
+# 		self.assertEqual(jsonResponse['subregions'], 1)
+# 		self.assertEqual(jsonResponse['countries'], 2)
 
-	# ---------------------
-    # Currency API GET Test
-    # ---------------------
+# 	# ---------------------
+#     # Currency API GET Test
+#     # ---------------------
 
-	def test_api_get_currencies_1(self):
-		apiResponse = urlopen('http://sweography.me/api/v1/currency/11')
-		apiResponseInfo = apiResponse.info()
-		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
-		jsonResponse = json.loads(apiResponseRaw)
+# 	def test_api_get_currencies_1(self):
+# 		apiResponse = urlopen('http://sweography.me/api/v1/currency/11')
+# 		apiResponseInfo = apiResponse.info()
+# 		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
+# 		jsonResponse = json.loads(apiResponseRaw)
 
-		self.assertEqual(jsonResponse['name'], 'Bermuda Dollar')
-		self.assertEqual(jsonResponse['code'], 'BMD')
-		self.assertEqual(jsonResponse['regions'], 1)
-		self.assertEqual(jsonResponse['subregions'], 1)
-		self.assertEqual(jsonResponse['countries'], 1)
+# 		self.assertEqual(jsonResponse['name'], 'Bermuda Dollar')
+# 		self.assertEqual(jsonResponse['code'], 'BMD')
+# 		self.assertEqual(jsonResponse['regions'], 1)
+# 		self.assertEqual(jsonResponse['subregions'], 1)
+# 		self.assertEqual(jsonResponse['countries'], 1)
 
-	def test_api_get_currencies_2(self):
-		apiResponse = urlopen('http://sweography.me/api/v1/currency/21')
-		apiResponseInfo = apiResponse.info()
-		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
-		jsonResponse = json.loads(apiResponseRaw)
+# 	def test_api_get_currencies_2(self):
+# 		apiResponse = urlopen('http://sweography.me/api/v1/currency/21')
+# 		apiResponseInfo = apiResponse.info()
+# 		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
+# 		jsonResponse = json.loads(apiResponseRaw)
 
-		self.assertEqual(jsonResponse['name'], 'Chile Peso')
-		self.assertEqual(jsonResponse['code'], 'CLP')
-		self.assertEqual(jsonResponse['regions'], 1)
-		self.assertEqual(jsonResponse['subregions'], 1)
-		self.assertEqual(jsonResponse['countries'], 1)
+# 		self.assertEqual(jsonResponse['name'], 'Chile Peso')
+# 		self.assertEqual(jsonResponse['code'], 'CLP')
+# 		self.assertEqual(jsonResponse['regions'], 1)
+# 		self.assertEqual(jsonResponse['subregions'], 1)
+# 		self.assertEqual(jsonResponse['countries'], 1)
 
-	def test_api_get_currencies_3(self):
-		apiResponse = urlopen('http://sweography.me/api/v1/currency/100')
-		apiResponseInfo = apiResponse.info()
-		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
-		jsonResponse = json.loads(apiResponseRaw)
+# 	def test_api_get_currencies_3(self):
+# 		apiResponse = urlopen('http://sweography.me/api/v1/currency/100')
+# 		apiResponseInfo = apiResponse.info()
+# 		apiResponseRaw = apiResponse.read().decode(apiResponseInfo.get_content_charset('utf8'))
+# 		jsonResponse = json.loads(apiResponseRaw)
 
-		self.assertEqual(jsonResponse['name'], 'Trinidad and Tobago Dollar')
-		self.assertEqual(jsonResponse['code'], 'TTD')
-		self.assertEqual(jsonResponse['regions'], 1)
-		self.assertEqual(jsonResponse['subregions'], 1)
-		self.assertEqual(jsonResponse['countries'], 1)
+# 		self.assertEqual(jsonResponse['name'], 'Trinidad and Tobago Dollar')
+# 		self.assertEqual(jsonResponse['code'], 'TTD')
+# 		self.assertEqual(jsonResponse['regions'], 1)
+# 		self.assertEqual(jsonResponse['subregions'], 1)
+# 		self.assertEqual(jsonResponse['countries'], 1)
 
 
 	# --------------------
