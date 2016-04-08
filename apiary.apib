@@ -5,7 +5,7 @@ HOST: http://sweography.me
 
 Internet Country Database gives you information about countries and their relating regions, currencies, and languages.
 
-## Countries Collection -- /country [/country{?id,region_id,currency_id,language_id}]
+## Countries Collection -- /country [/country{?id,region_id,currency_id,language_id, subregion_id}]
 
 ### List Countries [GET]
 
@@ -14,6 +14,8 @@ Internet Country Database gives you information about countries and their relati
         Response contains the country with the specified id
     + region_id (optional, integer)
         Response contains only countries in the specified region
+    + subregion_id (optional, integer)
+        Response contains only countries in the specified subregion        
     + currency_id (optional, integer)
         Response contains only countries that use the specified currency
     + language_id (optional, integer)
@@ -21,31 +23,96 @@ Internet Country Database gives you information about countries and their relati
 
 + Response 200 (application/json)
 
-        [
+        {
+          "countries": [
             {
-                "id": 1,
-                "name": "United States of America",
-                "lat": 38,
-                "lng": -97,
-                "region": "Americas",
-                "subregion": "North America",
-                "population": 321645000,
-                "area": 1000,
-                "capital": "Washington, DC",
-                "languages": [
-                    "en"
-                ],
-                "currencies": [
-                    "USD",
-                    "USN",
-                    "USS"
-                ],
-                "borders": [
-                    "CAN",
-                    "MEX"
-                ]
+              "area": "1000", 
+              "borders": [
+                {
+                  "id": 1, 
+                  "name": "MEX"
+                }
+              ], 
+              "capital": "Montreal", 
+              "currencies": [
+                {
+                  "code": "CAN", 
+                  "id": 1, 
+                  "name": null, 
+                  "unicode": null
+                }, 
+                {
+                  "code": "USD", 
+                  "id": 2, 
+                  "name": null, 
+                  "unicode": null
+                }
+              ], 
+              "id": "1", 
+              "languages": [
+                {
+                  "id": 1, 
+                  "iso_code": "en", 
+                  "name": null
+                }, 
+                {
+                  "id": 2, 
+                  "iso_code": "fr", 
+                  "name": null
+                }
+              ], 
+              "lat": "38", 
+              "lng": "-97", 
+              "name": "Canada", 
+              "population": "321645000", 
+              "region": "Americas", 
+              "subregion": "North America"
+            }, 
+            {
+              "area": "1000", 
+              "borders": [
+                {
+                  "id": 1, 
+                  "name": "MEX"
+                }
+              ], 
+              "capital": "Washington, DC", 
+              "currencies": [
+                {
+                  "code": "CAN", 
+                  "id": 1, 
+                  "name": null, 
+                  "unicode": null
+                }, 
+                {
+                  "code": "USD", 
+                  "id": 2, 
+                  "name": null, 
+                  "unicode": null
+                }
+              ], 
+              "id": "2", 
+              "languages": [
+                {
+                  "id": 1, 
+                  "iso_code": "en", 
+                  "name": null
+                }, 
+                {
+                  "id": 2, 
+                  "iso_code": "fr", 
+                  "name": null
+                }
+              ], 
+              "lat": "38", 
+              "lng": "-97", 
+              "name": "United States", 
+              "population": "321645000", 
+              "region": "Americas", 
+              "subregion": "North America"
             }
-        ]
+          ]
+        }
 
 ### Create a New Country [POST]
 
@@ -83,29 +150,49 @@ Internet Country Database gives you information about countries and their relati
 
     + Body
 
-               {
-                    "id": 2,
-                    "name": "United States of America",
-                    "lat": 38,
-                    "lng": -97,
-                    "population": 321645000,
-                    "area": 1000,
-                    "capital": "Washington, DC",
-                    "subregion": "North America",
-                    "region": "Americas",
-                    "languages": [
-                        "en"
-                    ],
-                    "currencies": [
-                        "USD",
-                        "USN",
-                        "USS"
-                    ],
-                    "borders": [
-                        "CAN",
-                        "MEX"
-                    ]
-                }
+        {
+          "area": "1000", 
+          "borders": [
+            {
+              "id": 1, 
+              "name": "MEX"
+            }
+          ], 
+          "capital": "Washington, DC", 
+          "currencies": [
+            {
+              "code": "CAN", 
+              "id": 1, 
+              "name": null, 
+              "unicode": null
+            }, 
+            {
+              "code": "USD", 
+              "id": 2, 
+              "name": null, 
+              "unicode": null
+            }
+          ], 
+          "id": "2", 
+          "languages": [
+            {
+              "id": 1, 
+              "iso_code": "en", 
+              "name": null
+            }, 
+            {
+              "id": 2, 
+              "iso_code": "fr", 
+              "name": null
+            }
+          ], 
+          "lat": "38", 
+          "lng": "-97", 
+          "name": "United States", 
+          "population": "321645000", 
+          "region": "Americas", 
+          "subregion": "North America"
+        }
 
 ## Single Country -- /country/{id} [/country/{id}]
 
@@ -114,28 +201,48 @@ Internet Country Database gives you information about countries and their relati
 + Response 200 (application/json)
 
 
-        {
-            "id": 1,
-            "name": "United States of America",
-            "lat": 38,
-            "lng": -97,
-            "region": "Americas",
-            "subregion": "North America",
-            "population": 321645000,
-            "area": 1000,
-            "capital": "Washington, DC",
-            "languages": [
-                "en"
-            ],
-            "currencies": [
-                "USD",
-                "USN",
-                "USS"
-            ],
-            "borders": [
-                "CAN",
-                "MEX"
-            ]
+{
+          "area": "1000", 
+          "borders": [
+            {
+              "id": 1, 
+              "name": "MEX"
+            }
+          ], 
+          "capital": "Washington, DC", 
+          "currencies": [
+            {
+              "code": "CAN", 
+              "id": 1, 
+              "name": null, 
+              "unicode": null
+            }, 
+            {
+              "code": "USD", 
+              "id": 2, 
+              "name": null, 
+              "unicode": null
+            }
+          ], 
+          "id": "2", 
+          "languages": [
+            {
+              "id": 1, 
+              "iso_code": "en", 
+              "name": null
+            }, 
+            {
+              "id": 2, 
+              "iso_code": "fr", 
+              "name": null
+            }
+          ], 
+          "lat": "38", 
+          "lng": "-97", 
+          "name": "United States", 
+          "population": "321645000", 
+          "region": "Americas", 
+          "subregion": "North America"
         }
 
 
@@ -174,29 +281,49 @@ Internet Country Database gives you information about countries and their relati
 
     + Body
 
-               {
-                    "id": 2,
-                    "name": "United States of America",
-                    "lat": 38,
-                    "lng": -97,
-                    "population": 321645000,
-                    "area": 1000,
-                    "region": "Americas",
-                    "subregion": "North America",
-                    "capital": "Washington, DC",
-                    "languages": [
-                        "en"
-                    ],
-                    "currencies": [
-                        "USD",
-                        "USN",
-                        "USS"
-                    ],
-                    "borders": [
-                        "CAN",
-                        "MEX"
-                    ]
-                }
+{
+          "area": "1000", 
+          "borders": [
+            {
+              "id": 1, 
+              "name": "MEX"
+            }
+          ], 
+          "capital": "Washington, DC", 
+          "currencies": [
+            {
+              "code": "CAN", 
+              "id": 1, 
+              "name": null, 
+              "unicode": null
+            }, 
+            {
+              "code": "USD", 
+              "id": 2, 
+              "name": null, 
+              "unicode": null
+            }
+          ], 
+          "id": "2", 
+          "languages": [
+            {
+              "id": 1, 
+              "iso_code": "en", 
+              "name": null
+            }, 
+            {
+              "id": 2, 
+              "iso_code": "fr", 
+              "name": null
+            }
+          ], 
+          "lat": "38", 
+          "lng": "-97", 
+          "name": "United States", 
+          "population": "321645000", 
+          "region": "Americas", 
+          "subregion": "North America"
+        }
 
 ### Remove a Country [DELETE]
 
@@ -205,13 +332,21 @@ Internet Country Database gives you information about countries and their relati
 + Response 204
 
 
-## Regions Collection -- /region [/region]
+## Regions Collection -- /region [/region{?subregion_id,currency_id,language_id}]
 
 ### List Regions [GET]
 
++ Parameters
+    + subregion_id (optional, integer)
+        Response contains only regions containing the specified subregion        
+    + currency_id (optional, integer)
+        Response contains only regions that use the specified currency
+    + language_id (optional, integer)
+        Response contains only regions who speak the specified language
+
 + Response 200 (application/json)
 
-        [
+        {"regions":[
             {
                 "id": 1,
                 "name": "Americas",
@@ -232,7 +367,7 @@ Internet Country Database gives you information about countries and their relati
                 "languages": 10,
                 "currencies": 10
             }
-        ]
+        ]}
 
 ### Create a New Region [POST]
 
@@ -308,16 +443,22 @@ Internet Country Database gives you information about countries and their relati
 + Response 204
 
 
-## Languages Collection -- /language [/language]
+## Languages Collection -- /language [/language{?region_id,subregion_id}]
 
 ### List Languages [GET]
 
++ Parameters
+    + region_id (optional, integer)
+        Response contains only languages used in the specified region
+    + subregion_id (optional, integer)
+        Response contains only languages used in the specified subregion        
+
 + Response 200 (application/json)
 
-        [
+        {"languages":[
             {
                 "id": 1,
-                "iso": "en",
+                "iso_code": "en",
                 "name": "English",
                 "countries": 2,
                 "regions": 1,
@@ -325,20 +466,20 @@ Internet Country Database gives you information about countries and their relati
             },
             {
                 "id": 2,
-                "iso": "no",
+                "iso_code": "no",
                 "name": "Norwegian",
                 "countries": 2,
                 "regions": 1,
                 "subregion": 1
             }
-        ]
+        ]}
 
 ### Create a New Language [POST]
 
 + Request (application/json)
 
         {
-            "iso": "sp",
+            "iso_code": "sp",
             "name": "Spanish"
         }
 
@@ -352,7 +493,7 @@ Internet Country Database gives you information about countries and their relati
 
                {
                     "id": 2,
-                    "iso": "sp",
+                    "iso_code": "sp",
                     "name": "Spanish",
                     "countries": 1,
                     "regions": 1,
@@ -367,7 +508,7 @@ Internet Country Database gives you information about countries and their relati
 
         {
             "id": 1,
-            "iso": "en",
+            "iso_code": "en",
             "name": "English",
             "countries": 2,
             "regions": 1,
@@ -380,7 +521,7 @@ Internet Country Database gives you information about countries and their relati
 + Request (application/json)
 
         {
-            "iso": "en",
+            "iso_code": "en",
             "name": "English"
         }
 
@@ -394,7 +535,7 @@ Internet Country Database gives you information about countries and their relati
 
                {
                     "id": 1,
-                    "iso": "en",
+                    "iso_code": "en",
                     "name": "English",
                     "countries": 2,
                     "regions": 1,
@@ -408,13 +549,19 @@ Internet Country Database gives you information about countries and their relati
 + Response 204
 
 
-## Currency Collection -- /currency [/currency]
+## Currency Collection -- /currency [/currency{?region_id,subregion_id}]
 
 ### List Currencies [GET]
 
++ Parameters
+    + region_id (optional, integer)
+        Response contains only currencies used in the specified region
+    + subregion_id (optional, integer)
+        Response contains only currencies in the specified subregion        
+
 + Response 200 (application/json)
 
-        [
+        {"currencies":[
             {
                 "id": 1,
                 "code": "USD",
@@ -431,7 +578,7 @@ Internet Country Database gives you information about countries and their relati
                 "regions": 1,
                 "subregions": 1
             }
-        ]
+        ]}
 
 ### Create a New Currency [POST]
 
@@ -509,13 +656,21 @@ Internet Country Database gives you information about countries and their relati
 + Response 204
 
 
-## Subregion Collection -- /subregion [/subregion]
+## Subregion Collection -- /subregion [/subregion{?language_id,currency_id,region_id}]
 
 ### List Subregions [GET]
 
++ Parameters
+    + region_id (optional, integer)
+        Response contains only subregions in the specified region
+    + currency_id (optional, integer)
+        Response contains only subregions that use the specified currency
+    + language_id (optional, integer)
+        Response contains only subregions who speak the specified language
+
 + Response 200 (application/json)
 
-        [
+        {"subregions":[
             {
                 "id": 1,
                 "name": "North America",
@@ -532,7 +687,7 @@ Internet Country Database gives you information about countries and their relati
                 "countries": 1,
                 "currencies": 1
             }
-        ]
+        ]}
 
 ### Create a New Subregion [POST]
 
