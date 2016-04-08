@@ -187,16 +187,17 @@ class SubRegions(Base):
 ### GRANT ALL ON SWEography.* TO 'sweopgrahy'@'localhost';
 
 ## use this for localhost only
-# app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI = 'mysql://user:password@localhost/countries_db2'
+# app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://user:password@localhost/countries_db2'
 # engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
 engine = create_engine(SQLALCHEMY_DATABASE_URI)
 
-if database_exists(engine.url):
-    drop_database(engine.url)
-create_database(engine.url)
+def create_database():
+    if database_exists(engine.url):
+        drop_database(engine.url)
+    create_database(engine.url)
 
-# if not database_exists(engine.url):
-#     create_database(engine.url)
+    # if not database_exists(engine.url):
+    #     create_database(engine.url)
 
-##creates all tables in database
-Base.metadata.create_all(engine)
+    ##creates all tables in database
+    Base.metadata.create_all(engine)

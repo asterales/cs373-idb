@@ -97,7 +97,7 @@ def region_page(region):
 		countries = api.getCountryModels({"region_id":region_id})
 		languages = api.getLanguageModels({"region_id":region_id})
 		currencies = api.getCurrencyModels({"region_id":region_id})
-		
+
 		return render_template('region.html', region = region, subregions=subregions, countries=countries, languages=languages, \
 								currencies = currencies, panel_styles = panel_styles, map_data = get_map_data(countries))
 
@@ -111,7 +111,7 @@ def subregion_page(subregion):
 		countries = api.getCountryModels({"subregion_id":subregion_id})
 		languages = api.getLanguageModels({"subregion_id":subregion_id})
 		currencies = api.getCurrencyModels({"subregion_id":subregion_id})
-	
+
 		return render_template('subregion.html', subregion = subregion, countries=countries, languages=languages, currencies=currencies,\
 								panel_styles = panel_styles, map_data = get_map_data(countries))
 
@@ -191,7 +191,10 @@ def get_map_data(countries):
 	map_data["coords"] = coords
 	return map_data
 
-import populate_db
 
 if __name__ == "__main__":
-    app.run(debug=True)
+	app.run(debug=True)
+	from models import create_database
+	create_database()
+	import populate_db
+

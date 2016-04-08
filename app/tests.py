@@ -22,13 +22,15 @@ class ModelsTest(TestCase) :
         db.session.add(country)
         db.session.commit()
 
-        c = db.session.query(Countries).filter_by(name=None).first()
-
+        c = db.session.query(Countries).get(country.id)
         self.assertEqual(c.name, None)
         self.assertEqual(c.capital, None)
         self.assertEqual(c.population, None)
         self.assertEqual(c.lat, None)
         self.assertEqual(c.lng, None)
+
+        db.session.delete(country)
+        db.session.commit()
 
     def test_countries_1(self):
 
@@ -44,7 +46,7 @@ class ModelsTest(TestCase) :
     	db.session.add(country)
     	db.session.commit()
 
-    	c = db.session.query(Countries).filter_by(name='United States of America').first()
+    	c = db.session.query(Countries).get(country.id)
 
     	self.assertEqual(c.name, 'United States of America')
     	self.assertEqual(c.capital, 'Austin')
@@ -52,6 +54,9 @@ class ModelsTest(TestCase) :
     	self.assertEqual(c.lng, -97)
     	self.assertEqual(c.area, 9629091)
     	self.assertEqual(c.population, 321645000)
+
+    	db.session.delete(country)
+    	db.session.commit()
 
     def test_countries_2(self) :
 
@@ -67,7 +72,7 @@ class ModelsTest(TestCase) :
     	db.session.add(country)
     	db.session.commit()
 
-    	c = db.session.query(Countries).filter_by(name='Afghanistan').first()
+    	c = db.session.query(Countries).get(country.id)
 
     	self.assertEqual(c.name, 'Afghanistan')
     	self.assertEqual(c.capital, 'Kabul')
@@ -75,6 +80,9 @@ class ModelsTest(TestCase) :
     	self.assertEqual(c.lng, 65)
     	self.assertEqual(c.area, 652230)
     	self.assertEqual(c.population, 26023100)
+
+    	db.session.delete(country)
+    	db.session.commit()
 
     def test_countries_3(self):
 
@@ -90,7 +98,7 @@ class ModelsTest(TestCase) :
     	db.session.add(country)
     	db.session.commit()
 
-    	c = db.session.query(Countries).filter_by(name='Albania').first()
+    	c = db.session.query(Countries).get(country.id)
 
     	self.assertEqual(c.name, 'Albania')
     	self.assertEqual(c.capital, 'Tirana')
@@ -99,6 +107,9 @@ class ModelsTest(TestCase) :
     	self.assertEqual(c.area, 28748)
     	self.assertEqual(c.population, 2893005)
 
+    	db.session.delete(country)
+    	db.session.commit()
+
 
     # ---------------
     # Languages Test
@@ -106,45 +117,54 @@ class ModelsTest(TestCase) :
 
     def test_languages_blank(self):
 
-    	language = Languages()	
+    	language = Languages()
 
     	db.session.add(language)
     	db.session.commit()
 
-    	l = db.session.query(Languages).filter_by(name=None).first()
+    	l = db.session.query(Languages).get(language.id)
 
     	self.assertEqual(l.name, None)
     	self.assertEqual(l.iso_code, None)
+
+    	db.session.delete(language)
+    	db.session.commit()
 
     def test_languages_1(self):
 
     	language = Languages(
     		name='English',
     		iso_code='en'
-    	)	
+    	)
 
     	db.session.add(language)
     	db.session.commit()
 
-    	l = db.session.query(Languages).filter_by(name='English').first()
+    	l = db.session.query(Languages).get(language.id)
 
     	self.assertEqual(l.name, 'English')
     	self.assertEqual(l.iso_code, 'en')
+
+    	db.session.delete(language)
+    	db.session.commit()
 
     def test_languages_2(self):
 
     	language = Languages(
     		name='Chinese',
     		iso_code='zh'
-    	)	
+    	)
 
     	db.session.add(language)
     	db.session.commit()
 
-    	l = db.session.query(Languages).filter_by(name='Chinese').first()
+    	l = db.session.query(Languages).get(language.id)
 
     	self.assertEqual(l.name, 'Chinese')
     	self.assertEqual(l.iso_code, 'zh')
+
+    	db.session.delete(language)
+    	db.session.commit()
 
 
     # ---------------
@@ -158,10 +178,13 @@ class ModelsTest(TestCase) :
     	db.session.add(currency)
     	db.session.commit()
 
-    	c = db.session.query(Currencies).filter_by(name=None).first()
+    	c = db.session.query(Currencies).get(currency.id)
 
     	self.assertEqual(c.name, None)
     	self.assertEqual(c.code, None)
+
+    	db.session.delete(currency)
+    	db.session.commit()
 
     def test_currencies_1(self):
 
@@ -173,10 +196,13 @@ class ModelsTest(TestCase) :
     	db.session.add(currency)
     	db.session.commit()
 
-    	c = db.session.query(Currencies).filter_by(name='US Dollar').first()
-    	
+    	c = db.session.query(Currencies).get(currency.id)
+
     	self.assertEqual(c.name, 'US Dollar')
     	self.assertEqual(c.code, 'USD')
+
+    	db.session.delete(currency)
+    	db.session.commit()
 
     def test_currencies_2(self):
 
@@ -188,10 +214,13 @@ class ModelsTest(TestCase) :
     	db.session.add(currency)
     	db.session.commit()
 
-    	c = db.session.query(Currencies).filter_by(name='Yuan Renminbi').first()
+    	c = db.session.query(Currencies).get(currency.id)
 
     	self.assertEqual(c.name, 'Yuan Renminbi')
     	self.assertEqual(c.code, 'CNY')
+
+    	db.session.delete(currency)
+    	db.session.commit()
 
 
     # ---------------
@@ -205,9 +234,12 @@ class ModelsTest(TestCase) :
     	db.session.add(border)
     	db.session.commit()
 
-    	b = db.session.query(Borders).filter_by(name=None).first()
+    	b = db.session.query(Borders).get(border.id)
 
     	self.assertEqual(b.name, None)
+
+    	db.session.delete(border)
+    	db.session.commit()
 
     def test_borders_1(self):
 
@@ -218,9 +250,12 @@ class ModelsTest(TestCase) :
     	db.session.add(border)
     	db.session.commit()
 
-    	b = db.session.query(Borders).filter_by(name='CAN').first()
+    	b = db.session.query(Borders).get(border.id)
 
     	self.assertEqual(b.name, 'CAN')
+
+    	db.session.delete(border)
+    	db.session.commit()
 
     def test_borders_2(self):
 
@@ -231,9 +266,12 @@ class ModelsTest(TestCase) :
     	db.session.add(border)
     	db.session.commit()
 
-    	b = db.session.query(Borders).filter_by(name='MEX').first()
+    	b = db.session.query(Borders).get(border.id)
 
     	self.assertEqual(b.name, 'MEX')
+
+    	db.session.delete(border)
+    	db.session.commit()
 
 
     # ---------------
@@ -247,9 +285,12 @@ class ModelsTest(TestCase) :
     	db.session.add(region)
     	db.session.commit()
 
-    	r = db.session.query(Regions).filter_by(name=None).first()
+    	r = db.session.query(Regions).get(region.id)
 
     	self.assertEqual(r.name, None)
+
+    	db.session.delete(region)
+    	db.session.commit()
 
     def test_regions_1(self):
 
@@ -260,9 +301,12 @@ class ModelsTest(TestCase) :
     	db.session.add(region)
     	db.session.commit()
 
-    	r = db.session.query(Regions).filter_by(name='Americas').first()
+    	r = db.session.query(Regions).get(region.id)
 
     	self.assertEqual(r.name, 'Americas')
+
+    	db.session.delete(region)
+    	db.session.commit()
 
     def test_regions_2(self):
 
@@ -273,9 +317,12 @@ class ModelsTest(TestCase) :
     	db.session.add(region)
     	db.session.commit()
 
-    	r = db.session.query(Regions).filter_by(name='Europe').first()
+    	r = db.session.query(Regions).get(region.id)
 
     	self.assertEqual(r.name, 'Europe')
+
+    	db.session.delete(region)
+    	db.session.commit()
 
 
     # ---------------
@@ -288,9 +335,12 @@ class ModelsTest(TestCase) :
     	db.session.add(subregion)
     	db.session.commit()
 
-    	sr = db.session.query(SubRegions).filter_by(name=None).first()
+    	sr = db.session.query(SubRegions).get(subregion.id)
 
     	self.assertEqual(sr.name, None)
+
+    	db.session.delete(subregion)
+    	db.session.commit()
 
     def test_subregions_1(self):
     	subregion = SubRegions(
@@ -300,9 +350,12 @@ class ModelsTest(TestCase) :
     	db.session.add(subregion)
     	db.session.commit()
 
-    	sr = db.session.query(SubRegions).filter_by(name='Southern Europe').first()
+    	sr = db.session.query(SubRegions).get(subregion.id)
 
-    	self.assertEqual(sr.name, 'Southern Europe')    	
+    	self.assertEqual(sr.name, 'Southern Europe')
+
+    	db.session.delete(subregion)
+    	db.session.commit()
 
     def test_subregions_2(self):
     	subregion = SubRegions(
@@ -312,9 +365,12 @@ class ModelsTest(TestCase) :
     	db.session.add(subregion)
     	db.session.commit()
 
-    	sr = db.session.query(SubRegions).filter_by(name='Northern Africa').first()
+    	sr = db.session.query(SubRegions).get(subregion.id)
 
     	self.assertEqual(sr.name, 'Northern Africa')
+
+    	db.session.delete(subregion)
+    	db.session.commit()
 
 
 class APITests(TestCase):
