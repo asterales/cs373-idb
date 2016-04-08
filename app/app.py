@@ -191,10 +191,11 @@ def get_map_data(countries):
 	map_data["coords"] = coords
 	return map_data
 
+from models import create_sweography_db
+create_sweography_db()
+import populate_db
 
 if __name__ == "__main__":
 	app.run(debug=True)
-	from models import create_database
-	create_database()
-	import populate_db
+
 
