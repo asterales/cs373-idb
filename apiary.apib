@@ -5,7 +5,7 @@ HOST: http://sweography.me
 
 Internet Country Database gives you information about countries and their relating regions, currencies, and languages.
 
-## Countries Collection -- /country [/country{?id,region_id,currency_id,language_id, subregion_id}]
+## Countries Collection -- /country [/api/v1/country{?id,region_id,currency_id,language_id, subregion_id}]
 
 ### List Countries [GET]
 
@@ -194,7 +194,7 @@ Internet Country Database gives you information about countries and their relati
           "subregion": "North America"
         }
 
-## Single Country -- /country/{id} [/country/{id}]
+## Single Country -- /country/{id} [/api/v1/country/{id}]
 
 ### Get a Country [GET]
 
@@ -332,7 +332,7 @@ Internet Country Database gives you information about countries and their relati
 + Response 204
 
 
-## Regions Collection -- /region [/region{?subregion_id,currency_id,language_id}]
+## Regions Collection -- /region [/api/v1/region{?subregion_id,currency_id,language_id}]
 
 ### List Regions [GET]
 
@@ -390,7 +390,7 @@ Internet Country Database gives you information about countries and their relati
                     "name": "Americas"
                 }
 
-## Single Region -- /region/{id} [/region/{id}]
+## Single Region -- /region/{id} [/api/v1/region/{id}]
 
 ### Get a Region [GET]
 
@@ -443,7 +443,7 @@ Internet Country Database gives you information about countries and their relati
 + Response 204
 
 
-## Languages Collection -- /language [/language{?region_id,subregion_id}]
+## Languages Collection -- /language [/api/v1/language{?region_id,subregion_id}]
 
 ### List Languages [GET]
 
@@ -500,7 +500,7 @@ Internet Country Database gives you information about countries and their relati
                     "subregion": 1
                 }
 
-## Single Language -- /langauge/{id} [/language/{id}]
+## Single Language -- /langauge/{id} [/api/v1/language/{id}]
 
 ### Get a Language [GET]
 
@@ -549,7 +549,7 @@ Internet Country Database gives you information about countries and their relati
 + Response 204
 
 
-## Currency Collection -- /currency [/currency{?region_id,subregion_id}]
+## Currency Collection -- /currency [/api/v1/currency{?region_id,subregion_id}]
 
 ### List Currencies [GET]
 
@@ -606,7 +606,7 @@ Internet Country Database gives you information about countries and their relati
                     "subregions": 1
                 }
 
-## Single Currency -- /currency/{id} [/currency/{id}]
+## Single Currency -- /currency/{id} [/api/v1/currency/{id}]
 
 ### Get a Currency [GET]
 
@@ -656,7 +656,7 @@ Internet Country Database gives you information about countries and their relati
 + Response 204
 
 
-## Subregion Collection -- /subregion [/subregion{?language_id,currency_id,region_id}]
+## Subregion Collection -- /subregion [/api/v1/subregion{?language_id,currency_id,region_id}]
 
 ### List Subregions [GET]
 
@@ -714,7 +714,7 @@ Internet Country Database gives you information about countries and their relati
                     "currencies": 1
                 }
 
-## Single Subregion -- /subregion/{id} [/subregion/{id}]
+## Single Subregion -- /subregion/{id} [/api/v1/subregion/{id}]
 
 ### Get a Subregion [GET]
 
