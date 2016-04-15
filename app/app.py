@@ -145,6 +145,17 @@ def currency_page(currency):
 
 	return render_template('nopage.html', model_title = "Currency", model = "currency", redirect = "currencies")
 
+import requests, json
+
+@app.route("/swewars")
+def swewars():
+	planet_data = requests.get("http://swewars.me/get_planets").json()
+	planets = planet_data["planets"]
+	for planet in planets:
+		if planet["population"] == "unknown":
+			planet["population"] = 0
+	return render_template('swewars.html', planets=planets)
+
 # helper functions to process examples
 Link = namedtuple('Link', ['name', 'link'])
 def get_links_list(list):

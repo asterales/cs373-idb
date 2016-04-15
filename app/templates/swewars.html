@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}
+	SWEWars
+{% endblock %}
+
+{% block content %}
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Planet', 'Population'],
+          {% for planet in planets %}
+            ['{{ planet.name }}', {{ planet.population }}],
+          {% endfor %}
+        ]);
+
+        var options = {
+          title: 'Population'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="piechart" style="width: 100%; height: 1000px;"></div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
