@@ -69,6 +69,12 @@ def currencies_table():
 def about():
 	return render_template('about.html')
 
+@app.route("/search/<query>")
+def search(query):
+	if(query):
+		return render_template('search.html', query = query)
+	return render_template('nopage.html')
+
 @app.route("/about/tests")
 def run_tests():
 	os.system("python3 tests.py > tests.tmp 2>&1")

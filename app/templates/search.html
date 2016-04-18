@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}
+	Search
+{% endblock %}
+
+{% block content %}
+	<!-- I couldn't get this work properly when it was in it's own js file -->
+	<script>
+		var app = angular.module('instantsearch',[]);
+		app.config(['$interpolateProvider', function($interpolateProvider) {
+	  		$interpolateProvider.startSymbol('{a');
+	 	 	$interpolateProvider.endSymbol('a}');
+		}]);
+
+		app.controller('instantSearchCtrl',function($scope,$http, $q){
+		    /* Gets the data from our api, runs it through the search filter, and stores it in the items */
+	        var searchStrings = "{{ query }}".split(" ");
+	        $scope.items = [];
+	        for(query in searchStrings)
+	        {
+	        	searchStrings[query] = searchStrings[query].toLowerCase();
+	        }
+	        // Would be much faster with static json files. I don't know how to do that.
+	        $http.get('/api/v1/language').success(function(data, status, headers, config) {
+	            $scope.items.push.apply($scope.items, searchData(data, searchStrings));
+	        });
+	        $http.get('/api/v1/country').success(function(data, status, headers, config) {
+	            $scope.items.push.apply($scope.items, searchData(data, searchStrings));
+	        });
+	        $http.get('/api/v1/region').success(function(data, status, headers, config) {
+	            $scope.items.push.apply($scope.items, searchData(data, searchStrings));
+	        });
+	        $http.get('/api/v1/subregion').success(function(data, status, headers, config) {
+	            $scope.items.push.apply($scope.items, searchData(data, searchStrings));
+	        });
+	        $http.get('/api/v1/currency').success(function(data, status, headers, config) {
+	            $scope.items.push.apply($scope.items, searchData(data, searchStrings));
+	        });
+		});
+
+		/* items is an array of tables of objects */
+		function searchData(items, searchStrings)
+		{
+		    var newData = [];
+		    for(var tableName in items)
+		    {
+		        for(var key in items[tableName])
+		        {
+		            /* Calls the search filter for an individual item. Only addes items with more than zero occurences of searchStrings */
+		            result = searchItem(items[tableName][key], searchStrings, tableName);
+		            var count = result["count"].reduce(function(a, b) { return a + b; }, 0);
+		            if( count>0 )
+		            {
+		                /* Creates the link to the element. For some reason it disorganized when it has a different name. */
+		                result["print_name"]="<a href='/"+tableName+"/"+items[tableName][key]["id"]+"''>"+items[tableName][key]["name"]+"</a>";
+		                result["and_print"]=result["count"].reduce(function(a, b) { return a && b>0; }, true);
+		                result["count"]=count;
+		                newData.push(result);
+		            }
+		        }
+		    }
+		    return newData;
+		}
+
+		function searchItem(item, searchStrings, tableName)
+		{
+		    var newItem = {};
+		    var count = [];
+		    for(query in searchStrings) count[query] = 0;
+		    /* Loops through every element of the object. Ignores null values and id's */
+		    for(var key in item)
+		    {
+		        if(item[key] != null && key.indexOf("id")==-1)
+		        { 
+		            if(typeof item[key] === 'object')
+		            {
+		                /* Processes objects recursively. Adds an offset elements of an object */ 
+		                newItem[key] = key+":<br>"; 
+		                for(var r_key in item[key])
+		                {
+			                var result = searchItem(item[key][r_key], searchStrings, tableName);
+			                if(result["count"].reduce(function(a, b) { return a + b; }, 0)>0)
+			                {
+			                    for(query in searchStrings) count[query] += result["count"][query];
+			                    for(var newKey in result)
+			                    {
+			                        if(newKey!="count") newItem[key] += "----"+result[newKey]+"<br>";
+			                    }
+			                }
+			            }
+			            if(newItem[key] == key+":<br>") delete newItem[key];
+		            }
+		            else
+		            {
+		                var value = item[key].toString();
+		                var old_index = 0;
+		                var new_index = 1000000;
+		                var end_index = 0;
+		                for(query in searchStrings)
+		                {
+		                	var this_index = value.toLowerCase().indexOf(searchStrings[query], old_index);
+		                	if(this_index > -1)
+		                	{
+		                		count[query]++;
+			                	if(this_index < new_index)
+			                	{
+			                		new_index = this_index;
+			                		end_index = this_index+searchStrings[query].length;
+			                	}
+			                	else if(this_index == new_index && this_index+searchStrings[query].length > end_index)
+			                	{
+			                		end_index = this_index+searchStrings[query].length;
+			                	}
+			                }
+		                }
+		                if(new_index==1000000) new_index=-1;
+		                /* If any query in the exists in value this will mark it, increment the counter,
+		                   and move on to the next one until it cant find any query anymore */
+		                if(new_index != -1)
+		                {
+		                    newItem[key]=key+": ";
+		                    while(new_index != -1)
+		                    {
+		                        newItem[key]+= value.substring(old_index,new_index)+"<ins><b><i>"+value.substring(new_index,end_index)+"</i></b></ins>";
+		                        old_index = end_index;
+		                        new_index = 1000000;
+				                for(query in searchStrings)
+				                {
+				                	var this_index = value.toLowerCase().indexOf(searchStrings[query], old_index);
+				                	if(this_index > -1)
+				                	{
+				                		count[query]++;
+					                	if(this_index < new_index)
+					                	{
+					                		new_index = this_index;
+					                		end_index = this_index+searchStrings[query].length;
+					                	}
+					                	else if(this_index == new_index && this_index+searchStrings[query].length > end_index)
+					                	{
+					                		end_index = this_index+searchStrings[query].length;
+					                	}
+					                }
+				                }
+				                if(new_index==1000000) new_index=-1;
+		                    }
+		                    newItem[key]+=value.substring(old_index);
+		                }
+		            }                        
+		        }
+		    }
+		    newItem["count"] = count;
+		    return newItem;
+		}
+
+		app.filter('trustAsHtml',['$sce', function($sce) {
+		  return function(text) {
+		    return $sce.trustAsHtml(text);
+		  };
+		}]);
+	</script>
+	<h1> Search results for "{{query}}" </h1>
+	<div ng-app="instantsearch">
+        <div ng-controller="instantSearchCtrl">
+	        <ul>
+	        	<!-- Print link names and properties that match, ordered by count -->
+	        	<h3>And</h3>
+	        	<div ng-repeat="i in items | orderBy:'-count'" ng-if="i.and_print">
+	                <div ng-bind-html="i.print_name | trustAsHtml">{a i.print_name a}</div>
+	    			<div ng-repeat="(k, v) in i" ng-hide="k=='print_name'||k=='id'||k=='count'||k=='and_print'" style="padding-left:5em">
+	                    <div ng-bind-html="v.toString() | trustAsHtml">{a v a}</div>
+	    			<div/>
+	            </div>
+	        </ul>
+	        <ul>
+	        	<!-- Print link names and properties that match, ordered by count -->
+	        	<h3>Or</h3>
+	        	<div ng-repeat="i in items | orderBy:'-count'">
+	                <div ng-bind-html="i.print_name | trustAsHtml">{a i.print_name a}</div>
+	    			<div ng-repeat="(k, v) in i" ng-hide="k=='print_name'||k=='id'||k=='count'||k=='and_print'" style="padding-left:5em">
+	                    <div ng-bind-html="v.toString() | trustAsHtml">{a v a}</div>
+	    			<div/>
+	            </div>
+	        </ul>
+        </div>
+    </div>
+{% endblock %}
