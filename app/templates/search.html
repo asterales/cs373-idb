@@ -161,28 +161,34 @@
 		}]);
 	</script>
 	<h1> Search results for "{{query}}" </h1>
-	<div ng-app="instantsearch">
-        <div ng-controller="instantSearchCtrl">
-	        <ul>
-	        	<!-- Print link names and properties that match, ordered by count -->
-	        	<h3>And</h3>
-	        	<div ng-repeat="i in items | orderBy:'-count'" ng-if="i.and_print">
-	                <div ng-bind-html="i.print_name | trustAsHtml">{a i.print_name a}</div>
-	    			<div ng-repeat="(k, v) in i" ng-hide="k=='print_name'||k=='id'||k=='count'||k=='and_print'" style="padding-left:5em">
-	                    <div ng-bind-html="v.toString() | trustAsHtml">{a v a}</div>
-	    			<div/>
-	            </div>
-	        </ul>
-	        <ul>
-	        	<!-- Print link names and properties that match, ordered by count -->
-	        	<h3>Or</h3>
-	        	<div ng-repeat="i in items | orderBy:'-count'">
-	                <div ng-bind-html="i.print_name | trustAsHtml">{a i.print_name a}</div>
-	    			<div ng-repeat="(k, v) in i" ng-hide="k=='print_name'||k=='id'||k=='count'||k=='and_print'" style="padding-left:5em">
-	                    <div ng-bind-html="v.toString() | trustAsHtml">{a v a}</div>
-	    			<div/>
-	            </div>
-	        </ul>
-        </div>
-    </div>
+	<div class = "row">
+		<div ng-app="instantsearch">
+	        <div ng-controller="instantSearchCtrl">
+	        	<div class = "col-md-6 col-lg-6 panel">
+			        <ul>
+			        	<!-- Print link names and properties that match, ordered by count -->
+			        	<h3>And</h3>
+			        	<div ng-repeat="i in items | orderBy:'-count'" ng-if="i.and_print">
+			                <div ng-bind-html="i.print_name | trustAsHtml">{a i.print_name a}</div>
+			    			<div ng-repeat="(k, v) in i" ng-hide="k=='print_name'||k=='id'||k=='count'||k=='and_print'" style="padding-left:5em">
+			                    <div ng-bind-html="v.toString() | trustAsHtml">{a v a}</div>
+			    			<div/>
+			            </div>
+			        </ul>
+			    </div>
+			   	<div class = "col-md-6 col-lg-6 panel">
+			        <ul>
+			        	<!-- Print link names and properties that match, ordered by count -->
+			        	<h3>Or</h3>
+			        	<div ng-repeat="i in items | orderBy:'-count'">
+			                <div ng-bind-html="i.print_name | trustAsHtml">{a i.print_name a}</div>
+			    			<div ng-repeat="(k, v) in i" ng-hide="k=='print_name'||k=='id'||k=='count'||k=='and_print'" style="padding-left:5em">
+			                    <div ng-bind-html="v.toString() | trustAsHtml">{a v a}</div>
+			    			<div/>
+			            </div>
+			        </ul>
+			    </div>
+	        </div>
+	    </div>
+	</div>
 {% endblock %}
