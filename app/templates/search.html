@@ -22,7 +22,6 @@
 	        {
 	        	searchStrings[query] = searchStrings[query].toLowerCase();
 	        }
-	        // Would be much faster with static json files. I don't know how to do that.
 	        $http.get('/api/v1/language').success(function(data, status, headers, config) {
 	            $scope.items.push.apply($scope.items, searchData(data, searchStrings));
 	        });

@@ -73,7 +73,6 @@ def about():
 def search(query):
 	if(query):
 		return render_template('search.html', query = query)
-	return render_template('nopage.html')
 
 @app.route("/about/tests")
 def run_tests():
