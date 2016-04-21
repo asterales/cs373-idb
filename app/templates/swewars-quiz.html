@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}
+	SWEWars
+{% endblock %}
+
+{% block content %}
+    <h1 class="page-header"><strong>Star Wars Quiz</strong></h1>
+    <div class="row" id="swewars-quiz">
+        <div class="col-xs-12">
+            <div class="panel">
+                <div class="panel-body">
+
+                    <form>
+                        <h4>What is Boba Fett's height?</h4>
+                        <p><input type="radio" name="question-0" id="question-0-0"/><label for="question-0-0">33</label></p>
+                        <p><input type="radio" name="question-0" id="question-0-1"/><label for="question-0-1">34</label></p>
+                        <p><input type="radio" name="question-0" id="question-0-2"/><label for="question-0-2">35</label></p>
+                        <p><input type="radio" name="question-0" id="question-0-3"/><label for="question-0-3">36</label></p>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

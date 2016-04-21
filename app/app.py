@@ -161,6 +161,10 @@ def swewars():
 			planet["population"] = 0
 	return render_template('swewars.html', planets=planets)
 
+@app.route("/swewarsquiz")
+def swewarsquiz():
+	return render_template('swewars-quiz.html')
+
 # helper functions to process examples
 Link = namedtuple('Link', ['name', 'link'])
 def get_links_list(list):
