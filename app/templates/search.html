@@ -17,25 +17,28 @@
 		app.controller('instantSearchCtrl',function($scope,$http, $q){
 		    /* Gets the data from our api, runs it through the search filter, and stores it in the items */
 	        var searchStrings = "{{ query }}".split(" ");
-	        $scope.items = [];
+	        items = [];
+	        $scope.loading = true;
 	        for(query in searchStrings)
 	        {
 	        	searchStrings[query] = searchStrings[query].toLowerCase();
 	        }
 	        $http.get('/api/v1/language').success(function(data, status, headers, config) {
-	            $scope.items.push.apply($scope.items, searchData(data, searchStrings));
-	        });
-	        $http.get('/api/v1/country').success(function(data, status, headers, config) {
-	            $scope.items.push.apply($scope.items, searchData(data, searchStrings));
-	        });
-	        $http.get('/api/v1/region').success(function(data, status, headers, config) {
-	            $scope.items.push.apply($scope.items, searchData(data, searchStrings));
-	        });
-	        $http.get('/api/v1/subregion').success(function(data, status, headers, config) {
-	            $scope.items.push.apply($scope.items, searchData(data, searchStrings));
-	        });
-	        $http.get('/api/v1/currency').success(function(data, status, headers, config) {
-	            $scope.items.push.apply($scope.items, searchData(data, searchStrings));
+	            items.push.apply(items, searchData(data, searchStrings));
+	            $http.get('/api/v1/country').success(function(data, status, headers, config) {
+		            items.push.apply(items, searchData(data, searchStrings));
+		            $http.get('/api/v1/region').success(function(data, status, headers, config) {
+			            items.push.apply(items, searchData(data, searchStrings));
+			            $http.get('/api/v1/subregion').success(function(data, status, headers, config) {
+				            items.push.apply(items, searchData(data, searchStrings));
+				            $http.get('/api/v1/currency').success(function(data, status, headers, config) {
+					            items.push.apply(items, searchData(data, searchStrings));
+					            $scope.loading = false;
+					            $scope.items = items;
+					        });
+				        });
+			        });
+		        });
 	        });
 		});
 
@@ -163,7 +166,10 @@
 	<div class = "row">
 		<div ng-app="instantsearch">
 	        <div ng-controller="instantSearchCtrl">
-	        	<div class = "col-md-6 col-lg-6 panel">
+	        	<div class = "col-xs-12 panel" ng-if="loading">
+	        		<img src="http://sierrafire.cr.usgs.gov/images/loading.gif"/>
+	        	</div>
+	        	<div class = "col-md-6 col-lg-6 panel" ng-if="!loading">
 			        <ul>
 			        	<!-- Print link names and properties that match, ordered by count -->
 			        	<h3>And</h3>
@@ -175,7 +181,7 @@
 			            </div>
 			        </ul>
 			    </div>
-			   	<div class = "col-md-6 col-lg-6 panel">
+			   	<div class = "col-md-6 col-lg-6 panel" ng-if="!loading">
 			        <ul>
 			        	<!-- Print link names and properties that match, ordered by count -->
 			        	<h3>Or</h3>
