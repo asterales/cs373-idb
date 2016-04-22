@@ -75,11 +75,11 @@
 		    for(var key in item)
 		    {
 		        if(item[key] != null && key.indexOf("id")==-1)
-		        { 
+		        {
 		            if(typeof item[key] === 'object')
 		            {
-		                /* Processes objects recursively. Adds an offset elements of an object */ 
-		                newItem[key] = key+":<br>"; 
+		                /* Processes objects recursively. Adds an offset elements of an object */
+		                newItem[key] = key+":<br>";
 		                for(var r_key in item[key])
 		                {
 			                var result = searchItem(item[key][r_key], searchStrings, tableName);
@@ -149,7 +149,7 @@
 		                    }
 		                    newItem[key]+=value.substring(old_index);
 		                }
-		            }                        
+		            }
 		        }
 		    }
 		    newItem["count"] = count;
@@ -167,9 +167,12 @@
 		<div ng-app="instantsearch">
 	        <div ng-controller="instantSearchCtrl">
 	        	<div class = "col-xs-12 panel" ng-if="loading">
-	        		<img src="http://sierrafire.cr.usgs.gov/images/loading.gif"/>
+	        		<img src="http://sierrafire.cr.usgs.gov/images/loading.gif" style="margin: auto; display:block; height: 450px;"/>
 	        	</div>
-	        	<div class = "col-md-6 col-lg-6 panel" ng-if="!loading">
+				<div class="col-xs-12 panel" ng-if="items.length==0 && !loading">
+					No Results Found
+				</div>
+	        	<div class = "col-md-6 col-lg-6 panel" ng-if="!loading && items.length > 0">
 			        <ul>
 			        	<!-- Print link names and properties that match, ordered by count -->
 			        	<h3>And</h3>
@@ -177,11 +180,11 @@
 			                <div ng-bind-html="i.print_name | trustAsHtml">{a i.print_name a}</div>
 			    			<div ng-repeat="(k, v) in i" ng-hide="k=='print_name'||k=='id'||k=='count'||k=='and_print'" style="padding-left:5em">
 			                    <div ng-bind-html="v.toString() | trustAsHtml">{a v a}</div>
-			    			<div/>
+			    			</div>
 			            </div>
 			        </ul>
 			    </div>
-			   	<div class = "col-md-6 col-lg-6 panel" ng-if="!loading">
+			   	<div class = "col-md-6 col-lg-6 panel" ng-if="!loading && items.length > 0">
 			        <ul>
 			        	<!-- Print link names and properties that match, ordered by count -->
 			        	<h3>Or</h3>
@@ -189,7 +192,7 @@
 			                <div ng-bind-html="i.print_name | trustAsHtml">{a i.print_name a}</div>
 			    			<div ng-repeat="(k, v) in i" ng-hide="k=='print_name'||k=='id'||k=='count'||k=='and_print'" style="padding-left:5em">
 			                    <div ng-bind-html="v.toString() | trustAsHtml">{a v a}</div>
-			    			<div/>
+			    			</div>
 			            </div>
 			        </ul>
 			    </div>

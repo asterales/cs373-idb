@@ -71,6 +71,7 @@ def about():
 
 @app.route("/search/<query>")
 def search(query):
+	query = query.strip()
 	if(query):
 		return render_template('search.html', query = query)
 
