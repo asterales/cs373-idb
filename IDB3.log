@@ -1,0 +1,1117 @@
+commit bdf711dc7e51f4742f990bba5fbbe1da9445ea4b
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 21 19:59:17 2016 -0500
+
+    updated about page
+
+commit 8a8aaa4c9cd5efabd6e839970eba4969348a8af7
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Apr 21 19:48:15 2016 -0500
+
+    regex
+
+commit c0bbebe365bfb744248c229c489a6f44b08b4c5f
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Apr 21 19:35:14 2016 -0500
+
+    replace slashes in search queries
+
+commit 87eee2595cdd76830f46a422152eaafe08ac3d9b
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Apr 21 19:09:07 2016 -0500
+
+    no results, stripping query for search
+
+commit f74c570463cf25bc2befdb9105eaf12c2e3cb9fc
+Merge: f279db0 e7670ff
+Author: nathanbain314 <nathanbain314@gmail.com>
+Date:   Thu Apr 21 18:43:09 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit f279db04b647debf9728efd182a8a83e4c36b789
+Author: nathanbain314 <nathanbain314@gmail.com>
+Date:   Thu Apr 21 18:43:00 2016 -0500
+
+    Added loading gif
+
+commit e7670ff90cd7700e28a8dd69736e95cdc1d654ee
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Apr 21 18:33:40 2016 -0500
+
+    swewars quiz form template
+
+commit e9f1158d80aea16685c2832d7be68b861fc98844
+Author: nathanbain314 <nathanbain314@gmail.com>
+Date:   Tue Apr 19 18:03:08 2016 -0500
+
+    Search bar works with enter key
+
+commit df67592581e3ce67cead78a93aa76aba6fbbcbbe
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Mon Apr 18 16:42:29 2016 -0500
+
+    deleted DS_Store
+
+commit cce0805f7ec162475557db2b42ecb2bb71545e2e
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Mon Apr 18 16:37:02 2016 -0500
+
+    added backgrounds to search queries
+
+commit cd60f258732e99baa1bf0be71c88dcb44be17e64
+Author: nathanbain314 <nathanbain@wireless-10-147-187-134.public.utexas.edu>
+Date:   Mon Apr 18 13:55:53 2016 -0500
+
+    Added search function
+
+commit db5584f4522a445a61b6080d90827fcb0362e547
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Apr 14 19:13:48 2016 -0500
+
+    added pie chart on /swewars
+
+commit 19a77b0320aca9145e4c3e70fe22a5867d0c9433
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 14 17:07:49 2016 -0500
+
+    unhid the search bar
+
+commit 748bfca90fa1fab000b9b7f130167ab134248fb4
+Author: nathanbain314 <nathanbain@wireless-10-147-207-136.public.utexas.edu>
+Date:   Thu Apr 7 22:48:21 2016 -0500
+
+    Added log
+
+commit 25ad28d112b297dcf2d73b9695fb5ab1453ae803
+Merge: 419b19a f4df95d
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 7 22:44:05 2016 -0500
+
+    Merge branch 'dev'
+
+commit f4df95de4a0232e358f530fed738455ef04948cb
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 7 22:43:40 2016 -0500
+
+    updated about page correctly
+
+commit 419b19abf5994cbadf6a2025af151b9f2c7e5ed5
+Merge: 4d20ada c4b145d
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 22:31:56 2016 -0500
+
+    Merge branch 'dev'
+
+commit c4b145d9d04341d3962e8445b294ca5df7e63329
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 22:31:22 2016 -0500
+
+    commented out api test
+
+commit 4d20ada8ebc7c6b0b1290b65c72101f4f40259aa
+Merge: 2cd2ec5 78859c2
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 22:13:51 2016 -0500
+
+    fixed merge conflicts
+
+commit 78859c2bb61ce9802a8dbfc2a48e92d23e76fb6d
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 22:08:08 2016 -0500
+
+    updated makefile
+
+commit 2cd2ec5e62418158503d4a5b7c1898df73e43e78
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 7 21:38:09 2016 -0500
+
+    updated about page
+
+commit 092f6dc2ddc22544be05903db274351eb6f388be
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 7 21:36:04 2016 -0500
+
+    about page updated
+
+commit 79209316864701b758ebccc7b4e5b0084b3ebf34
+Merge: 2a1051c 128028d
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 7 21:35:45 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit 7659291e409342259ca8e398a5f99191d9feb29a
+Merge: 128028d c9f4794
+Author: nathanbain314 <nathanbain@wireless-10-147-207-136.public.utexas.edu>
+Date:   Thu Apr 7 21:32:57 2016 -0500
+
+    Merge branch 'master' of https://github.com/asterales/cs373-idb
+
+commit 128028d43bae566d3a0f1b1599d4f59bd0f9c7c2
+Author: nathanbain314 <nathanbain@wireless-10-147-207-136.public.utexas.edu>
+Date:   Thu Apr 7 21:31:29 2016 -0500
+
+    Added models.html
+
+commit 2a1051ca072a815bf768913da2885b570f21a11f
+Merge: 30074f4 4f92a33
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 7 21:22:20 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit 4f92a33a0424cec4d57277316f97e7a8881d1f4b
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Thu Apr 7 21:21:47 2016 -0500
+
+    moved database creation and populating code
+
+commit 22723249c2cb2fa5042bd949d19c5dbc41fdabf8
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 21:11:23 2016 -0500
+
+    updated makefile
+
+commit 30074f42b7af910412c3ce7f1e4aacd67bdfa3c2
+Merge: 39274d9 b5f03d0
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 7 21:09:57 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit b5f03d01bbe927ecc1897686f0119a4b57475f0d
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 21:08:50 2016 -0500
+
+    updated makefile
+
+commit 39274d96744c6bbabafa20011c8a17bf717e3364
+Merge: f417e38 63a07f1
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 7 21:05:14 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit f417e381845c9870d6c19e443a2741a31218e6fa
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 7 21:05:12 2016 -0500
+
+    updated about
+
+commit 63a07f16bb2557ae0cb4c67a315457638aace09a
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 21:04:44 2016 -0500
+
+    updated makefile to run coverage on tests
+
+commit e847e2e259b2fd77cfc54f4aacb2b9e5526e78da
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 20:59:09 2016 -0500
+
+    updated models.py
+
+commit 9767a23c03a5669cfd741d79ebdf1ad077a2ecd2
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 20:56:02 2016 -0500
+
+    updated models.py
+
+commit a47b2b2c4106b68047319df15056e9aa385460af
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 20:51:29 2016 -0500
+
+    installing pymsql on travis
+
+commit 53a2b9a842be65c760872f2007fa68b5cc5e5391
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 20:45:57 2016 -0500
+
+    updated models.py
+
+commit 9388fdd6b44cfe1b500e16a11abc5a441cb9bb47
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 20:42:47 2016 -0500
+
+    updated travis.yml
+
+commit cc26e46fd25a2e5651ebb086fbddf3bef2c17396
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 20:39:27 2016 -0500
+
+    updated path the test in make file
+
+commit 552ebbdec3450a52c34a9cc914368ea4ba6221ac
+Merge: b19e282 c595156
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 20:36:41 2016 -0500
+
+    checking to see if travis test work
+
+commit b19e2820ea8ec58488016a47f3fef5cae9ac6f1f
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 20:25:18 2016 -0500
+
+    changes to makefile
+
+commit a159c6f634c7e1284bd3d4f934221987a8a8cf76
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 20:24:26 2016 -0500
+
+    changed filepath for tests.py in makefile
+
+commit c5951561a7dc557f2f0104e57bff153c5d84923b
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Thu Apr 7 20:23:31 2016 -0500
+
+    updated location of models.py and tests.py on makefile to pass make check
+
+commit 58d0ccdb3bc08706ce916bdafe88a4d429f94293
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Thu Apr 7 20:11:39 2016 -0500
+
+    tests now running without overriding database or otherwise crashing on docker
+
+commit 6357b01b0a6e4a3a1ce9fb4fe2aadd42af587358
+Merge: 3d64674 9d9f5db
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 7 19:59:44 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit 9d9f5db43f78944c259bad89225e3906ab4ba74f
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Apr 7 19:59:21 2016 -0500
+
+    need to create, populate before app.run
+
+commit 3d646749c8f3ec554e30be586673dfcfea28fd38
+Merge: c7e1eba 019636c
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 7 19:24:32 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit c7e1ebab1080edec316473a57083ff7bfa548932
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 7 19:24:21 2016 -0500
+
+    fixed typo in about.html
+
+commit 019636c9b86c2de98cfb02d2976e04288631ab54
+Merge: 4ca007f 64db020
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Apr 7 19:23:53 2016 -0500
+
+    merge conflict
+
+commit 4ca007f7ee99c5789b4b4dc9c2cc27a2eb452ff1
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Apr 7 19:22:28 2016 -0500
+
+    updated tests to query by id, only create/populate database on app run
+
+commit 64db0207a41e8351f278863300efa8792f97b7c1
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 19:06:13 2016 -0500
+
+    fixed queries in tests
+
+commit c9f47940a666fb67f49a2cbd6e20faf9b0bd929c
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Apr 7 18:00:31 2016 -0500
+
+    list endpoints have key
+
+commit ed104fce15d6dec642c97519f976e6193db20e89
+Merge: 82b7e53 39641df
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 17:32:51 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit 82b7e53ba5c9230bb76ce4eb0c89d05a731f36ec
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 17:30:31 2016 -0500
+
+    tests now also delete the test data they add to the database
+
+commit 39641df41c02520985bb7718403e342a4becd488
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 7 17:24:54 2016 -0500
+
+    centered runtests button
+
+commit cc947c936935f9421207d483083f8aac749b95d7
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 7 16:49:56 2016 -0500
+
+    removed unused subprocess import
+
+commit 74433dc55c9d1ffa5c14a9040e4f0193f4d1cdcc
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 7 16:46:29 2016 -0500
+
+    fixed runtests formatting fixes #30,#35
+
+commit 3a0e0fb514e65ad7aec79edbca06fd489e5a0f86
+Merge: e15dd5d be37cb4
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 7 16:34:55 2016 -0500
+
+    fixed merge issue
+
+commit e15dd5d76181e7550db8fa1240215a8ab841857c
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Apr 7 16:33:56 2016 -0500
+
+    fixed tests not outputting, formatting is still not right update #35
+
+commit be37cb4b9f7a25468b58fb445c60b34a7c13abcd
+Merge: 2a84d54 5670488
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Thu Apr 7 16:18:53 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit 2a84d54f796321fdc1e043383c7ce1ace94c28f9
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Thu Apr 7 16:18:18 2016 -0500
+
+    removed examples from app.py, added markers to subregion maps, fixed region and subregion linking on tables, close #29, close #37
+
+commit 56704886624821b39b7e1c02d1e70407d0d7eaa3
+Merge: efdfc1d b072c0c
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 15:56:47 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit efdfc1d42eb538ab30565121e86a9df92c6dd3b0
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 15:56:43 2016 -0500
+
+    added api tests
+
+commit b072c0cd444a7a71244373d88e3ffd71a1a4d173
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Thu Apr 7 15:55:41 2016 -0500
+
+    added js plugin to enable pagination of tables. closes #36
+
+commit 2cfb75cc7582411a055a7b60562ee74d0172b75c
+Merge: 2f8dba0 e6bbae3
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 14:18:58 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit 2f8dba097fcc5bf75939af98304ed8ae03436180
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Apr 7 14:18:37 2016 -0500
+
+    started added api test
+
+commit 855712af026acc708d4c19ad7db4e159869dbab7
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Apr 7 14:03:17 2016 -0500
+
+    Added filters to list endpoints
+
+commit e6bbae3042ab78e955f3af308b7731325d7bad00
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Thu Apr 7 13:21:40 2016 -0500
+
+    Fixed centering for region and subregion maps. Still needs to adjust zoom.
+
+commit 5b8e405b8e879a9e8f4fbc790b4cef5b2029c046
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Thu Apr 7 13:03:28 2016 -0500
+
+    Fixed language and currency page maps to display markers. Still needs to adjust zoom.
+
+commit 8dd2e65bca349a7f945d63c9a980b03bb997e387
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Thu Apr 7 11:39:51 2016 -0500
+
+    added handling of null data so that tables and pages will display correctly
+
+commit 67286074814b6d8b2962cb53b72f9cd996a08cd9
+Author: nathanbain314 <nathanbain@host-144-154.txaudoc.austin.tx.us.clients.pavlovmedia.com>
+Date:   Thu Apr 7 10:50:57 2016 -0500
+
+    Fixed tables so that they show. Added and corrected data pertaining to currency. Country table still doesn't work for me
+
+commit 23c2e25f4a32c0aae37ae2bf9a52ce519b00e537
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Wed Apr 6 20:43:04 2016 -0500
+
+    fixed country model table
+
+commit 2deb0c91c7377036334a853fcb395d8bfd4348b3
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Wed Apr 6 20:31:08 2016 -0500
+
+    added filters to all list endpoints, incorporated them into templates
+
+commit 85191073365e4969a84c5ae11c6e2945ca9827dc
+Merge: cc858bb d523f8d
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Wed Apr 6 18:05:41 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit cc858bb64984817573d7111e3cd7711c1023aa16
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Wed Apr 6 18:05:30 2016 -0500
+
+    update country, models, template. need to add more filters to api to fill out other templates
+
+commit 845b30379b316e7bb754914fc17fa31870c60b23
+Merge: d523f8d 4d793fe
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Wed Apr 6 18:02:48 2016 -0500
+
+    Merge branch 'dev', remote-tracking branch 'origin'
+
+commit d523f8d4c088c7d22c79a9011dd88996b3ffd731
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Wed Apr 6 16:56:46 2016 -0500
+
+    added N/A for region and subregion fields of countries without data for those fields
+
+commit ffe7f180393ffbfc36667023a84a58b6525b9888
+Merge: 27cc628 b54d7d8
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Wed Apr 6 16:46:45 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit 27cc628950eaa518a3ffa6fb67710fb242f4fbec
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Wed Apr 6 16:46:33 2016 -0500
+
+    testing template interaction with api
+
+commit b54d7d884411ba88d1adf99f66b5768a2b254455
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Wed Apr 6 16:30:28 2016 -0500
+
+    added code to populate currencies and added maps for languages and currencies examples
+
+commit 2856ca4629a4709424a7367c75cd35d2f7dfe4d5
+Author: nathanbain314 <nathanbain@wireless-10-147-207-136.public.utexas.edu>
+Date:   Wed Apr 6 15:59:16 2016 -0500
+
+    Added currency data
+
+commit 02d88a8a1627608cf9a82a0136d19d2aa8b6aff2
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Wed Apr 6 14:34:20 2016 -0500
+
+    added files for populating countries and languages on startup
+
+commit c0bd43812b0eaf1f72006be34ba0d5c8115dc64d
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Tue Apr 5 21:26:42 2016 -0500
+
+    now using assertions from unittest
+
+commit be4fa8d6540f6322877c6f5cb7bb473012d799c3
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Tue Apr 5 20:57:22 2016 -0500
+
+    added some stuff to .travis.yml to allow travis to make a test database
+
+commit b8e62105465c8333c54848d6bef6d030f5f2a7bd
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Tue Apr 5 20:50:23 2016 -0500
+
+    tests working on local database
+
+commit a479dbe1416d130e7dc106123d49f19b2c5df642
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Tue Apr 5 18:18:05 2016 -0500
+
+    adding dictionary of language codes and names
+
+commit 4d793fe5d61b290ecf69f34ad2206d94d00ec7df
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Tue Apr 5 18:17:13 2016 -0500
+
+    updated api docs, closes #33
+
+commit dadf082785f2b255cb36e63f459c7b0005661ace
+Merge: 9637022 2e6c155
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Tue Apr 5 18:11:41 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit 96370225f0288c9034639baf46648ac9e47fad76
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Tue Apr 5 18:11:30 2016 -0500
+
+    countries list endpoint takes query parameters
+
+commit 2e6c15555dd637baaeb4a917ba710d542bd01ffe
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Tue Apr 5 18:06:28 2016 -0500
+
+    specified dependencies for docker services in docker-compose.yml
+
+commit 04d72c12d54c53e3b753fb4e782f12ef3aaf53e5
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Mon Apr 4 19:46:26 2016 -0500
+
+    drop database at startup and recreate
+
+commit c95ab792a2e221a5a42680c2e263e02acd61a696
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Mon Apr 4 18:02:27 2016 -0500
+
+    indenting off
+
+commit 702c01236548b7868f066e942d3ae32dddc6f337
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Mon Apr 4 17:50:37 2016 -0500
+
+    added unicode to currency model, added DISTINCT to aggregation functions on query
+
+commit 8017af842bfb17b677a63906139430ef28ee86dd
+Merge: 6535035 8e8db4b
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Mon Apr 4 17:07:24 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit 6535035d74c2801045c1d8b1e830b2804f478786
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Mon Apr 4 17:07:06 2016 -0500
+
+    region name was used for subregion, fixed
+
+commit 8e8db4bb74029a81a7a9ced6386cbce116cfbae0
+Author: nathanbain314 <nathanbain@wireless-10-147-207-136.public.utexas.edu>
+Date:   Mon Apr 4 17:06:12 2016 -0500
+
+    Fixed spelling
+
+commit 154467a3cd73f302a9aad5537513cf20aeb60d30
+Author: nathanbain314 <nathanbain@wireless-10-147-207-136.public.utexas.edu>
+Date:   Mon Apr 4 16:39:17 2016 -0500
+
+    Updated requirements.txt and moved tests.py
+
+commit 91011f0e6520795113ca1b231598a5be55db05b1
+Merge: bcfe40b 4abb299
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Mon Apr 4 16:24:41 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit bcfe40b9cc9c6dd956b76df1a748caffb9d49c18
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Mon Apr 4 16:24:24 2016 -0500
+
+    added sqlalchemy_utils function to create database
+
+commit 4abb29917334f6d927545a99c32769b607b58c1a
+Author: nathanbain314 <nathanbain@wireless-10-147-207-136.public.utexas.edu>
+Date:   Mon Apr 4 16:15:50 2016 -0500
+
+    Updated files to run locally on docker
+
+commit 5ed7940682b0d7eabc54f8331da763f59eff79c8
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Mon Apr 4 13:08:14 2016 -0500
+
+    api complete
+
+commit 68d0d4743902534d79e6711bdaa7ee6a580171b4
+Merge: cfd48b9 7ba9672
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Mar 31 23:52:45 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit cfd48b9ae3bbb233f26667b9da8c2a920db9790b
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Mar 31 23:52:13 2016 -0500
+
+    region api endpoints completed, can be used as structure for language, currency, and subregion
+
+commit 7ba96727d76fdc08a500576e0001826631f44455
+Merge: cba4c8c 8dedc98
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 31 18:28:17 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit cba4c8ce549ec70a26eba0d656e21ac17e5dee04
+Merge: 36de7ae 0c15306
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 31 18:25:51 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit 8dedc98b7b558edf77b50e6753a485edfa058c04
+Author: nathanbain314 <nathanbain@wireless-10-147-207-136.public.utexas.edu>
+Date:   Thu Mar 31 18:25:47 2016 -0500
+
+    Docker files for database
+
+commit 36de7ae100e2b7206a0c29b4e0c2c7a6376d86f3
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 31 18:25:20 2016 -0500
+
+    cleaned up files
+
+commit 3de67275a4e0ef20f92023c24634e2330e1c93f0
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 31 18:17:35 2016 -0500
+
+    deleted files and cleaned up html code
+
+commit 80cdc33f0b3762c8871313aeafd70567d5a672bf
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 31 18:14:05 2016 -0500
+
+    reduced file size images
+
+commit 0c153062dc2d6be7fa5737510bf45921d8b13946
+Merge: 462ef6a eb34944
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Mar 31 18:07:29 2016 -0500
+
+    merge conflict
+
+commit 462ef6a0dd370d4c8414f7426fc6c3115169c1d4
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Mar 31 18:05:49 2016 -0500
+
+    added api.py, testing db connection
+
+commit eb34944733f90ef9b54a83d9c24b3b489cd66e92
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Wed Mar 30 17:35:58 2016 -0500
+
+    removed w3 related css and added test button to about page. Might have to fix tests.py for it to work. #30
+
+commit 2872381a15ccb843edea495edbcd529ec95360dd
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Thu Mar 24 21:43:28 2016 -0500
+
+    adding git log
+
+commit 5c03b9acd1b6e99321f235884aedc71079cfb49e
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Thu Mar 24 21:41:22 2016 -0500
+
+    ds store item
+
+commit bad896653cf9f9c91b0f755ac7999dbd242a449f
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Thu Mar 24 21:35:38 2016 -0500
+
+    added images to languages, closes # 17
+
+commit 85384cca166c622449674ae6dc7bdf44ce8ebbfa
+Merge: c5d415e ba18dfb
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 24 21:33:30 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit c5d415eaeb0e80dd07006ad0fee5be559abb59fe
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 24 21:33:23 2016 -0500
+
+    finished about.html page
+
+commit ba18dfb2e0b8937888d46aa55b3d15d7104eceb1
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Thu Mar 24 21:15:23 2016 -0500
+
+    added images to langauges examples
+
+commit c6515b9674ede87d778926a9f22fd60d6bca7c23
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 24 20:37:55 2016 -0500
+
+     removing test.py
+
+commit b0195da2730f541ed951bab5c20134a6b7c00306
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 24 20:27:38 2016 -0500
+
+    updated makefile to do a git log
+
+commit 1106654d7dca457a110da9730d0c8cd7346bf589
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 24 20:25:35 2016 -0500
+
+    fixed the name of test.py to tests.py
+
+commit 63fdb97af50302ed844687e9ebd6070be6b37b71
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 24 20:20:15 2016 -0500
+
+    fixed type in makefile
+
+commit fbafe0ed51e9d775543d83701597870d45f527ef
+Merge: 47bebc2 c47bc59
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 24 20:17:07 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit 47bebc2f76007fd2cfb56ea2b753f810b7fcb9ba
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 24 20:16:59 2016 -0500
+
+    updated makefile and .travis.yml
+
+commit c47bc59d733ed0db3a00e9691116f7765fbe6285
+Merge: 65f3bb1 01bd8b2
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Mar 24 19:57:11 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit 65f3bb11d0d965240c362b7f70d0fde476a799e6
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Mar 24 19:56:56 2016 -0500
+
+    created angular filter mimicking get_link() function, models table linking to pages
+
+commit 01bd8b2d645349186a3684a0246e7d43319d4bfb
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 24 19:31:12 2016 -0500
+
+    updated splash page
+
+commit 94e7f41c82584602f980a33cd2598dace5222008
+Merge: eb13cf5 eaab551
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 24 19:00:54 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit eb13cf562b20034324811e116d65b60748bbb69e
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 24 19:00:06 2016 -0500
+
+    updated about info
+
+commit eaab5514f5c574669460fee3b5ef9c269818d733
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Mar 24 18:44:59 2016 -0500
+
+    fix merge
+
+commit 7b4597acdd5bce469ae9719e1a96f0ab4e35829e
+Merge: f1ab049 6edd1f3
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Mar 24 18:43:32 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit f1ab0490390f94530a41a87463d3833db91aedf5
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Mar 24 18:43:16 2016 -0500
+
+    embedded google maps into subregion pages
+
+commit 6edd1f35b001bb2e2d7e5955b6acb06ca78d9c2d
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Thu Mar 24 18:29:22 2016 -0500
+
+    updated formatting for map for country
+
+commit c81b48ac41d5579af0be0fba3b15a040bffbec3f
+Merge: 44bbacf 3d09c57
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Mar 24 18:23:59 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit 44bbacf918f473c9105f2c8264734436be46ccc3
+Merge: 642c21a beeb264
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Mar 24 18:23:33 2016 -0500
+
+    fixing merge conflict
+
+commit 642c21a077d16aa82ff4926f1cd0186ee75df2a6
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Mar 24 18:20:23 2016 -0500
+
+    added map to region page and js file for matching panel heights
+
+commit 8f49ed5314ba45408bc37062af7b6109725b8aa1
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 24 17:54:47 2016 -0500
+
+    updated profile pictures
+
+commit 3d09c5748c2a821114d6e6ddd43e46351cf36716
+Author: nathanbain314 <nathanbain@wireless-10-147-221-88.public.utexas.edu>
+Date:   Thu Mar 24 17:49:26 2016 -0500
+
+    Updated requirements.txt
+
+commit 19da8579ee24384d60fc429a2f86c03e044aa2eb
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Mar 24 17:42:58 2016 -0500
+
+    added google map to country page, must pip3 install flask-googlemaps
+
+commit 906b2a355f48385791fa17d598ef6194ac188a6f
+Merge: ada06e6 5bacdd6
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 24 17:13:06 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit ada06e611f378ced4c403fd6b443b4114853666b
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Thu Mar 24 17:13:00 2016 -0500
+
+    added a favicon
+
+commit 5bacdd64baaead3223036391fc9c78b4bddf422d
+Author: nathanbain314 <nathanbain@wireless-10-147-221-88.public.utexas.edu>
+Date:   Thu Mar 24 17:11:34 2016 -0500
+
+    Added makefile
+
+commit 1ba5f578b101676dc367a9aadd89970cb55d16a1
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Thu Mar 24 15:56:24 2016 -0500
+
+    modified tables and pages for better viewing of text
+
+commit 5424a42b6689cddf865678c76a161a94820cde7c
+Author: nathanbain314 <nathanbain@wireless-10-147-221-88.public.utexas.edu>
+Date:   Thu Mar 24 13:56:19 2016 -0500
+
+    Updated docker files
+
+commit 0dadf6106ce00cc94b908b362e518f1a8cfe3e2e
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Mar 24 07:57:34 2016 -0500
+
+    updated UML diagram
+
+commit 7b043fcfb4a764e94b75e155ce0e18fba01bd5c8
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Mar 24 07:51:06 2016 -0500
+
+    updated models.html, closes #7
+
+commit 46af233abf14357c194695e1fdbff3838b4965ef
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Mar 24 07:46:21 2016 -0500
+
+    updated unit test to reflect changes in models.py, closes #5
+
+commit f9dffa4179902c7349215e9fd971b77dad7e2d48
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Mar 24 07:27:29 2016 -0500
+
+    added inline comments, closes #6
+
+commit 3a38a127e9d30bf8ebb1c0ae08c4091a71d2ff4f
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Thu Mar 24 07:08:08 2016 -0500
+
+    added subregion model and updated existing models
+
+commit 6beb9227cf547a3542d9582f5f6610e2c5730e4d
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Thu Mar 24 00:51:56 2016 -0500
+
+    added static models for remaining tables and individual examples, closes #13
+
+commit d0e686926cf2fd619bd5973fdfb1b40ad8676ba6
+Author: nathanbain314 <nathanbain@wireless-10-147-144-207.public.utexas.edu>
+Date:   Wed Mar 23 22:17:13 2016 -0500
+
+    Updated app.py and implemented AngularJS to create sortable tables
+
+commit 855cf6b2719bd5fc76657add3c6bcc5e234ffc04
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Wed Mar 23 20:08:21 2016 -0500
+
+    updated about page format
+
+commit 2a560a741891d83491a3ba906745ce3f673ca206
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Wed Mar 23 20:00:49 2016 -0500
+
+    Updated formatting in about.html
+
+commit e4960327758ab6555ec4339f55ff10b2301d1803
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Wed Mar 23 19:34:43 2016 -0500
+
+    added country example static pages
+
+commit f1281a4ac8f1e8623666b729ecb3f28adb63398e
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Wed Mar 23 19:31:01 2016 -0500
+
+    changed toolbar to fix better on smaller mobile devices
+
+commit 3be31ab83b38f658a1c7e4dcfed7b1218b09bb1f
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Wed Mar 23 19:15:58 2016 -0500
+
+    fixed background scaling with size of page
+
+commit 192676bb301e436a898d7c095aa9ac0745b1ae6f
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Wed Mar 23 18:51:44 2016 -0500
+
+    centered profile cards in about page
+
+commit beeb264167fc8056049021bc92304076c6f6a52e
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Wed Mar 23 17:37:48 2016 -0500
+
+    Transferring API Description file from Apiary.io
+
+commit cd98029bb2346cc653f05761dcb0f1e408d2ad2a
+Author: nathanbain314 <nathanbain@wireless-10-147-144-207.public.utexas.edu>
+Date:   Wed Mar 23 17:04:59 2016 -0500
+
+    Docker files
+
+commit b828c76434eb3d1d566971f9faf0e08e582554bf
+Merge: 9fe4dde 5cb5cf6
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Wed Mar 23 17:03:48 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit 9fe4dde426fa4c66b91a8ab43c9faec73b594faf
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Wed Mar 23 17:00:11 2016 -0500
+
+    updated about page to profile cards
+
+commit 5cb5cf6c75bec1faeea9784eeaee1501e93c1c27
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Wed Mar 23 16:19:41 2016 -0500
+
+    updated country attributes and base.html
+
+commit 3eddf62508658a976bc7eea854bafde41cee8ddc
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Wed Mar 23 16:17:00 2016 -0500
+
+    updated about page to use w3 CSS styles
+
+commit 2cec372f778d6f27507df73a0db76e1f791c385d
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Wed Mar 23 00:48:26 2016 -0500
+
+    added progress on about page
+
+commit b1b3ce373101fd9a877a3a21ec27502635e1c24f
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Tue Mar 22 21:49:08 2016 -0500
+
+    Transferring API Description file from Apiary.io
+
+commit 32b3016fbef05a5b811be574293bf4a27b8e9773
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Tue Mar 22 19:24:00 2016 -0500
+
+    rearranged file structure
+
+commit 4fec281106babd2cd5e39999e63063cdebe574a1
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Tue Mar 22 19:13:45 2016 -0500
+
+    fixed files that were referencing wrong file paths
+
+commit b9322c0df3ec215abf235054df335ef4f5de1b51
+Author: michaeldchin <mchin461@gmail.com>
+Date:   Tue Mar 22 18:46:56 2016 -0500
+
+    Rearranged file structure
+
+commit 490fd911017f190b83965723330c21914801e6fd
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Tue Mar 22 18:34:35 2016 -0500
+
+    added regions table for static models
+
+commit 764591a9714d69264a7f6c8e644a0fa8bc3a18a1
+Merge: 9991ebb 9d0530c
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Tue Mar 22 17:22:53 2016 -0500
+
+    Merge branch 'dev' of https://github.com/asterales/cs373-idb into dev
+
+commit 9991ebb467219dfb7ab1610cd5621090d008c462
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Tue Mar 22 17:22:14 2016 -0500
+
+    adding flask app and basic templates for models
+
+commit 9d0530c8e5e67bcf1200ddb5a0d834305dd8c9a5
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Tue Mar 22 08:43:58 2016 -0500
+
+    adding unit test for models
+
+commit 0385f125fc6053f3bd59d825908c6d083769251b
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Sun Mar 20 20:55:38 2016 -0500
+
+    Transferring API Description file from Apiary.io
+
+commit 10f837c4262160ca04248e233ba368d6db28bac6
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Tue Mar 15 14:53:59 2016 -0500
+
+    updated UML.pdf
+
+commit 95c29e7e8123bb173eea1bf247603ed8658e2576
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Tue Mar 15 14:38:20 2016 -0500
+
+    added models.py and UML.pdf
+
+commit a04eada82bb1b36fbc87c6eb32ea074cc377aa61
+Author: Brent Hays <brenthays711@gmail.com>
+Date:   Thu Mar 10 18:16:56 2016 -0600
+
+    test flask application
+
+commit 4d29d7283b59af34cb4657c153ebeb92dccb1f82
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Wed Mar 9 16:02:13 2016 -0600
+
+    Transferring API Description file from Apiary.io
+
+commit 7f036f2bbc11ff57d2292b3c482143dd7c53e360
+Author: StormyEmery <stormyemery12@utexas.edu>
+Date:   Tue Mar 8 18:43:34 2016 -0600
+
+    just to get slack integrated
+
+commit 80b9a0fafa3ca571d5aaff63aeb1f0afbe8e38d0
+Author: Alissa Hall <alissa.hall@utexas.edu>
+Date:   Tue Mar 8 18:34:10 2016 -0600
+
+    setting up travis
+
+commit 6c0f16b009670cf7de477b6d55dd770d00bc15ca
+Author: asterales <alissa.hall@utexas.edu>
+Date:   Tue Mar 8 18:19:49 2016 -0600
+
+    Initial commit
