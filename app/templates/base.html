@@ -53,7 +53,7 @@
           <div class="navbar-form navbar-right" role="search">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Search" id="search" onkeydown = "if (event.keyCode == 13) document.getElementById('btnSearch').click()">
-            <button type="submit" id="btnSearch" class="btn btn-default" onclick="if(search.value!=''){window.location='/search/'+search.value}">Submit</button>
+            <button type="submit" id="btnSearch" class="btn btn-default" onclick="if(search.value!=''){search.value = search.value.replace('/','').replace('\\',''); window.location='/search/'+search.value}">Submit</button>
             </div>
           </div>
 
