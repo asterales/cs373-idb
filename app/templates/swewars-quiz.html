@@ -6,23 +6,59 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="page-header"><strong>Star Wars Quiz</strong></h1>
-    <div class="row" id="swewars-quiz">
-        <div class="col-xs-12">
-            <div class="panel">
-                <div class="panel-body">
+    <script src = "{{ url_for('static', filename = 'js/quiz.js')}}"></script>
+    <script>
+        var app = angular.module('quizApp', []);
+        app.config(['$interpolateProvider', function($interpolateProvider)
+        {
+            $interpolateProvider.startSymbol('{a');
+            $interpolateProvider.endSymbol('a}');
+        }]);
+        app.controller('MainCtrl', function($scope,$http)
+        {
+            /* Gather all of the input data */
+            swewars_data = [];
+            swewars_data.push({{ planet_data|safe }});
+            swewars_data.push({{ people_data|safe }});
+            swewars_data.push({{ species_data|safe }});
 
-                    <form>
-                        <h4>What is Boba Fett's height?</h4>
-                        <p><input type="radio" name="question-0" id="question-0-0"/><label for="question-0-0">33</label></p>
-                        <p><input type="radio" name="question-0" id="question-0-1"/><label for="question-0-1">34</label></p>
-                        <p><input type="radio" name="question-0" id="question-0-2"/><label for="question-0-2">35</label></p>
-                        <p><input type="radio" name="question-0" id="question-0-3"/><label for="question-0-3">36</label></p>
-                    </form>
-                    
+            /* Generate the quiz */
+            $scope.questions = generate_quiz(swewars_data);
+            correct = $scope.questions[2];
+
+            /* Range function for angular */
+            $scope.range = function(min, max, step) {
+                var step = step || 1;
+                var input = [];
+                for (var i = min; i <= max; i += step) {
+                    input.push(i);
+                }
+                return input;
+            };
+        });
+    </script>
+    <h1 class="page-header"><strong>Star Wars Quiz</strong></h1>
+    <!-- Probably too many divs -->
+    <div ng-app="quizApp" ng-controller="MainCtrl">
+        <div ng-repeat="i in range(0,9)">
+            <div class="row" id="swewars-quiz">
+                <div class="col-xs-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <form>
+                                <h4>{a questions[0][i] a}</h4>
+                                <div ng-repeat="q in range(0,3)">
+                                    <p><input type="radio" name="question-{a i a}" id="question-{a i a}-{a q a}"/><label id="for-question-{a i a}-{a q a}" for="question-{a i a}-{a q a}">{a questions[1][i][q] a}</label></p>
+                                </div>
+                            </form>
+                            <br>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <button class="btn btn-default" type="submit" onclick="get_score();">Finish</button>
     </div>
+    <div id="score" style="padding-left: 5em; padding-bottom: 200px;"/>
 
 {% endblock %}
