@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block content %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/starwars.css')}}">
     <script src = "{{ url_for('static', filename = 'js/quiz.js')}}"></script>
     <script>
         var app = angular.module('quizApp', []);
@@ -43,16 +44,14 @@
         <div ng-repeat="i in range(0,9)">
             <div class="row" id="swewars-quiz">
                 <div class="col-xs-12">
-                    <div class="panel">
+                    <div class="sw-panel">
                         <div class="panel-body">
                             <form>
                                 <h4>{a questions[0][i] a}</h4>
                                 <div ng-repeat="q in range(0,3)">
                                     <p><input type="radio" name="question-{a i a}" id="question-{a i a}-{a q a}"/><label id="for-question-{a i a}-{a q a}" for="question-{a i a}-{a q a}">{a questions[1][i][q] a}</label></p>
                                 </div>
-                                <p id="correct-{a i a}" style="color: red">
-                                    <br>
-                                </p>
+                                <p id="correct-{a i a}"/>
                             </form>
                             <br>
                         </div>
