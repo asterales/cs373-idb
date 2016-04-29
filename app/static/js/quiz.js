@@ -32,19 +32,21 @@ function generate_quiz(data)
 			/* Gets random data from table and poic to use as answer */
 			var correct_answer_id = Math.floor(Math.random() * table.length);
 			var answer = table[correct_answer_id][topic];
+			var good_answer = true;
 
 			/* Checks to make sure that answer is not null, does not contain a bad answer, and is not part of a bad answer */
 			if(answer!=null)
 			{
     			for(ans in bad_answers)
     			{
-    				if(answer.toLowerCase().indexOf(bad_answers[ans].toLowerCase())<0 && bad_answers[ans].toLowerCase().indexOf(answer.toLowerCase())<0)
-    				{
-    					answers.push(answer);
-    					n++;
-    					break;
-    				}
+    				if(answer.toLowerCase().indexOf(bad_answers[ans].toLowerCase())>=0 || bad_answers[ans].toLowerCase().indexOf(answer.toLowerCase())>=0)
+    					good_answer = false;
     			}
+    			if(good_answer == true)
+    			{
+					answers.push(answer);
+					n++;
+				}
 			}
 
 		}
