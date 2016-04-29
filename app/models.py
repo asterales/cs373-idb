@@ -2,7 +2,7 @@
 
 import os
 import sys
-from sqlalchemy import Table, Column, ForeignKey, Integer, String
+from sqlalchemy import Table, Column, ForeignKey, Integer, String, Float
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
@@ -82,8 +82,8 @@ class Countries(Base):
 	id = Column(Integer, primary_key=True)
 	name = Column(String(255)) #nullable=False
 	capital = Column(String(255)) #nullable=False
-	lat = Column(Integer)
-	lng = Column(Integer)
+	lat = Column(Float)
+	lng = Column(Float)
 	region_id = Column(Integer, ForeignKey('Regions.id'))
 	subregion_id = Column(Integer, ForeignKey('SubRegions.id'))
 	area = Column(Integer)
