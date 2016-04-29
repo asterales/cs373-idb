@@ -127,7 +127,7 @@ function get_score()
 			}
 		}
 
-		document.getElementById("score").innerHTML="<h1>Score: "+score+"<h1>";
+		document.getElementById("score").innerHTML="<h1>Score: "+score+"/10"+"<h1>";
 		already_scored = true;
 	}
 }
