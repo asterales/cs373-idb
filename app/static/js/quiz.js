@@ -2,6 +2,7 @@
    output is array of objects arrays questions, answers, and correct answers */
 function generate_quiz(data)
 {
+	already_scored = false;
 	questions = [];
 	correct = [];
 	all_answers = [];
@@ -37,7 +38,7 @@ function generate_quiz(data)
 			{
     			for(ans in bad_answers)
     			{
-    				if(answer.toLowerCase().indexOf(bad_answers[ans].toLowerCase())<0 || bad_answers[ans].toLowerCase().indexOf(answer.toLowerCase())<0)
+    				if(answer.toLowerCase().indexOf(bad_answers[ans].toLowerCase())<0 && bad_answers[ans].toLowerCase().indexOf(answer.toLowerCase())<0)
     				{
     					answers.push(answer);
     					n++;
@@ -107,14 +108,24 @@ function shuffle(a)
 /* Computes the score and sets the html for the score */
 function get_score()
 {
-	var score = 0;
+	if(!already_scored)
+	{
+		var score = 0;
 
-	/* Checks that the radion button label is queal to the correct value */
-	for(i = 0; i < 10; i++)
-		if(document.querySelector('input[name = "question-'+i+'"]:checked')!=null && correct[i]==document.getElementById("for-"+document.querySelector('input[name = "question-'+i+'"]:checked').id).innerHTML)
+		/* Checks that the radion button label is queal to the correct value */
+		for(i = 0; i < 10; i++)
 		{
-			score++;
+			if(document.querySelector('input[name = "question-'+i+'"]:checked')!=null && correct[i]==document.getElementById("for-"+document.querySelector('input[name = "question-'+i+'"]:checked').id).innerHTML)
+			{
+				score++;
+			}
+			else
+			{
+				document.getElementById("correct-"+i).innerHTML="Correct Answer: "+correct[i];
+			}
 		}
 
-	document.getElementById("score").innerHTML="<h1>Score: "+score+"<h1>";
+		document.getElementById("score").innerHTML="<h1>Score: "+score+"<h1>";
+		already_scored = true;
+	}
 }
