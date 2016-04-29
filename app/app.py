@@ -164,7 +164,10 @@ def swewars():
 
 @app.route("/swewarsquiz")
 def swewarsquiz():
-	return render_template('swewars-quiz.html')
+	planet_data = requests.get("http://swewars.me/get_planets").json()
+	people_data = requests.get("http://swewars.me/get_people").json()
+	species_data = requests.get("http://swewars.me/get_species").json()
+	return render_template('swewars-quiz.html', planet_data=planet_data, people_data=people_data, species_data=species_data)
 
 # helper functions to process examples
 Link = namedtuple('Link', ['name', 'link'])
