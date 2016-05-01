@@ -6,6 +6,32 @@
 {% endblock %}
 
 {% block content %}
+    <style type="text/css">
+        .btn-default {
+            font-family: Droid Sans, arial, verdana, sans-serif;
+            background-color: rgba(255, 255, 255, 0.4);
+            color: black;
+            border: 3px solid #ff6;
+            border-radius: 0px;
+            font-weight: bold;
+            font-size: 1.3em;
+            padding: 5px 8px;
+            text-transform: uppercase;
+        }
+
+        .btn-default:hover, .btn-default:active:focus {
+            background-position: 0px;
+            font-family: Droid Sans, arial, verdana, sans-serif;
+            background-color: rgba(255, 255, 255, 0.6);
+            color: black;
+            border: 3px solid #ff6;
+            border-radius: 0px;
+            font-weight: bold;
+            font-size: 1.3em;
+            padding: 5px 8px;
+            text-transform: uppercase;
+        }
+    </style>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/starwars.css')}}">
     <script src = "{{ url_for('static', filename = 'js/quiz.js')}}"></script>
     <script>

@@ -20,7 +20,10 @@ function generate_quiz(data)
 	{
 		/* Gets random topic of random table to use for question */
 		var question = {};
-		var table_id = Math.floor(Math.random() * 3);
+		var table_id = Math.floor(Math.random() * 100);
+		if( table_id < 20 ) table_id = 0;
+		else if( table_id < 70 ) table_id = 1;
+		else if( table_id < 100 ) table_id = 2;
 		var table = data[table_id][table_names[table_id]];
 		var topic = acceptable_keys[table_id][Math.floor(Math.random() * acceptable_keys[table_id].length)];
 
